@@ -36,6 +36,7 @@ done < <(grep -v '^#' "${SCHEMES_INDEX}")
 rsync -rv \
 	--exclude=".git" \
 	--exclude="output" \
+	--exclude="circus/circus" \
 	--include="*/" \
 	--include="*.yml" \
 	--include="*.yaml" \
