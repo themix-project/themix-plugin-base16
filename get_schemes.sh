@@ -41,7 +41,10 @@ rsync -rv \
 	--include="*.yaml" \
 	--exclude="*" \
 	"$SCHEMES_WORKDIR"/ "$SCHEMES_RESULT_DIR"
-echo 1
+sync
+sleep 0.001
+echo 'Clean-up:'
 find "$SCHEMES_RESULT_DIR" -type d -empty -print0 | xargs --null rmdir || true
-echo 2
-find "$SCHEMES_RESULT_DIR" -type d -empty -print0 | xargs --null rmdir || true
+echo 'Check-up:'
+find "$SCHEMES_RESULT_DIR" -type d -empty -print0 | xargs --null echo
+echo ':: done ::'
