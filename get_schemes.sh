@@ -24,14 +24,14 @@ get_scheme() {(
 )}
 
 
-#curl "${SCHEMES_INDEX_URL}" -o "${SCHEMES_INDEX}"
-#mkdir -p "${SCHEMES_WORKDIR}"
-#while read -r line ; do
-	#name=$(cut -d: -f1 <<< "${line}")
-	#link=$(cut -d: -f2-999 <<< "${line}")
-	#test -z "${link}" && continue
-	#get_scheme "$name" "$link"
-#done < <(grep -v '^#' "${SCHEMES_INDEX}")
+curl "${SCHEMES_INDEX_URL}" -o "${SCHEMES_INDEX}"
+mkdir -p "${SCHEMES_WORKDIR}"
+while read -r line ; do
+	name=$(cut -d: -f1 <<< "${line}")
+	link=$(cut -d: -f2-999 <<< "${line}")
+	test -z "${link}" && continue
+	get_scheme "$name" "$link"
+done < <(grep -v '^#' "${SCHEMES_INDEX}")
 
 rsync -rv \
 	--exclude=".git" \
