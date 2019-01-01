@@ -12,6 +12,7 @@ SCHEMES_WORKDIR="${SCRIPT_DIR}"/schemes.tmp
 SCHEMES_RESULT_DIR="${SCRIPT_DIR}"/schemes
 
 TEMPLATES_INDEX="${SCRIPT_DIR}"/templates.yaml
+TEMPLATES_EXTRA_DIR="${SCRIPT_DIR}"/templates_extra
 TEMPLATES_WORKDIR="${SCRIPT_DIR}"/templates.tmp
 TEMPLATES_RESULT_DIR="${SCRIPT_DIR}"/templates
 
@@ -54,6 +55,8 @@ rsync -rv \
 	--include="*/templates/*" \
 	--exclude="*" \
 	"$TEMPLATES_WORKDIR"/ "$TEMPLATES_RESULT_DIR"
+rsync -rv \
+	"$TEMPLATES_EXTRA_DIR"/ "$TEMPLATES_RESULT_DIR"
 sync
 sleep 0.001
 echo 'Clean-up:'
