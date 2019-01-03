@@ -1,0 +1,19 @@
+# Base16 Builder scheme by Jan T. Sott
+scheme: "Factus 12C"
+author: "Jan T. Sott"
+base00: "0e0a0a" # ----
+base01: "3f3c3c" # ---
+base02: "565353" # --
+base03: "6d6b6b" # -
+base04: "878484" # +
+base05: "b7b6b6" # ++
+base06: "cecdcd" # +++
+base07: "ffffff" # ++++
+base08: "ff5792" # red
+base09: "fd8b66" # orange
+base0A: "fef88d" # yellow
+base0B: "8edbb8" # green
+base0C: "fda3bf" # rose
+base0D: "5cd4f5" # blue
+base0E: "7764a2" # purple
+base0F: "b6eff9" # light blue

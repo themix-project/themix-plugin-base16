@@ -1,0 +1,19 @@
+# Base16 Builder scheme by Jan T. Sott
+scheme: "Apple Pips"
+author: "Jan T. Sott"
+base00: "374546" # ----
+base01: "5a6161" # ---
+base02: "696f70" # --
+base03: "7d8182" # -
+base04: "929495" # +
+base05: "a8aaaa" # ++
+base06: "d5d5d5" # +++
+base07: "ffffff" # ++++
+base08: "e92d46" # red
+base09: "e16712" # orange
+base0A: "efb554" # yellow
+base0B: "78bb86" # green
+base0C: "00b5b0" # aqua
+base0D: "00afd6" # blue
+base0E: "ef91a1" # purple
+base0F: "dacb6c" # brown
