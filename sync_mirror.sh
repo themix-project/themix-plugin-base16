@@ -27,6 +27,7 @@ grep -hv '^#' "${SCHEMES_INDEX}" "${SCHEMES_EXTRA_INDEX}" | parallel "${GET_ASSE
 
 rsync -rv \
 	--exclude=".git" \
+	--exclude=".travis.yml" \
 	--exclude="output" \
 	--exclude="circus/circus" \
 	--include="*/" \
