@@ -8,6 +8,7 @@ SCHEMES_INDEX_URL=https://raw.githubusercontent.com/chriskempson/base16-schemes-
 TEMPLATES_INDEX_URL=https://raw.githubusercontent.com/chriskempson/base16-templates-source/master/list.yaml
 
 SCHEMES_INDEX="${SCRIPT_DIR}"/schemes.yaml
+SCHEMES_EXTRA_INDEX="${SCRIPT_DIR}"/schemes_extra.yaml
 SCHEMES_WORKDIR="${SCRIPT_DIR}"/schemes.tmp
 SCHEMES_RESULT_DIR="${SCRIPT_DIR}"/schemes
 
@@ -19,22 +20,18 @@ TEMPLATES_RESULT_DIR="${SCRIPT_DIR}"/templates
 
 GET_ASSET="${SCRIPT_DIR}/_get_asset.sh"
 
-get_template() {
-	get_asset "$1" "$TEMPLATES_WORKDIR"
-}
-
 
 curl "${SCHEMES_INDEX_URL}" -o "${SCHEMES_INDEX}"
 mkdir -p "${SCHEMES_WORKDIR}"
-grep -v '^#' "${SCHEMES_INDEX}" | parallel "${GET_ASSET}" "${SCHEMES_WORKDIR}"
+grep -hv '^#' "${SCHEMES_INDEX}" "${SCHEMES_EXTRA_INDEX}" | parallel "${GET_ASSET}" "${SCHEMES_WORKDIR}"
 
 rsync -rv \
 	--exclude=".git" \
 	--exclude="output" \
 	--exclude="circus/circus" \
 	--include="*/" \
-	--include="*.yml" \
-	--include="*.yaml" \
+	--include="*/*.yml" \
+	--include="*/*.yaml" \
 	--exclude="*" \
 	"$SCHEMES_WORKDIR"/ "$SCHEMES_RESULT_DIR"
 sync
