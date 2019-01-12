@@ -23,7 +23,12 @@ GET_ASSET="${SCRIPT_DIR}/_get_asset.sh"
 
 curl "${SCHEMES_INDEX_URL}" -o "${SCHEMES_INDEX}"
 mkdir -p "${SCHEMES_WORKDIR}"
-grep -hv '^#' "${SCHEMES_INDEX}" "${SCHEMES_EXTRA_INDEX}" | parallel "${GET_ASSET}" "${SCHEMES_WORKDIR}"
+if command -v parallel ; then
+	grep -hv '^#' "${SCHEMES_INDEX}" "${SCHEMES_EXTRA_INDEX}" | parallel "${GET_ASSET}" "${SCHEMES_WORKDIR}"
+else
+	# shellcheck disable=SC2046
+	parallel-moreutils "${GET_ASSET}" "${SCHEMES_WORKDIR}" -- $(grep -hv '^#' "${SCHEMES_INDEX}" "${SCHEMES_EXTRA_INDEX}" )
+fi
 
 rsync -rv \
 	--exclude=".git" \
@@ -45,7 +50,12 @@ echo ':: schemes done ::'
 
 
 curl "${TEMPLATES_INDEX_URL}" -o "${TEMPLATES_INDEX}"
-grep -v '^#' "${TEMPLATES_INDEX}" | parallel "${GET_ASSET}" "${TEMPLATES_WORKDIR}"
+if command -v parallel ; then
+	grep -v '^#' "${TEMPLATES_INDEX}" | parallel "${GET_ASSET}" "${TEMPLATES_WORKDIR}"
+else
+	# shellcheck disable=SC2046
+	parallel-moreutils "${GET_ASSET}" "${TEMPLATES_WORKDIR}" -- $(grep -v '^#' "${TEMPLATES_INDEX}")
+fi
 
 rsync -rv \
 	--exclude=".git" \

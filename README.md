@@ -3,7 +3,7 @@ Dependencies
 
  - grep
  - curl
- - parallel
+ - moreutils or parallel
  - git
  - rsync
  - find
