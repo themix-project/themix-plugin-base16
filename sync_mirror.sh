@@ -13,6 +13,7 @@ SCHEMES_WORKDIR="${SCRIPT_DIR}"/schemes.tmp
 SCHEMES_RESULT_DIR="${SCRIPT_DIR}"/schemes
 
 TEMPLATES_INDEX="${SCRIPT_DIR}"/templates.yaml
+TEMPLATES_EXTRA_INDEX="${SCRIPT_DIR}"/templates_extra.yaml
 TEMPLATES_EXTRA_DIR="${SCRIPT_DIR}"/templates_extra
 TEMPLATES_WORKDIR="${SCRIPT_DIR}"/templates.tmp
 TEMPLATES_RESULT_DIR="${SCRIPT_DIR}"/templates
@@ -51,10 +52,10 @@ echo ':: schemes done ::'
 
 curl "${TEMPLATES_INDEX_URL}" -o "${TEMPLATES_INDEX}"
 if command -v parallel ; then
-	grep -v '^#' "${TEMPLATES_INDEX}" | parallel "${GET_ASSET}" "${TEMPLATES_WORKDIR}"
+	grep -hv '^#' "${TEMPLATES_INDEX}" "${TEMPLATES_EXTRA_INDEX}" | parallel "${GET_ASSET}" "${TEMPLATES_WORKDIR}"
 else
 	# shellcheck disable=SC2046
-	parallel-moreutils "${GET_ASSET}" "${TEMPLATES_WORKDIR}" -- $(grep -v '^#' "${TEMPLATES_INDEX}")
+	parallel-moreutils "${GET_ASSET}" "${TEMPLATES_WORKDIR}" -- $(grep -hv '^#' "${TEMPLATES_INDEX}" "${TEMPLATES_EXTRA_INDEX}")
 fi
 
 rsync -rv \
