@@ -51,6 +51,7 @@ echo ':: schemes done ::'
 
 
 curl "${TEMPLATES_INDEX_URL}" -o "${TEMPLATES_INDEX}"
+mkdir -p "${TEMPLATES_WORKDIR}"
 if command -v parallel ; then
 	grep -hv '^#' "${TEMPLATES_INDEX}" "${TEMPLATES_EXTRA_INDEX}" | parallel "${GET_ASSET}" "${TEMPLATES_WORKDIR}"
 else
