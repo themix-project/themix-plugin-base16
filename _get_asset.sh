@@ -35,4 +35,4 @@ get_asset() {(
 	fi
 )}
 
-get_asset "${ARGS[@]}" || echo "smth wen't wrong: ${ARGS[*]}"
+get_asset "${ARGS[@]}" || echo "smth went wrong: ${ARGS[*]}"

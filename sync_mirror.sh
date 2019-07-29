@@ -24,7 +24,7 @@ GET_ASSET="${SCRIPT_DIR}/_get_asset.sh"
 
 curl "${SCHEMES_INDEX_URL}" -o "${SCHEMES_INDEX}"
 mkdir -p "${SCHEMES_WORKDIR}"
-if command -v parallel ; then
+if command -v parallel > /dev/null ; then
 	grep -hv '^#' "${SCHEMES_INDEX}" "${SCHEMES_EXTRA_INDEX}" | parallel "${GET_ASSET}" "${SCHEMES_WORKDIR}"
 else
 	# shellcheck disable=SC2046
