@@ -2,6 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+ARGS=("$@")
 
 get_asset() {(
 	destination="$1"
@@ -30,8 +31,8 @@ get_asset() {(
 		cd "$name"
 		git clean -f -d -x
 		git checkout -- '*'
-		mv "$dir"/* ./
+		mv "$dir"/* ./ || echo "can't move: ${ARGS[*]}"
 	fi
 )}
 
-get_asset "$@"
+get_asset "${ARGS[@]}" || echo "smth wen't wrong: ${ARGS[*]}"
