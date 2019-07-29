@@ -4,8 +4,8 @@ IFS=$'\n\t'
 
 SCRIPT_DIR=$(readlink -e "$(dirname "${0}")")
 
-SCHEMES_INDEX_URL=https://raw.githubusercontent.com/base16-project/base16-schemes-source/master/list.yaml
-TEMPLATES_INDEX_URL=https://raw.githubusercontent.com/base16-project/base16-templates-source/master/list.yaml
+SCHEMES_INDEX_URL=https://raw.githubusercontent.com/chriskempson/base16-schemes-source/master/list.yaml
+TEMPLATES_INDEX_URL=https://raw.githubusercontent.com/chriskempson/base16-templates-source/master/list.yaml
 
 SCHEMES_INDEX="${SCRIPT_DIR}"/schemes.yaml
 SCHEMES_EXTRA_INDEX="${SCRIPT_DIR}"/schemes_extra.yaml
