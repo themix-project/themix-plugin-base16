@@ -10,6 +10,8 @@ codeschool: https://github.com/blockloop/base16-codeschool-scheme
 cupertino: https://github.com/Defman21/base16-cupertino
 default: https://github.com/chriskempson/base16-default-schemes
 dracula: https://github.com/dracula/base16-dracula-scheme
+espresso: https://github.com/alexmirrington/base16-espresso-scheme
+framer: https://github.com/jssee/base16-framer-scheme
 fruit-soda: https://github.com/jozip/base16-fruit-soda-scheme
 github: https://github.com/Defman21/base16-github-scheme
 gruvbox: https://github.com/dawikur/base16-gruvbox-scheme
@@ -24,6 +26,7 @@ material-vivid: https://github.com/joshyrobot/base16-material-vivid-scheme
 mellow: https://github.com/gidsi/base16-mellow-scheme
 mexico-light: https://github.com/drzel/base16-mexico-light-scheme
 nord: https://github.com/8-uh/base16-nord-scheme
+nova: https://github.com/gessig/base16-nova-scheme
 one-light: https://github.com/purpleKarrot/base16-one-light-scheme
 onedark: https://github.com/tilal6991/base16-onedark-scheme
 outrun: https://github.com/hugodelahousse/base16-outrun-schemes
@@ -31,6 +34,7 @@ papercolor: https://github.com/jonleopard/base16-papercolor-scheme
 porple: https://github.com/AuditeMarlow/base16-porple-scheme
 purpledream: https://github.com/archmalet/base16-purpledream-scheme
 rebecca: https://github.com/vic/base16-rebecca
+sandcastle: https://github.com/gessig/base16-sandcastle-scheme
 snazzy: https://github.com/h404bi/base16-snazzy-scheme
 solarflare: https://github.com/mnussbaum/base16-solarflare-scheme
 solarized: https://github.com/aramisgithub/base16-solarized-scheme
@@ -45,14 +49,6 @@ xcode-dusk: https://github.com/gonsie/base16-xcode-dusk-scheme
 
 # If your scheme is in this repository, please give it a new home!
 unclaimed: https://github.com/chriskempson/base16-unclaimed-schemes
-
-# Disabled until https://github.com/gessig/base16-nova-scheme/pull/1
-# is merged.
-#nova: https://github.com/gessig/base16-nova-scheme
-
-# Disabled until https://github.com/gessig/base16-sandcastle-scheme/pull/1
-# is merged.
-#sandcastle: https://github.com/gessig/base16-sandcastle-scheme
 
 # Disabled until https://github.com/ZoeFiri/base16-summercamp/issues/1 is
 # fixed.
