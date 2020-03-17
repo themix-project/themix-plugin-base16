@@ -1,0 +1,19 @@
+DESTDIR = ./distrib
+PREFIX = /usr
+APPDIR = /opt/oomox
+
+DEST_APPDIR = $(DESTDIR)$(APPDIR)
+DEST_PLUGIN_DIR = $(DESTDIR)$(APPDIR)/plugins
+DEST_PREFIX = $(DESTDIR)$(PREFIX)
+
+.PHONY: install
+install:
+	$(eval PLUGIN_NAME := "base16")
+
+	mkdir -p $(DEST_PLUGIN_DIR)
+	cp -prf \
+		plugins/$(PLUGIN_NAME) \
+			$(DEST_PLUGIN_DIR)/
+	$(RM) -r "$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)"/*/.git*
+
+all: install
