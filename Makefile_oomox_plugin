@@ -12,7 +12,8 @@ install:
 
 	mkdir -p $(DEST_PLUGIN_DIR)
 	cp -prf \
-		plugins/$(PLUGIN_NAME) \
+		./schemes/ \
+		./templates/ \
 			$(DEST_PLUGIN_DIR)/
 	$(RM) -r "$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)"/*/.git*
 
