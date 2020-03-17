@@ -14,7 +14,6 @@ install:
 	cp -prf \
 		./schemes/ \
 		./templates/ \
-			$(DEST_PLUGIN_DIR)/
-	$(RM) -r "$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)"/*/.git*
+			$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 
 all: install
