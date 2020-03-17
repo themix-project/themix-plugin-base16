@@ -10,7 +10,7 @@ DEST_PREFIX = $(DESTDIR)$(PREFIX)
 install:
 	$(eval PLUGIN_NAME := "base16")
 
-	mkdir -p $(DEST_PLUGIN_DIR)
+	mkdir -p $(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 	cp -prf \
 		./schemes/ \
 		./templates/ \
