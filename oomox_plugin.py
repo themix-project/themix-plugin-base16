@@ -19,6 +19,7 @@ try:
     import pystache  # noqa  pylint: disable=unused-import
     import yaml  # noqa  pylint: disable=unused-import
 except ImportError:
+    # @TODO: replace to error dialog:
     print(
         "!! WARNING !! `pystache` and `python-yaml` need to be installed "
         "for exporting Base16 themes"
