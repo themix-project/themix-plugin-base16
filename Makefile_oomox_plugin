@@ -13,7 +13,9 @@ install:
 	mkdir -p $(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 	cp -prf \
         ./oomox_plugin.py \
+		./schemes.yaml \
 		./schemes/ \
+		./templates.yaml \
 		./templates/ \
 			$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 
