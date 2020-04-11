@@ -295,7 +295,7 @@ class Base16ExportDialog(FileBasedExportDialog):
                 template = Base16Template(path=os.path.join(templates_dir, template_name))
                 self.available_apps[template.name] = template
         current_app_name = self.export_config[ConfigKeys.last_app]
-        if not current_app_name:
+        if not current_app_name or current_app_name not in self.available_apps:
             current_app_name = self.export_config[ConfigKeys.last_app] = \
                 self._sorted_appnames[0]
         self.current_app = self.available_apps[current_app_name]
