@@ -68,6 +68,10 @@ OOMOX_TO_BASE16_TRANSLATION = {
 }
 
 
+def yaml_load(content):
+    return yaml.load(content, Loader=yaml.SafeLoader)
+
+
 def convert_oomox_to_base16(theme_name, colorscheme):
     base16_theme = {}
 
@@ -156,7 +160,7 @@ class Base16Template:
             self.template_dir, 'config.yaml'
         )
         with open(config_path) as config_file:
-            config = yaml.load(config_file.read())
+            config = yaml_load(config_file.read())
         return config
 
 
@@ -287,7 +291,7 @@ class Base16ExportDialog(FileBasedExportDialog):
         )
         templates_index_path = system_templates_dir + '.yaml'
         with open(templates_index_path) as templates_index_file:
-            self.templates_homepages = yaml.load(templates_index_file.read())
+            self.templates_homepages = yaml_load(templates_index_file.read())
 
         # APPS
         for templates_dir in (system_templates_dir, USER_BASE16_TEMPLATES_DIR):
