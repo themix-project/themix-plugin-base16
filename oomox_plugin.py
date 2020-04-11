@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
 import os
 import subprocess
+from typing import List, Dict
 
 from gi.repository import Gtk, GLib
 
@@ -13,6 +13,7 @@ from oomox_gui.color import (
     mix_theme_colors, hex_darker, color_list_from_hex, int_list_from_hex,
 )
 from oomox_gui.export_common import ExportConfig
+from oomox_gui.config import USER_CONFIG_DIR
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
@@ -32,13 +33,13 @@ else:
         pass
 
 
-if sys.version_info.minor >= 5:
-    from typing import TYPE_CHECKING
-    if TYPE_CHECKING:
-        from typing import List  # noqa
-
-
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
+USER_BASE16_DIR = os.path.join(
+    USER_CONFIG_DIR, "base16/"
+)
+USER_BASE16_TEMPLATES_DIR = os.path.join(
+    USER_BASE16_DIR, "templates/"
+)
 
 
 OOMOX_TO_BASE16_TRANSLATION = {
@@ -67,11 +68,11 @@ OOMOX_TO_BASE16_TRANSLATION = {
 }
 
 
-def convert_oomox_to_base16(colorscheme):
+def convert_oomox_to_base16(theme_name, colorscheme):
     base16_theme = {}
 
     base16_theme["scheme-name"] = base16_theme["scheme-author"] = \
-        colorscheme["NAME"]
+        theme_name
     base16_theme["scheme-slug"] = base16_theme["scheme-name"].split('/')[-1].lower()
 
     for oomox_key, base16_key in OOMOX_TO_BASE16_TRANSLATION.items():
@@ -136,40 +137,53 @@ class ConfigKeys:
     last_variant = 'last_variant'
 
 
-class Base16ExportDialog(FileBasedExportDialog):
+class Base16Template:
+    name: str
+    path: str
 
-    available_apps = []  # type: List[str]
-    current_app = None
-    available_variants = []  # type: List[str]
-    current_variant = None
-    templates_dir = None
-    templates_homepages = None
+    def __init__(self, path: str):
+        self.path = path
+        self.name = os.path.basename(path)
 
-    _variants_changed_signal = None
-
-    def _get_app_template_dir(self):
+    @property
+    def template_dir(self):
         return os.path.join(
-            self.templates_dir, self.current_app, 'templates',
+            self.path, 'templates',
         )
 
-    def _get_app_variant_template_path(self):
-        return os.path.join(
-            self._get_app_template_dir(), self.current_variant + '.mustache'
-        )
-
-    def _get_app_config(self):
+    def get_config(self):
         config_path = os.path.join(
-            self._get_app_template_dir(), 'config.yaml'
+            self.template_dir, 'config.yaml'
         )
         with open(config_path) as config_file:
             config = yaml.load(config_file.read())
         return config
 
+
+class Base16ExportDialog(FileBasedExportDialog):
+
+    available_apps: Dict[str, Base16Template] = {}
+    current_app: Base16Template
+    available_variants: List[str]
+    current_variant = None
+    templates_homepages: Dict[str, str]
+
+    _variants_changed_signal = None
+
+    @property
+    def _sorted_appnames(self):
+        return sorted(self.available_apps.keys())
+
+    def _get_app_variant_template_path(self):
+        return os.path.join(
+            self.current_app.template_dir, self.current_variant + '.mustache'
+        )
+
     def base16_stuff(self):
         # NAME
-        base16_theme = convert_oomox_to_base16(self.colorscheme)
-        variant_config = self._get_app_config()[self.current_variant]
-        output_name = 'oomox-{}{}'.format(
+        base16_theme = convert_oomox_to_base16(self.theme_name, self.colorscheme)
+        variant_config = self.current_app.get_config()[self.current_variant]
+        output_name = '{}{}'.format(
             base16_theme['scheme-slug'], variant_config['extension']
         )
         output_path = os.path.join(
@@ -194,10 +208,10 @@ class Base16ExportDialog(FileBasedExportDialog):
 
     def _on_app_changed(self, apps_dropdown):
         self.current_app = \
-            self.export_config[ConfigKeys.last_app] = \
-            self.available_apps[apps_dropdown.get_active()]
+            self.available_apps[self._sorted_appnames[apps_dropdown.get_active()]]
+        self.export_config[ConfigKeys.last_app] = self.current_app.name
 
-        config = self._get_app_config()
+        config = self.current_app.get_config()
         self.available_variants = list(config.keys())
         if self._variants_changed_signal:
             self._variants_dropdown.disconnect(self._variants_changed_signal)
@@ -214,12 +228,12 @@ class Base16ExportDialog(FileBasedExportDialog):
 
         self._variants_dropdown.set_active(self.available_variants.index(self.current_variant))
 
-        url = self.templates_homepages.get(self.current_app)
+        url = self.templates_homepages.get(self.current_app.name)
         self._homepage_button.set_sensitive(bool(url))
 
     def _init_apps_dropdown(self):
         options_store = Gtk.ListStore(str)
-        for app_name in self.available_apps:
+        for app_name in self._sorted_appnames:
             options_store.append([app_name, ])
         self._apps_dropdown = Gtk.ComboBox.new_with_model(options_store)
         renderer_text = Gtk.CellRendererText()
@@ -229,7 +243,7 @@ class Base16ExportDialog(FileBasedExportDialog):
         self._apps_dropdown.connect("changed", self._on_app_changed)
         GLib.idle_add(
             self._apps_dropdown.set_active,
-            (self.available_apps.index(self.current_app))
+            (self._sorted_appnames.index(self.current_app.name))
         )
 
     def _on_variant_changed(self, variants_dropdown):
@@ -245,7 +259,7 @@ class Base16ExportDialog(FileBasedExportDialog):
         self._variants_dropdown.add_attribute(renderer_text, "text", 0)
 
     def _on_homepage_button(self, _button):
-        url = self.templates_homepages[self.current_app]
+        url = self.templates_homepages[self.current_app.name]
         cmd = ["xdg-open", url, ]
         subprocess.Popen(cmd)
 
@@ -265,18 +279,26 @@ class Base16ExportDialog(FileBasedExportDialog):
             }
         )
 
-        self.templates_dir = os.path.abspath(
+        if not os.path.exists(USER_BASE16_TEMPLATES_DIR):
+            os.makedirs(USER_BASE16_TEMPLATES_DIR)
+
+        system_templates_dir = os.path.abspath(
             os.path.join(PLUGIN_DIR, 'templates')
         )
-        templates_index_path = self.templates_dir + '.yaml'
+        templates_index_path = system_templates_dir + '.yaml'
         with open(templates_index_path) as templates_index_file:
             self.templates_homepages = yaml.load(templates_index_file.read())
 
         # APPS
-        self.available_apps = sorted(os.listdir(self.templates_dir))
-        self.current_app = self.export_config[ConfigKeys.last_app]
-        if not self.current_app:
-            self.current_app = self.export_config[ConfigKeys.last_app] = self.available_apps[0]
+        for templates_dir in (system_templates_dir, USER_BASE16_TEMPLATES_DIR):
+            for template_name in os.listdir(templates_dir):
+                template = Base16Template(path=os.path.join(templates_dir, template_name))
+                self.available_apps[template.name] = template
+        current_app_name = self.export_config[ConfigKeys.last_app]
+        if not current_app_name:
+            current_app_name = self.export_config[ConfigKeys.last_app] = \
+                self._sorted_appnames[0]
+        self.current_app = self.available_apps[current_app_name]
 
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         apps_label = Gtk.Label(label=_('_Application:'), use_underline=True)
@@ -298,8 +320,17 @@ class Base16ExportDialog(FileBasedExportDialog):
         hbox.add(self._homepage_button)
 
         self.options_box.add(hbox)
-        self.box.add(self.options_box)
+        self.top_area.add(self.options_box)
         self.options_box.show_all()
+
+        user_templates_label = Gtk.Label()
+        user_templates_label.set_markup(
+            _('User templates can be added to {userdir}').format(
+                userdir='<a href="file://{0}">{0}</a>'.format(USER_BASE16_TEMPLATES_DIR)
+            )
+        )
+        self.box.add(user_templates_label)
+        user_templates_label.show_all()
 
 
 class Plugin(PluginBase):
