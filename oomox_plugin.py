@@ -29,7 +29,7 @@ except ImportError:
     class PluginBase(OomoxImportPlugin):  # pylint: disable=abstract-method
         pass
 else:
-    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # pylint: disable=abstract-method
+    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore  # pylint: disable=abstract-method
         pass
 
 
