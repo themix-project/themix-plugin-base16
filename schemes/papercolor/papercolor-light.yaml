@@ -5,9 +5,9 @@ base01: "af0000" # negative (should be red)
 base02: "008700" # positive (should be green)
 base03: "5f8700" # string
 base04: "0087af" # neutral (2nd background)
-base05: "878787" # comment
+base05: "444444" # comment
 base06: "005f87" # typically storage class keywords
-base07: "444444" # foreground (normal text)
+base07: "878787" # foreground (normal text)
 base08: "bcbcbc" # 3rd background
 base09: "d70000" # typically import/try-catch keywords
 base0A: "d70087" # typically type and more emphasized keywords
