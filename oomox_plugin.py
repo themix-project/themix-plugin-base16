@@ -389,6 +389,12 @@ class Plugin(PluginBase):
             },
         },
     ]
+    theme_model_gtk = [
+        {
+            'display_name': _('Edit Generated Theme'),
+            'type': 'separator',
+        },
+    ]
 
     default_theme = {
         "TERMINAL_THEME_MODE": "manual",
