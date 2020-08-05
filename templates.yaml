@@ -11,9 +11,11 @@ crosh: https://github.com/philj56/base16-crosh
 dwm: https://github.com/dgmulf/base16-dwm
 dunst: https://github.com/khamer/base16-dunst
 emacs: https://github.com/belak/base16-emacs
-fzf: https://github.com/nicodebo/base16-fzf
+everything: https://github.com/spitfire05/base16-everything
+fzf: https://github.com/fnune/base16-fzf
 gnome-terminal: https://github.com/aaron-williamson/base16-gnome-terminal
 godot: https://github.com/Calinou/base16-godot
+gtk-flatcolor: https://github.com/Misterio77/base16-gtk-flatcolor
 gtk2: https://github.com/dawikur/base16-gtk2
 highlight: https://github.com/bezhermoso/base16-highlight
 html-preview: https://github.com/chriskempson/base16-html-preview
@@ -27,6 +29,7 @@ joe: https://github.com/jjjordan/base16-joe
 kakoune: https://github.com/aprilarcus/base16-kakoune
 kitty: https://github.com/kdrag0n/base16-kitty
 konsole: https://github.com/cskeeters/base16-konsole
+luakit: https://github.com/twnaing/base16-luakit
 mako: https://github.com/Eluminae/base16-mako
 mintty: https://github.com/iamthad/base16-mintty
 monodevelop: https://github.com/netpyoung/base16-monodevelop
@@ -49,10 +52,13 @@ sway: https://github.com/rkubosz/base16-sway
 terminator: https://github.com/Schnouki/base16-terminator
 termite: https://github.com/khamer/base16-termite
 termux: https://github.com/kdrag0n/base16-termux
+textadept: https://github.com/rgieseke/base16-textadept
 textmate: https://github.com/chriskempson/base16-textmate
 tilix: https://github.com/karlding/base16-tilix
 tmux: https://github.com/mattdavis90/base16-tmux
+vim-airline-themes: https://github.com/dawikur/base16-vim-airline-themes
 vim: https://github.com/chriskempson/base16-vim
+vimiv: https://github.com/karlch/base16-vimiv
 vis: https://github.com/pshevtsov/base16-vis
 vscode: https://github.com/golf1052/base16-vscode
 waybar: https://github.com/mnussbaum/base16-waybar

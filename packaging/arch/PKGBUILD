@@ -15,7 +15,7 @@ source=(
 )
 md5sums=('SKIP')
 depends=(
-	'themix-gui'
+	'themix-gui>=1.13.3'
 	'python-pystache'
 	'python-yaml'
 )
