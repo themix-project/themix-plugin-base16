@@ -13,7 +13,7 @@ from oomox_gui.color import (
     mix_theme_colors, hex_darker, color_list_from_hex, int_list_from_hex,
 )
 from oomox_gui.export_common import ExportConfig
-from oomox_gui.config import USER_CONFIG_DIR
+from oomox_gui.config import USER_CONFIG_DIR, DEFAULT_ENCODING
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
@@ -129,7 +129,7 @@ def convert_base16_to_template_data(base16_theme):
 
 
 def render_base16_template(template_path, base16_theme):
-    with open(template_path) as template_file:
+    with open(template_path, encoding=DEFAULT_ENCODING) as template_file:
         template = template_file.read()
     base16_data = convert_base16_to_template_data(base16_theme)
     result = pystache.render(template, base16_data)
@@ -159,7 +159,7 @@ class Base16Template:
         config_path = os.path.join(
             self.template_dir, 'config.yaml'
         )
-        with open(config_path) as config_file:
+        with open(config_path, encoding=DEFAULT_ENCODING) as config_file:
             config = yaml_load(config_file.read())
         return config
 
@@ -265,7 +265,7 @@ class Base16ExportDialog(FileBasedExportDialog):
     def _on_homepage_button(self, _button):
         url = self.templates_homepages[self.current_app.name]
         cmd = ["xdg-open", url, ]
-        subprocess.Popen(cmd)
+        subprocess.Popen(cmd)  # pylint: disable=consider-using-with
 
     def __init__(self, *args, **kwargs):
         super().__init__(
@@ -290,7 +290,7 @@ class Base16ExportDialog(FileBasedExportDialog):
             os.path.join(PLUGIN_DIR, 'templates')
         )
         templates_index_path = system_templates_dir + '.yaml'
-        with open(templates_index_path) as templates_index_file:
+        with open(templates_index_path, encoding=DEFAULT_ENCODING) as templates_index_file:
             self.templates_homepages = yaml_load(templates_index_file.read())
 
         # APPS
@@ -463,7 +463,7 @@ class Plugin(PluginBase):
         from oomox_gui.theme_model import get_first_theme_option
 
         base16_theme = {}
-        with open(preset_path) as preset_file:
+        with open(preset_path, encoding=DEFAULT_ENCODING) as preset_file:
             for line in preset_file.readlines():
                 try:
                     key, value, *_rest = line.split()
