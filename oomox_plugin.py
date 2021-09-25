@@ -187,9 +187,7 @@ class Base16ExportDialog(FileBasedExportDialog):
         # NAME
         base16_theme = convert_oomox_to_base16(self.theme_name, self.colorscheme)
         variant_config = self.current_app.get_config()[self.current_variant]
-        output_name = '{}{}'.format(
-            base16_theme['scheme-slug'], variant_config['extension']
-        )
+        output_name = f"{base16_theme['scheme-slug']}{variant_config['extension']}"
         output_path = os.path.join(
             variant_config['output'], output_name
         )
@@ -328,10 +326,9 @@ class Base16ExportDialog(FileBasedExportDialog):
         self.options_box.show_all()
 
         user_templates_label = Gtk.Label()
+        _userdir_markup = f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
         user_templates_label.set_markup(
-            _('User templates can be added to {userdir}').format(
-                userdir='<a href="file://{0}">{0}</a>'.format(USER_BASE16_TEMPLATES_DIR)
-            )
+            _('User templates can be added to {userdir}').format(userdir=_userdir_markup)
         )
         self.box.add(user_templates_label)
         user_templates_label.show_all()
