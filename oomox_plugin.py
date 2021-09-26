@@ -14,6 +14,7 @@ from oomox_gui.color import (
 )
 from oomox_gui.export_common import ExportConfig
 from oomox_gui.config import USER_CONFIG_DIR, DEFAULT_ENCODING
+from oomox_gui.theme_model import get_first_theme_option
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
@@ -456,8 +457,6 @@ class Plugin(PluginBase):
     }
 
     def read_colorscheme_from_path(self, preset_path):
-        # pylint:disable=bad-option-value,import-outside-toplevel
-        from oomox_gui.theme_model import get_first_theme_option
 
         base16_theme = {}
         with open(preset_path, encoding=DEFAULT_ENCODING) as preset_file:
