@@ -5,7 +5,7 @@ from typing import List, Dict
 
 from gi.repository import Gtk, GLib
 
-from oomox_gui.i18n import _
+from oomox_gui.i18n import translate
 from oomox_gui.plugin_api import OomoxImportPlugin, OomoxExportPlugin
 from oomox_gui.export_common import FileBasedExportDialog
 from oomox_gui.terminal import get_lightness
@@ -270,10 +270,10 @@ class Base16ExportDialog(FileBasedExportDialog):
         super().__init__(
             *args,
             height=800, width=800,
-            headline=_("Base16 Export Options…"),
+            headline=translate("Base16 Export Options…"),
             **kwargs
         )
-        self.label.set_text(_("Choose export options below and copy-paste the result."))
+        self.label.set_text(translate("Choose export options below and copy-paste the result."))
         self.export_config = ExportConfig(
             config_name='base16',
             default_config={
@@ -304,21 +304,21 @@ class Base16ExportDialog(FileBasedExportDialog):
         self.current_app = self.available_apps[current_app_name]
 
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        apps_label = Gtk.Label(label=_('_Application:'), use_underline=True)
+        apps_label = Gtk.Label(label=translate('_Application:'), use_underline=True)
         self._init_apps_dropdown()
         apps_label.set_mnemonic_widget(self._apps_dropdown)
         hbox.add(apps_label)
         hbox.add(self._apps_dropdown)
 
         # VARIANTS
-        variant_label = Gtk.Label(label=_('_Variant:'), use_underline=True)
+        variant_label = Gtk.Label(label=translate('_Variant:'), use_underline=True)
         self._init_variants_dropdown()
         variant_label.set_mnemonic_widget(self._variants_dropdown)
         hbox.add(variant_label)
         hbox.add(self._variants_dropdown)
 
         # HOMEPAGE
-        self._homepage_button = Gtk.Button(label=_('Open _Homepage'), use_underline=True)
+        self._homepage_button = Gtk.Button(label=translate('Open _Homepage'), use_underline=True)
         self._homepage_button.connect('clicked', self._on_homepage_button)
         hbox.add(self._homepage_button)
 
@@ -329,7 +329,7 @@ class Base16ExportDialog(FileBasedExportDialog):
         user_templates_label = Gtk.Label()
         _userdir_markup = f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
         user_templates_label.set_markup(
-            _('User templates can be added to {userdir}').format(userdir=_userdir_markup)
+            translate('User templates can be added to {userdir}').format(userdir=_userdir_markup)
         )
         self.box.add(user_templates_label)
         user_templates_label.show_all()
@@ -339,10 +339,10 @@ class Plugin(PluginBase):
 
     name = 'base16'
 
-    display_name = _('Base16')
-    user_presets_display_name = _('Base16 User-Imported')
-    export_text = _('Base16-Based Templates…')
-    import_text = _('From Base16 YML Format')
+    display_name = translate('Base16')
+    user_presets_display_name = translate('Base16 User-Imported')
+    export_text = translate('Base16-Based Templates…')
+    import_text = translate('From Base16 YML Format')
 
     export_dialog = Base16ExportDialog
     file_extensions = ('.yml', '.yaml', )
@@ -352,7 +352,7 @@ class Plugin(PluginBase):
 
     theme_model_import = [
         {
-            'display_name': _('Base16 Import Options'),
+            'display_name': translate('Base16 Import Options'),
             'type': 'separator',
             'value_filter': {
                 'FROM_PLUGIN': name,
@@ -362,25 +362,25 @@ class Plugin(PluginBase):
             'key': 'BASE16_GENERATE_DARK',
             'type': 'bool',
             'fallback_value': False,
-            'display_name': _('Inverse GUI Variant'),
+            'display_name': translate('Inverse GUI Variant'),
             'reload_theme': True,
         },
         {
             'key': 'BASE16_INVERT_TERMINAL',
             'type': 'bool',
             'fallback_value': False,
-            'display_name': _('Inverse Terminal Colors'),
+            'display_name': translate('Inverse Terminal Colors'),
             'reload_theme': True,
         },
         {
             'key': 'BASE16_MILD_TERMINAL',
             'type': 'bool',
             'fallback_value': False,
-            'display_name': _('Mild Terminal Colors'),
+            'display_name': translate('Mild Terminal Colors'),
             'reload_theme': True,
         },
         {
-            'display_name': _('Edit Imported Theme'),
+            'display_name': translate('Edit Imported Theme'),
             'type': 'separator',
             'value_filter': {
                 'FROM_PLUGIN': name,
@@ -389,7 +389,7 @@ class Plugin(PluginBase):
     ]
     theme_model_gtk = [
         {
-            'display_name': _('Edit Generated Theme'),
+            'display_name': translate('Edit Generated Theme'),
             'type': 'separator',
         },
     ]
