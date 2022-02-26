@@ -18,8 +18,8 @@ from oomox_gui.theme_model import get_first_theme_option
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
-    import pystache  # noqa  pylint: disable=unused-import
-    import yaml  # noqa  pylint: disable=unused-import
+    import pystache  # noqa
+    import yaml  # noqa
 except ImportError:
     # @TODO: replace to error dialog:
     print(
@@ -96,6 +96,11 @@ def convert_oomox_to_base16(theme_name, colorscheme):
         base16_theme['base08'], base16_theme['base09'], 0.5
     ), 20)
 
+    for key, value in colorscheme.items():
+        base16_theme[f'themix_{key}'] = value
+
+    # from pprint import pprint; pprint(base16_theme)
+
     return base16_theme
 
 
@@ -104,7 +109,12 @@ def convert_base16_to_template_data(base16_theme):
     for key, value in base16_theme.items():
         if not key.startswith('base'):
             base16_data[key] = value
-            continue
+            try:
+                # @TODO: check theme model for color types only:
+                color_list_from_hex(value)
+                int_list_from_hex(value)
+            except Exception:
+                continue
 
         hex_key = key + '-hex'
         base16_data[hex_key] = value
