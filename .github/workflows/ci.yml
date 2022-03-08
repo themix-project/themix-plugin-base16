@@ -44,7 +44,7 @@ jobs:
       run: echo "THEMIX_GUI_PATH=./themix_gui/" >> $GITHUB_ENV
 
     - name: move dockerfiles into build context
-      run: mv ./dockerfiles/* ./
+      run: mv ./themix_gui/dockerfiles/* ./
 
     - name: switch base docker image
       run: sed -i -e 's|FROM archlinux:base-devel|FROM actionless/pikaur|' Dockerfile_${PYVER}
