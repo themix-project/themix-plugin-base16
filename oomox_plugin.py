@@ -14,12 +14,13 @@ from oomox_gui.color import (
 )
 from oomox_gui.export_common import ExportConfig
 from oomox_gui.config import USER_CONFIG_DIR, DEFAULT_ENCODING
-from oomox_gui.theme_model import get_first_theme_option
+from oomox_gui.theme_model import ThemeModelSection, get_first_theme_option
+from oomox_gui.theme_file_parser import ColorScheme
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
     import pystache  # noqa
-    import yaml  # noqa
+    import yaml  # type: ignore[import] # noqa
 except ImportError:
     # @TODO: replace to error dialog:
     print(
@@ -197,7 +198,10 @@ class Base16ExportDialog(FileBasedExportDialog):
 
     def base16_stuff(self):
         # NAME
-        base16_theme = convert_oomox_to_base16(self.theme_name, self.colorscheme)
+        base16_theme = convert_oomox_to_base16(
+            theme_name=self.theme_name,
+            colorscheme=self.colorscheme
+        )
         variant_config = self.current_app.get_config()[self.current_variant]
         output_name = f"{base16_theme['scheme-slug']}{variant_config['extension']}"
         output_path = os.path.join(
@@ -338,7 +342,8 @@ class Base16ExportDialog(FileBasedExportDialog):
         self.options_box.show_all()
 
         user_templates_label = Gtk.Label()
-        _userdir_markup = f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
+        _userdir_markup = \
+            f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
         user_templates_label.set_markup(
             translate('User templates can be added to {userdir}').format(userdir=_userdir_markup)
         )
@@ -361,7 +366,7 @@ class Plugin(PluginBase):
         os.path.join(PLUGIN_DIR, 'schemes')
     )
 
-    theme_model_import = [
+    theme_model_import: ThemeModelSection = [
         {
             'display_name': translate('Base16 Import Options'),
             'type': 'separator',
