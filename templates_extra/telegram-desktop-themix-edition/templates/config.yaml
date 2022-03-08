@@ -1,0 +1,3 @@
+default:
+    extension: .tdesktop-theme
+    output: themes
