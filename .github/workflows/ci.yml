@@ -37,6 +37,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: get Themix GUI
+      run: git clone https://github.com/themix-project/oomox.git ./themix_gui/
+
+    - name: Set env
+      run: echo "THEMIX_GUI_PATH=./themix_gui/" >> $GITHUB_ENV
+
     - name: move dockerfiles into build context
       run: mv ./dockerfiles/* ./
 
