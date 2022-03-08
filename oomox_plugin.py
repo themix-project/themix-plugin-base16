@@ -73,7 +73,8 @@ def yaml_load(content):
     return yaml.load(content, Loader=yaml.SafeLoader)
 
 
-def convert_oomox_to_base16(theme_name, colorscheme):
+def convert_oomox_to_base16(colorscheme: ColorScheme, theme_name=None):
+    theme_name = theme_name or colorscheme.get('NAME') or 'themix_base16'
     base16_theme = {}
 
     base16_theme["scheme-name"] = base16_theme["scheme-author"] = \
