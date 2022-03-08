@@ -25,6 +25,8 @@ if [[ -n "${THEMIX_GUI_PATH:-}" ]] ; then
 else
 	export PYTHONPATH=../../
 fi
+echo "PYTHONPATH=${PYTHONPATH}"
+echo "MYPYPATH=${MYPYPATH:-}"
 
 TARGETS=(
 	'./maintenance_scripts/gtk_init_for_pylint_sigh.py'
@@ -45,7 +47,6 @@ echo ':: flake8 passed ::'
 
 echo -e "\n== Running pylint:"
 #pylint --jobs="$(nproc)" "${TARGETS[@]}" --score no
-set -x
 pylint "${TARGETS[@]}" --score no
 echo ':: pylint passed ::'
 
