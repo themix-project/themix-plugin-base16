@@ -22,7 +22,7 @@ def main():
     read_colorscheme_from_path(themix_theme_path, callback=result.append)
     for item in result:
         themix_theme = item
-    base16_theme = convert_oomox_to_base16(theme_name='test', colorscheme=themix_theme)
+    base16_theme = convert_oomox_to_base16(colorscheme=themix_theme)
     print(
         render_base16_template(mustache_path, base16_theme)
     )
