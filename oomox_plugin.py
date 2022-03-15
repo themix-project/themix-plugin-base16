@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
-from typing import List, Dict
+from typing import List, Dict, TYPE_CHECKING
 
 from gi.repository import Gtk, GLib
 
@@ -14,8 +14,11 @@ from oomox_gui.color import (
 )
 from oomox_gui.export_common import ExportConfig
 from oomox_gui.config import USER_CONFIG_DIR, DEFAULT_ENCODING
-from oomox_gui.theme_model import ThemeModelSection, get_first_theme_option
+from oomox_gui.theme_model import get_first_theme_option
 from oomox_gui.theme_file_parser import ColorScheme
+
+if TYPE_CHECKING:
+    from oomox_gui.theme_model import ThemeModelSection
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
@@ -366,7 +369,7 @@ class Plugin(PluginBase):
         os.path.join(PLUGIN_DIR, 'schemes')
     )
 
-    theme_model_import: ThemeModelSection = [
+    theme_model_import: 'ThemeModelSection' = [
         {
             'display_name': translate('Base16 Import Options'),
             'type': 'separator',
