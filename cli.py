@@ -1,11 +1,12 @@
 # pylint: disable=wrong-import-position,import-error
 import os
+import sys
+
 SCRIPT_DIR = '/'.join(__file__.split('/')[:-1])
 THEMIX_GUI_PATH: str
 if os.environ.get('THEMIX_GUI_PATH'):
     THEMIX_GUI_PATH = os.environ['THEMIX_GUI_PATH']
 else:
-    import sys
     THEMIX_GUI_PATH = f'{SCRIPT_DIR}/../../'
 sys.path.append(THEMIX_GUI_PATH)
 sys.path.append(SCRIPT_DIR)
