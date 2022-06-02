@@ -9,7 +9,7 @@ BASE_CSS_PATH="${SCRIPT_DIR}/libadwaita.css"
 BASE_TEMPLATE_PATH="${SCRIPT_DIR}/themix.mustache.in"
 BUTTONS_TEMPLATE_PATH="${SCRIPT_DIR}/themix_buttons.mustache.in"
 
-RESULT_TEMPLATE_PATH="${SCRIPT_DIR}/default.mustache"
+RESULT_TEMPLATE_PATH="${SCRIPT_DIR}/gtk.mustache"
 
 
 cd "${LIBADWAITA_DIR}/src/stylesheet"
