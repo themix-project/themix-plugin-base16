@@ -21,7 +21,7 @@
 @define-color view_fg_color #{{themix_TXT_FG-hex}};
 @define-color headerbar_bg_color #{{themix_HDR_BG-hex}};
 @define-color headerbar_fg_color #{{themix_HDR_FG-hex}};
-@define-color headerbar_border_color rgba(0, 0, 0, 0.8);
+@define-color headerbar_border_color #{{themix_HDR_BG-hex}};
 @define-color headerbar_backdrop_color @window_bg_color;
 @define-color headerbar_shade_color rgba(0, 0, 0, 0.07);
 @define-color card_bg_color #{{themix_TXT_BG-hex}};
@@ -30,7 +30,7 @@
 @define-color popover_bg_color #{{themix_MENU_BG-hex}};
 @define-color popover_fg_color #{{themix_MENU_FG-hex}};
 @define-color shade_color rgba(0, 0, 0, 0.07);
-@define-color scrollbar_outline_color blue;
+@define-color scrollbar_outline_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.33);
 
 window.solid-csd,
 window {
