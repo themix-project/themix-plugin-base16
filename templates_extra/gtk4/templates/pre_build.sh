@@ -6,8 +6,8 @@ SCRIPT_DIR="$(readlink -e "$(dirname "${0}")")"
 LIBADWAITA_DIR="$(readlink -e ~/tmp/libadwaita)"
 BASE_CSS_PATH="${SCRIPT_DIR}/libadwaita.css"
 
-BASE_TEMPLATE_PATH="${SCRIPT_DIR}/themix.mustache"
-BUTTONS_TEMPLATE_PATH="${SCRIPT_DIR}/themix_buttons.mustache"
+BASE_TEMPLATE_PATH="${SCRIPT_DIR}/themix.mustache.in"
+BUTTONS_TEMPLATE_PATH="${SCRIPT_DIR}/themix_buttons.mustache.in"
 
 RESULT_TEMPLATE_PATH="${SCRIPT_DIR}/default.mustache"
 
