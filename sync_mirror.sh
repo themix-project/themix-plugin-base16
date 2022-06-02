@@ -68,9 +68,15 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 		"$TEMPLATES_WORKDIR"/ "$TEMPLATES_RESULT_DIR"
 
 fi
+
+echo ":: extra templates:"
+for pre_build_script in "$TEMPLATES_EXTRA_DIR"/*/templates/pre_build.sh ; do
+	"${pre_build_script}"
+done
 rsync -rv \
 	"$TEMPLATES_EXTRA_DIR"/ "$TEMPLATES_RESULT_DIR"
 sync
+
 sleep 0.001
 echo 'Clean-up:'
 find "$TEMPLATES_RESULT_DIR" -type d -empty -print0 | xargs --null rmdir || true
