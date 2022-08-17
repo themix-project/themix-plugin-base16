@@ -21,7 +21,7 @@ get_asset() {(
 	if [[ -d "$name" ]] ; then
 		(
 		cd "$name"
-		git pull origin master
+		git pull origin master || git pull origin main
 		)
 	else
 		git clone "$url" "$name"

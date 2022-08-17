@@ -1,0 +1,362 @@
+/*@import url("resource:///org/gtk/libgtk/theme/Default/Default-light.css");*/
+/*@import url("resource:///org/gtk/libgtk/theme/Empty/gtk.css");*/
+@import url("file:///home/lie/tmp/libadwaita/src/stylesheet/build/base.css");
+
+
+/*@import url("file:///home/lie/tmp/libadwaita/src/stylesheet/build/defaults-light.css");*/
+
+@define-color accent_bg_color #{{themix_SEL_BG-hex}};
+@define-color accent_fg_color #{{themix_SEL_FG-hex}};
+@define-color accent_color #{{themix_ACCENT_BG-hex}};
+@define-color destructive_bg_color #{{themix_TERMINAL_COLOR9-hex}};
+@define-color destructive_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color destructive_color    #{{themix_TERMINAL_COLOR1-hex}};
+@define-color success_bg_color #{{themix_TERMINAL_COLOR10-hex}};
+@define-color success_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color success_color    #{{themix_TERMINAL_COLOR2-hex}};
+@define-color warning_bg_color #{{themix_TERMINAL_COLOR11-hex}};
+@define-color warning_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color warning_color    #{{themix_TERMINAL_COLOR3-hex}};
+@define-color error_bg_color #{{themix_TERMINAL_COLOR9-hex}};
+@define-color error_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color error_color    #{{themix_TERMINAL_COLOR1-hex}};
+@define-color window_bg_color #{{themix_BG-hex}};
+@define-color window_fg_color #{{themix_FG-hex}};
+@define-color view_bg_color #{{themix_TXT_BG-hex}};
+@define-color view_fg_color #{{themix_TXT_FG-hex}};
+@define-color headerbar_bg_color #{{themix_HDR_BG-hex}};
+@define-color headerbar_fg_color #{{themix_HDR_FG-hex}};
+@define-color headerbar_border_color rgba(0, 0, 0, 0.8);
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.07);
+@define-color card_bg_color #{{themix_TXT_BG-hex}};
+@define-color card_fg_color #{{themix_TXT_FG-hex}};
+@define-color card_shade_color rgba(0, 0, 0, 0.07);
+@define-color popover_bg_color #{{themix_MENU_BG-hex}};
+@define-color popover_fg_color #{{themix_MENU_FG-hex}};
+@define-color shade_color rgba(0, 0, 0, 0.07);
+@define-color scrollbar_outline_color blue;
+
+
+/*listview,*/
+/*list,*/
+entry {
+    background: #{{themix_TXT_BG-hex}};
+    color: #{{themix_TXT_FG-hex}};
+}
+
+scale trough slider,
+switch slider,
+.image-button,
+button {
+    background-color: #{{themix_BTN_BG-hex}};
+    color: #{{themix_BTN_FG-hex}};
+}
+
+/*infobar .close,*/
+/*searchbar > revealer > box .close,*/
+/*actionbar*/
+/*  > revealer*/
+/*  > box*/
+/*  menubutton.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*searchbar*/
+/*  > revealer*/
+/*  > box*/
+/*  menubutton.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*.toolbar*/
+/*  menubutton.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*headerbar*/
+/*  menubutton.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*actionbar*/
+/*  > revealer*/
+/*  > box*/
+/*  button.arrow-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*searchbar*/
+/*  > revealer*/
+/*  > box*/
+/*  button.arrow-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*.toolbar*/
+/*  button.arrow-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*headerbar*/
+/*  button.arrow-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*actionbar*/
+/*  > revealer*/
+/*  > box*/
+/*  button.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*searchbar*/
+/*  > revealer*/
+/*  > box*/
+/*  button.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*.toolbar*/
+/*  button.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*headerbar*/
+/*  button.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*actionbar*/
+/*  > revealer*/
+/*  > box*/
+/*  button.image-text-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*searchbar*/
+/*  > revealer*/
+/*  > box*/
+/*  button.image-text-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*.toolbar*/
+/*  button.image-text-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*headerbar*/
+/*  button.image-text-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*spinbutton*/
+/*  > button.image-button.up:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*spinbutton*/
+/*  > button.image-button.down:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*button.sidebar-button,*/
+/*notebook > header > tabs > arrow,*/
+/*window.dialog.message.csd .dialog-action-area > button,*/
+/*popover.menu box.circular-buttons button.circular.image-button.model,*/
+/*popover.menu box.inline-buttons button.image-button.model,*/
+/*button.emoji-section.image-button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),*/
+/*calendar > header > button,*/
+/*actionbar*/
+/*  > revealer*/
+/*  > box*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*searchbar*/
+/*  > revealer*/
+/*  > box*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*.toolbar*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*headerbar*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > button,*/
+/*actionbar*/
+/*  > revealer*/
+/*  > box*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > menubutton*/
+/*  > button,*/
+/*searchbar*/
+/*  > revealer*/
+/*  > box*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > menubutton*/
+/*  > button,*/
+/*.toolbar*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > menubutton*/
+/*  > button,*/
+/*headerbar*/
+/*  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)*/
+/*  > menubutton*/
+/*  > button,*/
+/*splitbutton.flat > button,*/
+/*splitbutton.flat > menubutton > button,*/
+/*menubutton.flat > button,*/
+/*button.flat,*/
+
+headerbar button,
+headerbar button.flat,
+header button {
+    background-color: #{{themix_HDR_BTN_BG-hex}};
+    color: #{{themix_HDR_BTN_FG-hex}};
+}
+
+
+infobar .close:checked,
+searchbar > revealer > box .close:checked,
+actionbar
+  > revealer
+  > box
+  menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button
+  > button:checked,
+searchbar
+  > revealer
+  > box
+  menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button
+  > button:checked,
+.toolbar
+  menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button
+  > button:checked,
+headerbar
+  menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button
+  > button:checked,
+actionbar
+  > revealer
+  > box
+  button.arrow-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+searchbar
+  > revealer
+  > box
+  button.arrow-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+.toolbar
+  button.arrow-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+headerbar
+  button.arrow-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+actionbar
+  > revealer
+  > box
+  button.image-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+searchbar
+  > revealer
+  > box
+  button.image-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+.toolbar
+  button.image-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+headerbar
+  button.image-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+actionbar
+  > revealer
+  > box
+  button.image-text-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+searchbar
+  > revealer
+  > box
+  button.image-text-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+.toolbar
+  button.image-text-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+headerbar
+  button.image-text-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+spinbutton
+  > button.image-button.up:checked:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+spinbutton
+  > button.image-button.down:checked:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+button.sidebar-button:checked,
+notebook > header > tabs > arrow:checked,
+window.dialog.message.csd .dialog-action-area > button:checked,
+popover.menu box.circular-buttons button.circular.image-button.model:checked,
+popover.menu box.inline-buttons button.image-button.model:checked,
+button.emoji-section.image-button:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque),
+calendar > header > button:checked,
+actionbar
+  > revealer
+  > box
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > button:checked,
+searchbar
+  > revealer
+  > box
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > button:checked,
+.toolbar
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > button:checked,
+headerbar
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > button:checked,
+actionbar
+  > revealer
+  > box
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > menubutton
+  > button:checked,
+searchbar
+  > revealer
+  > box
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > menubutton
+  > button:checked,
+.toolbar
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > menubutton
+  > button:checked,
+headerbar
+  splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque)
+  > menubutton
+  > button:checked,
+splitbutton.flat > button:checked,
+splitbutton.flat > menubutton > button:checked,
+menubutton.flat > button:checked,
+button.flat:checked,
+
+.image-button:checked,
+button:checked {
+    background-color: #{{themix_SEL_BG-hex}};
+    color: #{{themix_SEL_FG-hex}};
+}
+
+switch:hover slider,
+.image-button:hover,
+scale:hover trough slider,
+button.flat:hover,
+button:hover {
+    background-color: rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.8);
+}
+
+button.flat:checked:hover,
+button:checked:hover {
+    background-color: rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.8);
+}
+
+/*check:checked,*/
+/*radio:checked,*/
+/*switch:checked {*/
+/*    background-color: #{{themix_ACCENT_BG-hex}};*/
+/*    color: #{{themix_SEL_FG-hex}};*/
+/*}*/
+
+/*levelbar trough block.filled,*/
+/*scale trough highlight {*/
+/*    background-color: #{{themix_SEL_BG-hex}};*/
+/*}*/
+
+/*switch slider {*/
+/*    background-color: #{{themix_BG-hex}};*/
+/*}*/
+
+/*button:checked,*/
+/*check:checked,*/
+/*radio:checked,*/
+/*switch:checked,*/
+/*scale trough slider,*/
+/*button {*/
+/*    background-image: none;*/
+/*}*/
+
+
+
+/*
+
+// base16-gtk4 by actionless (https://github.com/base16/base16-gtk4)
+// {{scheme-name}} scheme by {{scheme-author}}
+
+// Themix/Oomox theme:
+themixACCENT_BG: #{{themix_ACCENT_BG-hex}};
+themixBG: #{{themix_BG-hex}};
+themixBTN_BG: #{{themix_BTN_BG-hex}};
+themixBTN_FG: #{{themix_BTN_FG-hex}};
+themixCARET1_FG: #{{themix_CARET1_FG-hex}};
+themixCARET2_FG: #{{themix_CARET2_FG-hex}};
+themixFG: #{{themix_FG-hex}};
+themixHDR_BG: #{{themix_HDR_BG-hex}};
+themixHDR_BTN_BG: #{{themix_HDR_BTN_BG-hex}};
+themixHDR_BTN_FG: #{{themix_HDR_BTN_FG-hex}};
+themixHDR_FG: #{{themix_HDR_FG-hex}};
+themixICONS_ARCHDROID: #{{themix_ICONS_ARCHDROID-hex}};
+themixICONS_DARK: #{{themix_ICONS_DARK-hex}};
+themixICONS_LIGHT: #{{themix_ICONS_LIGHT-hex}};
+themixICONS_LIGHT_FOLDER: #{{themix_ICONS_LIGHT_FOLDER-hex}};
+themixICONS_MEDIUM: #{{themix_ICONS_MEDIUM-hex}};
+themixICONS_SYMBOLIC_ACTION: #{{themix_ICONS_SYMBOLIC_ACTION-hex}};
+themixICONS_SYMBOLIC_PANEL: #{{themix_ICONS_SYMBOLIC_PANEL-hex}};
+themixMENU_BG: #{{themix_MENU_BG-hex}};
+themixMENU_FG: #{{themix_MENU_FG-hex}};
+themixSEL_BG: #{{themix_SEL_BG-hex}};
+themixSEL_FG: #{{themix_SEL_FG-hex}};
+themixSPOTIFY_PROTO_BG: #{{themix_SPOTIFY_PROTO_BG-hex}};
+themixSPOTIFY_PROTO_FG: #{{themix_SPOTIFY_PROTO_FG-hex}};
+themixSPOTIFY_PROTO_SEL: #{{themix_SPOTIFY_PROTO_SEL-hex}};
+themixSURUPLUS_GRADIENT1: #{{themix_SURUPLUS_GRADIENT1-hex}};
+themixSURUPLUS_GRADIENT2: #{{themix_SURUPLUS_GRADIENT2-hex}};
+themixTXT_BG: #{{themix_TXT_BG-hex}};
+themixTXT_FG: #{{themix_TXT_FG-hex}};
+themixWM_BORDER_FOCUS: #{{themix_WM_BORDER_FOCUS-hex}};
+themixWM_BORDER_UNFOCUS: #{{themix_WM_BORDER_UNFOCUS-hex}};
+
+*/
+
+/* vim: set ft=css : */
