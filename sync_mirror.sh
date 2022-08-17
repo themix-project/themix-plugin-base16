@@ -9,6 +9,7 @@ TEMPLATES_INDEX_URL=https://raw.githubusercontent.com/chriskempson/base16-templa
 
 SCHEMES_INDEX="${SCRIPT_DIR}"/schemes.yaml
 SCHEMES_EXTRA_INDEX="${SCRIPT_DIR}"/schemes_extra.yaml
+SCHEMES_EXTRA_DIR="${SCRIPT_DIR}"/schemes_extra
 SCHEMES_WORKDIR="${SCRIPT_DIR}"/schemes.tmp
 SCHEMES_RESULT_DIR="${SCRIPT_DIR}"/schemes
 
@@ -33,6 +34,7 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 	fi
 
 	rsync -rv \
+		--delete \
 		--exclude=".git" \
 		--exclude=".travis.yml" \
 		--exclude="output" \
@@ -61,6 +63,7 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 	fi
 
 	rsync -rv \
+		--delete \
 		--exclude=".git" \
 		--include="*/" \
 		--include="*/templates/*" \
@@ -69,12 +72,20 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 
 fi
 
+echo ":: extra schemes:"
+#for pre_build_script in "$SCHEMES_EXTRA_DIR"/*/templates/pre_build.sh ; do
+#    "${pre_build_script}"
+#done
+rsync -rv \
+	"$SCHEMES_EXTRA_DIR"/ "$SCHEMES_RESULT_DIR"
+
 echo ":: extra templates:"
 for pre_build_script in "$TEMPLATES_EXTRA_DIR"/*/templates/pre_build.sh ; do
 	"${pre_build_script}"
 done
 rsync -rv \
 	"$TEMPLATES_EXTRA_DIR"/ "$TEMPLATES_RESULT_DIR"
+
 sync
 
 sleep 0.001
