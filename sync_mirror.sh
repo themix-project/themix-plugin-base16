@@ -73,9 +73,6 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 fi
 
 echo ":: extra schemes:"
-#for pre_build_script in "$SCHEMES_EXTRA_DIR"/*/templates/pre_build.sh ; do
-#    "${pre_build_script}"
-#done
 rsync -rv \
 	"$SCHEMES_EXTRA_DIR"/ "$SCHEMES_RESULT_DIR"
 

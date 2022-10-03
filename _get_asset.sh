@@ -11,7 +11,7 @@ get_asset() {(
 	path=$(cut -d: -f2-999 <<< "${line}")
 	test -z "${path}" && return
 
-	url=$(cut -d' ' -f2 <<< "${path}" | tr -d '[:space:]')
+	url=$(cut -d' ' -f2 <<< "${path}" | tr -d '[:space:]' | sed -e 's|https://|https://username:password@|g')
 	dir=$(cut -d' ' -f3-999 <<< "${path}" | tr -d '[:space:]')
 
 	echo
@@ -21,6 +21,8 @@ get_asset() {(
 	if [[ -d "$name" ]] ; then
 		(
 		cd "$name"
+		git clean -f -d -x
+		git checkout -- '*'
 		git pull origin master || git pull origin main
 		)
 	else
