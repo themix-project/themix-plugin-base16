@@ -362,6 +362,17 @@ class Plugin(PluginBase):
     user_presets_display_name = translate('Base16 User-Imported')
     export_text = translate('Base16-Based Templates…')
     import_text = translate('From Base16 YML Format')
+    about_text = translate(
+        'Access huge collection of color themes and '
+        'export templates for many apps, such as '
+        'Alacritty, Emacs, GTK4, KDE, VIM and many more.'
+    )
+    about_links = [
+        {
+            'name': translate('Homepage'),
+            'url': 'https://github.com/themix-project/themix-plugin-base16/',
+        },
+    ]
 
     export_dialog = Base16ExportDialog
     file_extensions = ('.yml', '.yaml', )
