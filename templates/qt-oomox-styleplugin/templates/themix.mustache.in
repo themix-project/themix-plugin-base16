@@ -1,0 +1,105 @@
+/******************************************************/
+
+@define-color accent_bg_color #{{themix_SEL_BG-hex}};
+@define-color accent_fg_color #{{themix_SEL_FG-hex}};
+@define-color accent_color #{{themix_ACCENT_BG-hex}};
+@define-color destructive_bg_color #{{themix_TERMINAL_COLOR9-hex}};
+@define-color destructive_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color destructive_color    #{{themix_TERMINAL_COLOR1-hex}};
+@define-color success_bg_color #{{themix_TERMINAL_COLOR10-hex}};
+@define-color success_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color success_color    #{{themix_TERMINAL_COLOR2-hex}};
+@define-color warning_bg_color #{{themix_TERMINAL_COLOR11-hex}};
+@define-color warning_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color warning_color    #{{themix_TERMINAL_COLOR3-hex}};
+@define-color error_bg_color #{{themix_TERMINAL_COLOR9-hex}};
+@define-color error_fg_color #{{themix_TERMINAL_BACKGROUND-hex}};
+@define-color error_color    #{{themix_TERMINAL_COLOR1-hex}};
+@define-color window_bg_color #{{themix_BG-hex}};
+@define-color window_fg_color #{{themix_FG-hex}};
+@define-color view_bg_color #{{themix_TXT_BG-hex}};
+@define-color view_fg_color #{{themix_TXT_FG-hex}};
+@define-color headerbar_bg_color #{{themix_HDR_BG-hex}};
+@define-color headerbar_fg_color #{{themix_HDR_FG-hex}};
+@define-color headerbar_border_color #{{themix_HDR_BG-hex}};
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.07);
+@define-color card_bg_color #{{themix_TXT_BG-hex}};
+@define-color card_fg_color #{{themix_TXT_FG-hex}};
+@define-color card_shade_color rgba({{themix_TXT_BG-rgb-r}}, {{themix_TXT_BG-rgb-g}}, {{themix_TXT_BG-rgb-b}}, 0.07);
+@define-color popover_bg_color #{{themix_MENU_BG-hex}};
+@define-color popover_fg_color #{{themix_MENU_FG-hex}};
+@define-color shade_color rgba(0, 0, 0, 0.07);
+@define-color scrollbar_outline_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.33);
+
+window.solid-csd,
+window,
+popover contents {
+  padding: 0;
+  box-shadow: none;
+}
+
+/*listview,*/
+/*list,*/
+entry {
+    background: #{{themix_TXT_BG-hex}};
+    color: #{{themix_TXT_FG-hex}};
+}
+
+/*check:checked,*/
+/*radio:checked,*/
+/*switch:checked {*/
+/*    background-color: #{{themix_ACCENT_BG-hex}};*/
+/*    color: #{{themix_SEL_FG-hex}};*/
+/*}*/
+
+/*levelbar trough block.filled,*/
+/*scale trough highlight {*/
+/*    background-color: #{{themix_SEL_BG-hex}};*/
+/*}*/
+
+/*switch slider {*/
+/*    background-color: #{{themix_BG-hex}};*/
+/*}*/
+
+
+/*
+
+// {{scheme-name}} scheme by {{scheme-author}}
+
+// Themix/Oomox theme:
+themixACCENT_BG: #{{themix_ACCENT_BG-hex}};
+themixBG: #{{themix_BG-hex}};
+themixBTN_BG: #{{themix_BTN_BG-hex}};
+themixBTN_FG: #{{themix_BTN_FG-hex}};
+themixCARET1_FG: #{{themix_CARET1_FG-hex}};
+themixCARET2_FG: #{{themix_CARET2_FG-hex}};
+themixFG: #{{themix_FG-hex}};
+themixHDR_BG: #{{themix_HDR_BG-hex}};
+themixHDR_BTN_BG: #{{themix_HDR_BTN_BG-hex}};
+themixHDR_BTN_FG: #{{themix_HDR_BTN_FG-hex}};
+themixHDR_FG: #{{themix_HDR_FG-hex}};
+themixICONS_ARCHDROID: #{{themix_ICONS_ARCHDROID-hex}};
+themixICONS_DARK: #{{themix_ICONS_DARK-hex}};
+themixICONS_LIGHT: #{{themix_ICONS_LIGHT-hex}};
+themixICONS_LIGHT_FOLDER: #{{themix_ICONS_LIGHT_FOLDER-hex}};
+themixICONS_MEDIUM: #{{themix_ICONS_MEDIUM-hex}};
+themixICONS_SYMBOLIC_ACTION: #{{themix_ICONS_SYMBOLIC_ACTION-hex}};
+themixICONS_SYMBOLIC_PANEL: #{{themix_ICONS_SYMBOLIC_PANEL-hex}};
+themixMENU_BG: #{{themix_MENU_BG-hex}};
+themixMENU_FG: #{{themix_MENU_FG-hex}};
+themixSEL_BG: #{{themix_SEL_BG-hex}};
+themixSEL_FG: #{{themix_SEL_FG-hex}};
+themixSPOTIFY_PROTO_BG: #{{themix_SPOTIFY_PROTO_BG-hex}};
+themixSPOTIFY_PROTO_FG: #{{themix_SPOTIFY_PROTO_FG-hex}};
+themixSPOTIFY_PROTO_SEL: #{{themix_SPOTIFY_PROTO_SEL-hex}};
+themixSURUPLUS_GRADIENT1: #{{themix_SURUPLUS_GRADIENT1-hex}};
+themixSURUPLUS_GRADIENT2: #{{themix_SURUPLUS_GRADIENT2-hex}};
+themixTXT_BG: #{{themix_TXT_BG-hex}};
+themixTXT_FG: #{{themix_TXT_FG-hex}};
+themixWM_BORDER_FOCUS: #{{themix_WM_BORDER_FOCUS-hex}};
+themixWM_BORDER_UNFOCUS: #{{themix_WM_BORDER_UNFOCUS-hex}};
+
+*/
+
+/* vim: set ft=css : */
