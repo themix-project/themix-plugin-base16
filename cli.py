@@ -16,7 +16,14 @@ from oomox_gui.theme_file_parser import read_colorscheme_from_path  # noqa
 from oomox_plugin import render_base16_template, convert_oomox_to_base16  # noqa
 
 
+def print_help():
+    print(f"Usage: {sys.argv[0]} BASE16_TEMPLATE_PATH THEMIX_THEME_PATH")
+
+
 def main():
+    if len(sys.argv) < 2:
+        print_help()
+        sys.exit(1)
     mustache_path = sys.argv[1]
     themix_theme_path = sys.argv[2]
     result = []
