@@ -9,14 +9,25 @@ DEST_PREFIX = $(DESTDIR)$(PREFIX)
 .PHONY: install
 install:
 	$(eval PLUGIN_NAME := "base16")
+	$(eval PACKAGING_TMP_DIR := $(shell mktemp -d))
 
 	mkdir -p $(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 	cp -prf \
         ./oomox_plugin.py \
+        ./cli.py \
 		./schemes.yaml \
 		./schemes/ \
 		./templates.yaml \
 		./templates/ \
 			$(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
+
+	cp -prf \
+		packaging/ \
+			$(PACKAGING_TMP_DIR)/
+	sed -i -e 's|/opt/oomox/|$(APPDIR)/|g' $(PACKAGING_TMP_DIR)/packaging/bin/*
+	chmod a+x "$(PACKAGING_TMP_DIR)/packaging/bin/"*
+
+	install -d $(DEST_PREFIX)/bin/
+	install -Dp -m 755 "$(PACKAGING_TMP_DIR)/packaging/bin/themix-base16-cli" "$(DEST_PREFIX)/bin/"
 
 all: install
