@@ -36,10 +36,10 @@
 @define-color insensitive_fg_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.50);
 @define-color insensitive_bg_color rgba({{themix_BG-rgb-r}}, {{themix_BG-rgb-g}}, {{themix_BG-rgb-b}}, 0.50);
 @define-color insensitive_borders_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.70);
-@define-color backdrop_base_color rgba({{themix_TXT_BG-rgb-r}}, {{themix_TXT_BG-rgb-g}}, {{themix_TXT_BG-rgb-b}}, 0.80);
-@define-color backdrop_text_color rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.80);
-@define-color backdrop_bg_color rgba({{themix_BG-rgb-r}}, {{themix_BG-rgb-g}}, {{themix_BG-rgb-b}}, 0.80);
-@define-color backdrop_fg_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.80);
+@define-color backdrop_base_color rgba({{themix_TXT_BG-rgb-r}}, {{themix_TXT_BG-rgb-g}}, {{themix_TXT_BG-rgb-b}}, 0.89);
+@define-color backdrop_text_color rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.89);
+@define-color backdrop_bg_color rgba({{themix_BG-rgb-r}}, {{themix_BG-rgb-g}}, {{themix_BG-rgb-b}}, 0.89);
+@define-color backdrop_fg_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.89);
 @define-color window_bg_color #{{themix_BG-hex}};
 @define-color window_fg_color #{{themix_FG-hex}};
 @define-color backdrop_insensitive_color #d4cfca;
@@ -69,10 +69,10 @@ button:checked { color: #{{themix_SEL_FG-hex}}; border-color: rgba({{themix_BTN_
 button:checked:hover { color: #{{themix_SEL_FG-hex}}; border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.32); background-image: image(rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.89)); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.32); }
 button:checked:active { color: #{{themix_SEL_FG-hex}}; border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.32); background-image: image(#{{themix_SEL_BG-hex}}); box-shadow: none; }
 
-button:backdrop { color: #{{themix_BTN_FG-hex}}; border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.32); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.80)); box-shadow: none; }
+button:backdrop { color: #{{themix_BTN_FG-hex}}; border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.32); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.89)); box-shadow: none; }
 button:backdrop:active { color: #{{themix_BTN_FG-hex}}; border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.32); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.89)); box-shadow: none; }
 button:backdrop:insensitive { color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.70); border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.22); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.40)); box-shadow: none; }
-button:backdrop:insensitive:active { color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.80); border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.22); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.49)); box-shadow: none; }
+button:backdrop:insensitive:active { color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.89); border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.22); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.49)); box-shadow: none; }
 
 button:disabled { color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.80); border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.22); background-image: image(rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.50)); }
 button:disabled:active { color: #{{themix_SEL_FG-hex}}; border-color: rgba({{themix_BTN_FG-rgb-r}}, {{themix_BTN_FG-rgb-g}}, {{themix_BTN_FG-rgb-b}}, 0.22); background-image: image(rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.50)); box-shadow: none; }
