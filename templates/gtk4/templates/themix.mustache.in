@@ -32,6 +32,10 @@
 @define-color shade_color rgba(0, 0, 0, 0.07);
 @define-color scrollbar_outline_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.33);
 
+* {
+    font-weight: 400;
+}
+
 window.solid-csd,
 window,
 popover contents {
