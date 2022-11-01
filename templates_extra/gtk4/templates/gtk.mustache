@@ -298,7 +298,9 @@ splitbutton > button:dir(ltr), splitbutton > menubutton > button:dir(rtl) { bord
 
 splitbutton > button:dir(rtl), splitbutton > menubutton > button:dir(ltr) { border-top-left-radius: 0; border-bottom-left-radius: 0; margin-left: -1px; }
 
+actionbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, searchbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, .toolbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, headerbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, splitbutton.flat > separator { background: alpha(currentColor,0.3); }
 
+actionbar > revealer > box splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), actionbar > revealer > box splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), actionbar > revealer > box splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), splitbutton.flat:hover, splitbutton.flat:active, splitbutton.flat:checked { background: alpha(currentColor,0.07); }
 
 actionbar > revealer > box splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, searchbar > revealer > box splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, .toolbar splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, headerbar splitbutton:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, actionbar > revealer > box splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, searchbar > revealer > box splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, .toolbar splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, headerbar splitbutton:active:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, actionbar > revealer > box splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, searchbar > revealer > box splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, .toolbar splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, headerbar splitbutton:checked:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > separator, splitbutton.flat:hover > separator, splitbutton.flat:active > separator, splitbutton.flat:checked > separator { background: none; }
 
@@ -461,6 +463,7 @@ window.assistant .sidebar { padding: 6px; background-clip: padding-box; }
 
 window.assistant .sidebar > label { padding: 6px 12px; border-radius: 6px; }
 
+window.assistant .sidebar > label.highlight { background-color: alpha(currentColor,0.1); }
 
 /**************** GtkAboutDialog * */
 window.aboutdialog image.large-icons { -gtk-icon-size: 128px; }
@@ -511,8 +514,11 @@ emoji-completion-row:dir(rtl) { padding-left: 12px; }
 
 emoji-completion-row > box { border-spacing: 6px; }
 
+emoji-completion-row:focus, emoji-completion-row:hover { background-color: alpha(currentColor,0.1); color: @view_fg_color; }
 
+emoji-completion-row:active { background-color: alpha(currentColor,0.16); }
 
+spinbutton, entry { min-height: 34px; padding-left: 9px; padding-right: 9px; border-radius: 6px; border-spacing: 6px; background-color: alpha(currentColor,0.1); background-clip: padding-box; caret-color: currentColor; }
 
 spinbutton, entry { outline: 0 solid transparent; outline-offset: 4px; transition: outline-color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), outline-width 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), outline-offset 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
@@ -657,10 +663,13 @@ windowcontrols { border-spacing: 3px; }
 
 windowcontrols > button { min-width: 24px; padding: 5px; margin: 0; box-shadow: none; }
 
+windowcontrols > button > image { background-color: alpha(currentColor,0.1); border-radius: 100%; padding: 2px; transition: background 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
 windowcontrols > button, windowcontrols > button:hover, windowcontrols > button:active { background: none; }
 
+windowcontrols > button:hover > image { background-color: alpha(currentColor,0.15); }
 
+windowcontrols > button:active > image { background-color: alpha(currentColor,0.3); }
 
 windowcontrols > .icon { margin: 9px; }
 
@@ -741,6 +750,7 @@ levelbar > trough > block.high, levelbar > trough > block:not(.empty) { backgrou
 
 levelbar > trough > block.full { background-color: @success_color; }
 
+levelbar > trough > block.empty { background-color: alpha(currentColor,0.15); }
 
 .osd levelbar > trough > block.high, .osd levelbar > trough > block:not(.empty) { background-color: rgba(255, 255, 255, 0.75); }
 
@@ -868,12 +878,19 @@ row:focus:focus-visible { outline-color: alpha(@accent_color,0.5); outline-width
 
 .osd row:focus:focus-visible { outline-color: rgba(255, 255, 255, 0.5); }
 
+row.activatable:hover { background-color: alpha(currentColor,0.07); }
 
+row.activatable:active { background-color: alpha(currentColor,0.16); }
 
+row.activatable.has-open-popup { background-color: alpha(currentColor,0.07); }
 
+row.activatable:selected:hover { background-color: alpha(currentColor,0.13); }
 
+row.activatable:selected:active { background-color: alpha(currentColor,0.19); }
 
+row.activatable:selected.has-open-popup { background-color: alpha(currentColor,0.13); }
 
+row:selected { background-color: alpha(currentColor,0.1); }
 
 /******************************************************* Rich Lists                                          * Large list usually containing lots of widgets       * https://gitlab.gnome.org/GNOME/gtk/-/issues/3073    * */
 .rich-list { /* rich lists usually containing other widgets than just labels/text */ }
@@ -958,8 +975,11 @@ list.content > row:focus:focus-visible, list.content > row.expander row.header:f
 
 .osd list.content > row:focus:focus-visible, .osd list.content > row.expander row.header:focus:focus-visible, list.content > row.expander .osd row.header:focus:focus-visible, .osd list.boxed-list > row:focus:focus-visible, .osd list.boxed-list > row.expander row.header:focus:focus-visible, list.boxed-list > row.expander .osd row.header:focus:focus-visible, .osd row.expander list.nested > row:focus:focus-visible, row.expander .osd list.nested > row:focus:focus-visible { outline-color: rgba(255, 255, 255, 0.5); }
 
+list.content > row:not(:selected).activatable:hover, list.content > row.expander row.header:not(:selected).activatable:hover, list.boxed-list > row:not(:selected).activatable:hover, list.boxed-list > row.expander row.header:not(:selected).activatable:hover, row.expander list.nested > row:not(:selected).activatable:hover { background-color: alpha(currentColor,0.03); }
 
+list.content > row:not(:selected).activatable:active, list.content > row.expander row.header:not(:selected).activatable:active, list.boxed-list > row:not(:selected).activatable:active, list.boxed-list > row.expander row.header:not(:selected).activatable:active, row.expander list.nested > row:not(:selected).activatable:active { background-color: alpha(currentColor,0.08); }
 
+list.content > row:not(:selected).activatable.has-open-popup, list.content > row.expander row.header:not(:selected).activatable.has-open-popup, list.boxed-list > row:not(:selected).activatable.has-open-popup, list.boxed-list > row.expander row.header:not(:selected).activatable.has-open-popup, row.expander list.nested > row:not(:selected).activatable.has-open-popup { background-color: alpha(currentColor,0.03); }
 
 row.expander { background: none; padding: 0px; }
 
@@ -1065,6 +1085,7 @@ menubar { padding: 0px; box-shadow: inset 0 -1px alpha(currentColor,0.15); }
 
 menubar > item { min-height: 16px; padding: 4px 8px; border-radius: 6px; }
 
+menubar > item:selected { background-color: alpha(currentColor,0.1); }
 
 menubar > item popover.menu popover.menu { padding: 0 0 4px 0; }
 
@@ -1124,6 +1145,7 @@ frame { border-radius: 12px; }
 frame > label { margin: 4px; }
 
 /************** Separators * */
+separator { background: alpha(currentColor,0.15); min-width: 1px; min-height: 1px; }
 
 separator.spacer { background: none; }
 
@@ -1186,6 +1208,7 @@ statuspage.compact > scrolledwindow > viewport > box > clamp > box > .title { fo
 /* Cards */
 shortcut > .keycap, list.content, list.boxed-list, .card { background-color: @card_bg_color; color: @card_fg_color; border-radius: 12px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 1px 3px 1px rgba(0, 0, 0, 0.07), 0 2px 6px 2px rgba(0, 0, 0, 0.03); }
 
+.osd shortcut > .keycap, .osd list.content, .osd list.boxed-list, shortcut > .osd.keycap, list.osd.content, list.osd.boxed-list, .osd .card, .card.osd { background-color: alpha(currentColor,0.1); color: inherit; box-shadow: none; }
 
 .card { outline: 0 solid transparent; outline-offset: 5px; transition: outline-color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), outline-width 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), outline-offset 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
@@ -1265,6 +1288,7 @@ notebook > header > tabs > arrow:hover:not(:active) { box-shadow: none; }
 
 notebook > header > tabs > tab { transition: outline-color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), outline-width 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), outline-offset 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94); min-height: 30px; min-width: 30px; padding: 3px 12px; font-weight: normal; }
 
+notebook > header > tabs > tab:hover, notebook > header > tabs > tab:active { background-color: alpha(currentColor,0.07); }
 
 notebook > header > tabs > tab:not(:checked) { outline-color: transparent; }
 
@@ -1376,6 +1400,7 @@ progressbar > trough.empty > progress { all: unset; }
 
 .osd progressbar > trough > progress { background-color: rgba(255, 255, 255, 0.75); }
 
+scale > trough > fill, scale > trough, progressbar > trough { border-radius: 99px; background-color: alpha(currentColor,0.15); }
 
 scale > trough > highlight, progressbar > trough > progress { border-radius: 99px; background-color: @accent_bg_color; color: @accent_fg_color; }
 
@@ -1387,6 +1412,7 @@ scale:focus:focus-visible > trough > slider { outline-color: alpha(@accent_color
 
 scale > trough > slider { background-color: mix(white,@view_bg_color,0.2); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2); border-radius: 100%; min-width: 20px; min-height: 20px; margin: -8px; }
 
+scale:hover > trough, scale:active > trough { background-color: alpha(currentColor,0.2); }
 
 scale:hover > trough > highlight, scale:active > trough > highlight { background-image: image(alpha(currentColor,0.1)); }
 
@@ -1488,8 +1514,11 @@ scrollbar.right { box-shadow: inset 1px 0 alpha(currentColor,0.15); padding-left
 
 scrollbar > range > trough { margin: 7px; transition: all 200ms linear; border-radius: 10px; }
 
+scrollbar > range > trough > slider { min-width: 8px; min-height: 8px; margin: -6px; border: 6px solid transparent; border-radius: 10px; background-clip: padding-box; transition: all 200ms linear; background-color: alpha(currentColor,0.2); }
 
+scrollbar > range > trough > slider:hover { background-color: alpha(currentColor,0.4); }
 
+scrollbar > range > trough > slider:active { background-color: alpha(currentColor,0.6); }
 
 scrollbar > range > trough > slider:disabled { opacity: 0; }
 
@@ -1509,6 +1538,7 @@ scrollbar.overlay-indicator:not(.hovering) > range > trough > slider { min-width
 
 .osd scrollbar.overlay-indicator:not(.hovering) > range > trough > slider { outline-color: alpha(rgba(0, 0, 0, 0.5),0.35); }
 
+scrollbar.overlay-indicator.hovering > range > trough { outline-color: alpha(@scrollbar_outline_color,0.35); background-color: alpha(currentColor,0.1); }
 
 .osd scrollbar.overlay-indicator.hovering > range > trough { outline-color: alpha(rgba(0, 0, 0, 0.5),0.35); }
 
@@ -1570,6 +1600,7 @@ stacksidebar row > label { padding-left: 6px; padding-right: 6px; }
 
 stacksidebar row.needs-attention > label { background-size: 6px 6px, 0 0; }
 
+separator.sidebar { background-color: alpha(currentColor,0.15); }
 
 /********************** Navigation Sidebar * */
 .navigation-sidebar { padding: 6px 0; }
@@ -1648,8 +1679,11 @@ treeview spinbutton:not(.vertical) { min-height: 0; border-style: none; border-r
 
 treeview spinbutton:not(.vertical) > text { min-height: 0; padding: 1px 2px; }
 
+switch { border-radius: 14px; padding: 2px; background-color: alpha(currentColor,0.15); }
 
+switch:hover { background-color: alpha(currentColor,0.2); }
 
+switch:active { background-color: alpha(currentColor,0.25); }
 
 switch > image { color: transparent; }
 
@@ -1693,10 +1727,15 @@ tabbar tabbox > revealer > indicator { min-width: 2px; border-radius: 2px; margi
 
 tabbar tab { transition: background 150ms ease-in-out; }
 
+tabbar tab:selected { background-color: alpha(currentColor,0.1); }
 
+tabbar tab:selected:hover { background-color: alpha(currentColor,0.13); }
 
+tabbar tab:selected:active { background-color: alpha(currentColor,0.19); }
 
+tabbar tab:hover { background-color: alpha(currentColor,0.07); }
 
+tabbar tab:active { background-color: alpha(currentColor,0.16); }
 
 tabbar tabbox.single-tab tab, tabbar tabbox.single-tab tab:hover, tabbar tabbox.single-tab tab:active { background: none; }
 
@@ -1879,6 +1918,7 @@ columnview.view.progressbar, treeview.view.progressbar { box-shadow: none; }
 
 columnview.view.progressbar, columnview.view.progressbar:selected, treeview.view.progressbar, treeview.view.progressbar:selected { background-color: @accent_bg_color; color: @accent_fg_color; }
 
+columnview.view.trough, treeview.view.trough { background-color: alpha(currentColor,0.1); }
 
 columnview.view > header > button, treeview.view > header > button { padding-top: 3px; padding-bottom: 3px; border-radius: 0; box-shadow: none; line-height: 100%; }
 
@@ -1931,6 +1971,7 @@ treeexpander { border-spacing: 4px; }
 
 .view:disabled, iconview:disabled, textview > text:disabled { color: alpha(currentColor,0.5); background-color: mix(@window_bg_color,@view_bg_color,0.4); }
 
+.view:selected:focus, .view:selected, iconview:selected, textview > text:selected { background-color: alpha(currentColor,0.1); border-radius: 6px; }
 
 textview { caret-color: currentColor; }
 
@@ -1956,10 +1997,15 @@ flowbox > flowboxchild, gridview > child { outline: 0 solid transparent; outline
 
 flowbox > flowboxchild:focus:focus-visible, gridview > child:focus:focus-visible { outline-color: alpha(@accent_color,0.5); outline-width: 2px; outline-offset: -2px; }
 
+flowbox > flowboxchild:selected, gridview > child:selected { background-color: alpha(currentColor,0.1); }
 
+gridview > child.activatable:hover { background-color: alpha(currentColor,0.07); }
 
+gridview > child.activatable:active { background-color: alpha(currentColor,0.16); }
 
+gridview > child.activatable:selected:hover { background-color: alpha(currentColor,0.13); }
 
+gridview > child.activatable:selected:active { background-color: alpha(currentColor,0.19); }
 
 viewswitcher { margin: 0; }
 
@@ -1984,6 +2030,7 @@ viewswitchertitle viewswitcher { margin-left: 12px; margin-right: 12px; }
 /******************* AdwIndicatorBin * */
 indicatorbin > indicator, indicatorbin > mask { min-width: 6px; min-height: 6px; border-radius: 100px; }
 
+indicatorbin > indicator { margin: 1px; background: alpha(currentColor,0.4); }
 
 indicatorbin > indicator > label { font-size: 0.6rem; font-weight: bold; padding: 1px 4px; color: white; }
 
