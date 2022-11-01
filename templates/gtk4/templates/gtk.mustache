@@ -2145,10 +2145,6 @@ entry {
 /*    background-color: #{{themix_SEL_BG-hex}};*/
 /*}*/
 
-/*switch slider {*/
-/*    background-color: #{{themix_BG-hex}};*/
-/*}*/
-
 
 /*
 
@@ -2434,6 +2430,8 @@ button.flat:hover,
 button:hover {
     background-color: rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.8);
 }
+
+switch:checked > slider { background-color: #{{themix_SEL_FG-hex}}; }
 
 button.flat:checked:hover,
 button:checked:hover {
