@@ -1,6 +1,3 @@
-gtk:
+default:
   extension: .css
   output: schemes
-#gtk-dark:
-#  extension: .css
-#  output: schemes
