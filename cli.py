@@ -21,7 +21,7 @@ def print_help():
 
 
 def main():
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         print_help()
         sys.exit(1)
     mustache_path = sys.argv[1]
