@@ -26,11 +26,11 @@
 @define-color osd_fg_color #{{themix_MENU_FG-hex}};
 @define-color osd_text_color #{{themix_MENU_FG-hex}};
 @define-color osd_bg_color rgba({{themix_MENU_BG-rgb-r}}, {{themix_MENU_BG-rgb-g}}, {{themix_MENU_BG-rgb-b}}, 0.7);
-@define-color osd_insensitive_bg_color rgba(71, 71, 71, 0.5);
-@define-color osd_insensitive_fg_color #919190;
-@define-color osd_borders_color rgba(0, 0, 0, 0.7);
+@define-color osd_insensitive_bg_color rgba({{themix_MENU_BG-rgb-r}}, {{themix_MENU_BG-rgb-g}}, {{themix_MENU_BG-rgb-b}}, 0.5);
+@define-color osd_insensitive_fg_color #{{themix_MENU_FG-hex}};
+@define-color osd_borders_color rgba({{themix_MENU_FG-rgb-r}}, {{themix_MENU_FG-rgb-g}}, {{themix_MENU_FG-rgb-b}}, 0.7);
 @define-color sidebar_bg_color #{{themix_TXT_BG-hex}};
-@define-color tooltip_borders_color rgba(255, 255, 255, 0.1);
+@define-color tooltip_borders_color rgba({{themix_MENU_FG-rgb-r}}, {{themix_MENU_FG-rgb-g}}, {{themix_MENU_FG-rgb-b}}, 0.1);
 @define-color shadow_color rgba(0, 0, 0, 0.1);
 @define-color drop_target_color #2ec27e;
 @define-color insensitive_fg_color rgba({{themix_FG-rgb-r}}, {{themix_FG-rgb-g}}, {{themix_FG-rgb-b}}, 0.50);
@@ -47,16 +47,16 @@
 @define-color backdrop_borders_color #d5d0cc;
 @define-color backdrop_dark_fill #eae8e6;
 @define-color suggested_bg_color #{{themix_SEL_BG-hex}};
-@define-color suggested_border_color #185fb4;
+@define-color suggested_border_color rgba({{themix_SEL_FG-rgb-r}}, {{themix_SEL_FG-rgb-g}}, {{themix_SEL_FG-rgb-b}}, 0.5);
 @define-color progress_bg_color #{{themix_SEL_BG-hex}};
 @define-color progress_border_color rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.89);
 @define-color checkradio_bg_color #{{themix_TXT_BG-hex}};
 @define-color checkradio_fg_color #{{themix_ACCENT_BG-hex}};
 @define-color checkradio_borders_color rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.89);
 @define-color switch_bg_color #{{themix_SEL_BG-hex}};
-@define-color switch_borders_color #185fb4;
+@define-color switch_borders_color rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.80);
 @define-color focus_border_color rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.5);
-@define-color alt_focus_border_color rgba(255, 255, 255, 0.8);
+@define-color alt_focus_border_color rgba({{themix_BG-rgb-r}}, {{themix_BG-rgb-g}}, {{themix_BG-rgb-b}}, 0.8);
 @define-color dim_label_opacity 0.55;
 
 /*button { color: #{{themix_BTN_FG-hex}}; outline-color: rgba(53, 132, 228, 0.5); border-color: #cdc7c2; background-image: linear-gradient(to top, #{{themix_BTN_BG-hex}} 2px, #{{themix_BTN_BG-hex}}); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07); }*/
@@ -80,12 +80,12 @@ button:disabled:active { color: #{{themix_SEL_FG-hex}}; border-color: rgba({{the
 
 checkradio { background-clip: padding-box; background-image: image(#{{themix_TXT_BG-hex}}); border-color: rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.80); box-shadow: none; color: #{{themix_ACCENT_BG-hex}}; }
 checkradio:hover { background-image: image(rgba({{themix_ACCENT_BG-rgb-r}}, {{themix_ACCENT_BG-rgb-g}}, {{themix_ACCENT_BG-rgb-b}}, 0.22)); }
-checkradio:active { box-shadow: inset 0 1px rgba(0, 0, 0, 0.2); background-image: image(#d9d9d9); }
+checkradio:active { box-shadow: inset 0 1px rgba(0, 0, 0, 0.2); background-image: image(#{{themix_SEL_FG-hex}}); }
 checkradio:disabled { box-shadow: none; color: rgba({{themix_TXT_BG-rgb-r}}, {{themix_TXT_BG-rgb-g}}, {{themix_TXT_BG-rgb-b}}, 0.50); }
 
 checkradio:checked { background-clip: border-box; background-image: image(#{{themix_ACCENT_BG-hex}}); border-color: rgba({{themix_TXT_FG-rgb-r}}, {{themix_TXT_FG-rgb-g}}, {{themix_TXT_FG-rgb-b}}, 0.80); box-shadow: none; color: #{{themix_SEL_FG-hex}}; }
 checkradio:checked:hover { background-image: image(rgba({{themix_ACCENT_BG-rgb-r}}, {{themix_ACCENT_BG-rgb-g}}, {{themix_ACCENT_BG-rgb-b}}, 0.89)); }
 checkradio:checked:active { box-shadow: inset 0 1px rgba(0, 0, 0, 0.2); background-image: image(#{{themix_SEL_BG-hex}}); }
-checkradio:checked:disabled { box-shadow: none; color: rgba(255, 255, 255, 0.7); }
+checkradio:checked:disabled { box-shadow: none; color: rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.7); }
 
 /* vim: set ft=css:*/
