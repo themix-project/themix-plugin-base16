@@ -1,6 +1,8 @@
 gtk:
   extension: .css
-  output: schemes
+  output:
+  force_filename: gtk
 #gtk-dark:
-#  extension: .css
-#  output: schemes
+#  extension: -dark.css
+#  output:
+#  force_filename: gtk

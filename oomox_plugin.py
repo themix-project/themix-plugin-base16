@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
-from typing import List, Dict, TYPE_CHECKING
+from typing import Final, List, Dict, TYPE_CHECKING
 
 from gi.repository import Gtk, GLib
 
 from oomox_gui.i18n import translate
 from oomox_gui.plugin_api import OomoxImportPlugin, OomoxExportPlugin
-from oomox_gui.export_common import FileBasedExportDialog
+from oomox_gui.export_common import DialogWithExportPath
 from oomox_gui.terminal import get_lightness
 from oomox_gui.color import (
     mix_theme_colors, hex_darker, color_list_from_hex, int_list_from_hex,
@@ -180,13 +180,18 @@ class Base16Template:
         return config
 
 
-class Base16ExportDialog(FileBasedExportDialog):
+class Base16ExportDialog(DialogWithExportPath):
+
+    config_name: Final = 'base16'
+    default_export_dir: Final = os.path.join(os.environ['HOME'], 'documents')
 
     available_apps: Dict[str, Base16Template] = {}
     current_app: Base16Template
     available_variants: List[str]
     current_variant = None
     templates_homepages: Dict[str, str]
+    output_filename: str
+    rendered_theme: str
 
     _variants_changed_signal = None
 
@@ -199,6 +204,32 @@ class Base16ExportDialog(FileBasedExportDialog):
             self.current_app.template_dir, self.current_variant + '.mustache'
         )
 
+    def save_last_export_path(self) -> None:
+        export_path = os.path.expanduser(
+            self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text()  # type: ignore[attr-defined]
+        )
+        count_subdirs = 0
+        for char in self.output_filename:
+            if char in ('/', ):
+                count_subdirs += 1
+        new_destination_dir, *_rest = export_path.rsplit('/', 1 + count_subdirs)
+        default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
+        self.export_config[self.OPTIONS.DEFAULT_PATH] = \
+            self.export_config[default_path_config_name] = \
+            new_destination_dir
+        self.export_config.save()
+
+    def do_export(self) -> None:
+        export_path = os.path.expanduser(
+            self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text()  # type: ignore[attr-defined]
+        )
+        parent_dir = os.path.dirname(export_path)
+        if not os.path.exists(parent_dir):
+            os.makedirs(parent_dir)
+        with open(export_path, "w", encoding=DEFAULT_ENCODING) as fobj:
+            fobj.write(self.rendered_theme)
+        self.save_last_export_path()
+
     def base16_stuff(self):
         # NAME
         base16_theme = convert_oomox_to_base16(
@@ -206,21 +237,32 @@ class Base16ExportDialog(FileBasedExportDialog):
             colorscheme=self.colorscheme
         )
         variant_config = self.current_app.get_config()[self.current_variant]
-        output_name = f"{base16_theme['scheme-slug']}{variant_config['extension']}"
-        output_path = os.path.join(
-            variant_config['output'], output_name
+        filename_prefix = variant_config.get("force_filename") or base16_theme['scheme-slug']
+        output_name = f"{filename_prefix}{variant_config['extension']}"
+        self.output_filename = os.path.join(
+            variant_config['output'] or '', output_name
         )
-        print(output_path)
+        default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
+        self.option_widgets[self.OPTIONS.DEFAULT_PATH].set_text(  # type: ignore[attr-defined]
+            os.path.join(
+                self.export_config.get(
+                    default_path_config_name,
+                    self.export_config[self.OPTIONS.DEFAULT_PATH]
+                ),
+                self.output_filename,
+            )
+        )
 
         # RENDER
         template_path = self._get_app_variant_template_path()
         result = render_base16_template(template_path, base16_theme)
 
         # OUTPUT
+        self.rendered_theme = result
         self.set_text(result)
         self.show_text()
 
-        self.export_config.save()
+        self.save_last_export_path()
 
     def _set_variant(self, variant):
         self.current_variant = \
@@ -284,20 +326,22 @@ class Base16ExportDialog(FileBasedExportDialog):
         cmd = ["xdg-open", url, ]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=too-many-locals
         super().__init__(
             *args,
             height=800, width=800,
             headline=translate("Base16 Export Options…"),
             **kwargs
         )
-        self.label.set_text(translate("Choose export options below and copy-paste the result."))
+        self.label.set_text(
+            translate("Choose export options below and copy-paste the result.")
+        )
         self.export_config = ExportConfig(
             config_name='base16',
             default_config={
                 ConfigKeys.last_variant: None,
                 ConfigKeys.last_app: None,
-            }
+            },
         )
 
         if not os.path.exists(USER_BASE16_TEMPLATES_DIR):
