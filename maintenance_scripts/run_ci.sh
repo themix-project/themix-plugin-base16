@@ -45,10 +45,14 @@ echo -e "\n== Running flake8:"
 flake8 "${TARGETS[@]}"
 echo ':: flake8 passed ::'
 
-echo -e "\n== Running pylint:"
-#pylint --jobs="$(nproc)" "${TARGETS[@]}" --score no
-pylint "${TARGETS[@]}" --score no
-echo ':: pylint passed ::'
+if [[ "${SKIP_PYLINT:-}" = "1" ]] ; then
+	echo -e "\n!! WARNING !! skipping pylint"
+else
+	echo -e "\n== Running pylint:"
+	#pylint --jobs="$(nproc)" "${TARGETS[@]}" --score no
+	pylint "${TARGETS[@]}" --score no
+	echo ':: pylint passed ::'
+fi
 
 
 if [[ "${SKIP_MYPY:-}" = "1" ]] ; then

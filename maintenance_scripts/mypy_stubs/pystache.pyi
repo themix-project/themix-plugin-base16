@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Any, Dict
 
 
-def render(template: str, context: Dict[str, str]) -> str: ...
+def render(template: str, context: Dict[str, Any]) -> str: ...

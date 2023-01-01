@@ -11,22 +11,23 @@ else:
 sys.path.append(THEMIX_GUI_PATH)
 sys.path.append(SCRIPT_DIR)
 
-from oomox_gui.theme_file_parser import read_colorscheme_from_path  # noqa
+from oomox_gui.theme_file_parser import read_colorscheme_from_path  # noqa[E402]
+from oomox_gui.theme_file import ThemeT  # noqa[E402]
 
-from oomox_plugin import render_base16_template, convert_oomox_to_base16  # noqa
+from oomox_plugin import render_base16_template, convert_oomox_to_base16  # noqa[E402]
 
 
-def print_help():
+def print_help() -> None:
     print(f"Usage: {sys.argv[0]} BASE16_TEMPLATE_PATH THEMIX_THEME_PATH")
 
 
-def main():
+def main() -> None:
     if len(sys.argv) < 3:
         print_help()
         sys.exit(1)
     mustache_path = sys.argv[1]
     themix_theme_path = sys.argv[2]
-    result = []
+    result: list[ThemeT] = []
     read_colorscheme_from_path(themix_theme_path, callback=result.append)
     for item in result:
         themix_theme = item

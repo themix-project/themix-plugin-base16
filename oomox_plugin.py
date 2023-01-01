@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
-from typing import Final, List, Dict, TYPE_CHECKING
+from typing import Any, List, Dict, TYPE_CHECKING
 
 from gi.repository import Gtk, GLib
 
@@ -16,6 +16,7 @@ from oomox_gui.export_common import ExportConfig
 from oomox_gui.config import USER_CONFIG_DIR, DEFAULT_ENCODING
 from oomox_gui.theme_model import get_first_theme_option
 from oomox_gui.theme_file_parser import ColorScheme
+from oomox_gui.theme_file import ThemeT
 
 if TYPE_CHECKING:
     from oomox_gui.theme_model import ThemeModelSection
@@ -36,6 +37,9 @@ except ImportError:
 else:
     class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore  # pylint: disable=abstract-method
         pass
+
+
+Base16ThemeT = dict[str, str | int | float]
 
 
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -73,20 +77,29 @@ OOMOX_TO_BASE16_TRANSLATION = {
 }
 
 
-def yaml_load(content):
+def yaml_load(content: str) -> Any:
     return yaml.load(content, Loader=yaml.SafeLoader)
 
 
-def convert_oomox_to_base16(colorscheme: ColorScheme, theme_name=None):
-    theme_name = theme_name or colorscheme.get('NAME') or 'themix_base16'
+def convert_oomox_to_base16(
+        colorscheme: ColorScheme,
+        theme_name: str | None = None
+) -> dict[str, str]:
+    theme_name_or_fallback: str = (
+        theme_name or colorscheme.get('NAME') or 'themix_base16'  # type: ignore[assignment]
+    )
     base16_theme = {}
 
     base16_theme["scheme-name"] = base16_theme["scheme-author"] = \
-        theme_name
+        theme_name_or_fallback
     base16_theme["scheme-slug"] = base16_theme["scheme-name"].split('/')[-1].lower()
 
     for oomox_key, base16_key in OOMOX_TO_BASE16_TRANSLATION.items():
-        base16_theme[base16_key] = colorscheme[oomox_key]
+        theme_value = colorscheme[oomox_key]
+        if not isinstance(theme_value, str):
+            theme_error = f"{oomox_key} of theme is not 'string'."
+            raise RuntimeError(theme_error)
+        base16_theme[base16_key] = theme_value
 
     base16_theme['base03'] = mix_theme_colors(
         base16_theme['base00'], base16_theme['base05'], 0.5
@@ -102,6 +115,9 @@ def convert_oomox_to_base16(colorscheme: ColorScheme, theme_name=None):
     ), 20)
 
     for key, value in colorscheme.items():
+        if not isinstance(value, str):
+            theme_error = f"{key} of theme is not 'string'."
+            raise RuntimeError(theme_error)
         base16_theme[f'themix_{key}'] = value
 
     # from pprint import pprint; pprint(base16_theme)
@@ -109,8 +125,10 @@ def convert_oomox_to_base16(colorscheme: ColorScheme, theme_name=None):
     return base16_theme
 
 
-def convert_base16_to_template_data(base16_theme):
-    base16_data = {}
+def convert_base16_to_template_data(
+        base16_theme: dict[str, str]
+) -> Base16ThemeT:
+    base16_data: Base16ThemeT = {}
     for key, value in base16_theme.items():
         if not key.startswith('base'):
             base16_data[key] = value
@@ -144,7 +162,7 @@ def convert_base16_to_template_data(base16_theme):
     return base16_data
 
 
-def render_base16_template(template_path, base16_theme):
+def render_base16_template(template_path: str, base16_theme: dict[str, str]) -> str:
     with open(template_path, encoding=DEFAULT_ENCODING) as template_file:
         template = template_file.read()
     base16_data = convert_base16_to_template_data(base16_theme)
@@ -161,17 +179,17 @@ class Base16Template:
     name: str
     path: str
 
-    def __init__(self, path: str):
+    def __init__(self, path: str) -> None:
         self.path = path
         self.name = os.path.basename(path)
 
     @property
-    def template_dir(self):
+    def template_dir(self) -> str:
         return os.path.join(
             self.path, 'templates',
         )
 
-    def get_config(self):
+    def get_config(self) -> Any:
         config_path = os.path.join(
             self.template_dir, 'config.yaml'
         )
@@ -182,8 +200,8 @@ class Base16Template:
 
 class Base16ExportDialog(DialogWithExportPath):
 
-    config_name: Final = 'base16'
-    default_export_dir: Final = os.path.join(os.environ['HOME'], 'documents')
+    config_name: str = 'base16'
+    default_export_dir: str = os.path.join(os.environ['HOME'], 'documents')
 
     available_apps: Dict[str, Base16Template] = {}
     current_app: Base16Template
@@ -193,13 +211,15 @@ class Base16ExportDialog(DialogWithExportPath):
     output_filename: str
     rendered_theme: str
 
-    _variants_changed_signal = None
+    _variants_changed_signal: int
 
     @property
-    def _sorted_appnames(self):
-        return sorted(self.available_apps.keys())
+    def _sorted_appnames(self) -> list[str]:
+        return list(sorted(self.available_apps.keys()))
 
-    def _get_app_variant_template_path(self):
+    def _get_app_variant_template_path(self) -> str:
+        if not self.current_variant:
+            raise RuntimeError("No `.current_variant` selected.")
         return os.path.join(
             self.current_app.template_dir, self.current_variant + '.mustache'
         )
@@ -230,7 +250,7 @@ class Base16ExportDialog(DialogWithExportPath):
             fobj.write(self.rendered_theme)
         self.save_last_export_path()
 
-    def base16_stuff(self):
+    def base16_stuff(self) -> None:
         # NAME
         base16_theme = convert_oomox_to_base16(
             theme_name=self.theme_name,
@@ -264,12 +284,12 @@ class Base16ExportDialog(DialogWithExportPath):
 
         self.save_last_export_path()
 
-    def _set_variant(self, variant):
+    def _set_variant(self, variant: str) -> None:
         self.current_variant = \
             self.export_config[ConfigKeys.last_variant] = \
             variant
 
-    def _on_app_changed(self, apps_dropdown):
+    def _on_app_changed(self, apps_dropdown: Gtk.ComboBox) -> None:
         self.current_app = \
             self.available_apps[self._sorted_appnames[apps_dropdown.get_active()]]
         self.export_config[ConfigKeys.last_app] = self.current_app.name
@@ -289,12 +309,14 @@ class Base16ExportDialog(DialogWithExportPath):
             variant = self.available_variants[0]
         self._set_variant(variant)
 
+        if not self.current_variant:
+            raise RuntimeError("No `.current_variant` selected.")
         self._variants_dropdown.set_active(self.available_variants.index(self.current_variant))
 
         url = self.templates_homepages.get(self.current_app.name)
         self._homepage_button.set_sensitive(bool(url))
 
-    def _init_apps_dropdown(self):
+    def _init_apps_dropdown(self) -> None:
         options_store = Gtk.ListStore(str)
         for app_name in self._sorted_appnames:
             options_store.append([app_name, ])
@@ -309,24 +331,24 @@ class Base16ExportDialog(DialogWithExportPath):
             (self._sorted_appnames.index(self.current_app.name))
         )
 
-    def _on_variant_changed(self, variants_dropdown):
+    def _on_variant_changed(self, variants_dropdown: Gtk.ComboBox) -> None:
         variant = self.available_variants[variants_dropdown.get_active()]
         self._set_variant(variant)
         self.base16_stuff()
 
-    def _init_variants_dropdown(self):
+    def _init_variants_dropdown(self) -> None:
         self._variants_store = Gtk.ListStore(str)
         self._variants_dropdown = Gtk.ComboBox.new_with_model(self._variants_store)
         renderer_text = Gtk.CellRendererText()
         self._variants_dropdown.pack_start(renderer_text, True)
         self._variants_dropdown.add_attribute(renderer_text, "text", 0)
 
-    def _on_homepage_button(self, _button):
+    def _on_homepage_button(self, _button: Gtk.Button) -> None:
         url = self.templates_homepages[self.current_app.name]
         cmd = ["xdg-open", url, ]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=too-many-locals
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(
             *args,
             height=800, width=800,
@@ -530,7 +552,7 @@ class Plugin(PluginBase):
         "TERMINAL_FOREGROUND": "base07",
     }
 
-    def read_colorscheme_from_path(self, preset_path):
+    def read_colorscheme_from_path(self, preset_path: str) -> ThemeT:
 
         base16_theme = {}
         with open(preset_path, encoding=DEFAULT_ENCODING) as preset_file:
@@ -543,7 +565,7 @@ class Plugin(PluginBase):
                 except Exception:
                     pass
 
-        oomox_theme = {}
+        oomox_theme: ThemeT = {}
         oomox_theme.update(self.default_theme)
         translation = {}
         translation.update(self.translation_common)
