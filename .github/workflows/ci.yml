@@ -54,4 +54,4 @@ jobs:
         -e SKIP_VULTURE=${SKIP_VULTURE}
         -e THEMIX_GUI_PATH=${THEMIX_GUI_PATH}
         oomox:latest
-        ./maintenance_scripts/run_ci.sh
+        ./maintenance_scripts/lint.sh
