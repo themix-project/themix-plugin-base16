@@ -15,3 +15,5 @@ Themix Base16 plugin
 ## FAQ
 
 User templates could be stored in `~/.config/oomox/base16/templates`.
+
+User themes are stored in `~/.config/oomox/colors/__plugin__base16`.
