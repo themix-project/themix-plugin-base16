@@ -96,6 +96,10 @@ else
 	)
 
 	echo ':: shellcheck passed ::'
+
+	echo -e "\n== Running Makefile shellcheck:"
+	"${THEMIX_GUI_PATH}/maintenance_scripts/makefile_shellcheck.py" ./Makefile_oomox_plugin
+	echo ':: makefile shellcheck passed ::'
 fi
 
 
