@@ -353,12 +353,14 @@ class Base16ExportDialog(DialogWithExportPath):
         self.label.set_text(
             translate("Choose export options below and copy-paste the result.")
         )
+        default_config = self.export_config.config
+        default_config.update({
+            ConfigKeys.last_variant: None,
+            ConfigKeys.last_app: None,
+        })
         self.export_config = ExportConfig(
             config_name='base16',
-            default_config={
-                ConfigKeys.last_variant: None,
-                ConfigKeys.last_app: None,
-            },
+            default_config=default_config,
         )
 
         if not os.path.exists(USER_BASE16_TEMPLATES_DIR):
