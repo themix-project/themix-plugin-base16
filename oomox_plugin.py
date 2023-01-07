@@ -39,7 +39,8 @@ else:
         pass
 
 
-Base16ThemeT = dict[str, str | int | float]
+Base16TemplateDataT = dict[str, str | int | float]
+Base16ThemeT = dict[str, str]
 
 
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -84,21 +85,18 @@ def yaml_load(content: str) -> Any:
 def convert_oomox_to_base16(
         colorscheme: ColorScheme,
         theme_name: str | None = None
-) -> dict[str, str]:
+) -> Base16ThemeT:
     theme_name_or_fallback: str = (
         theme_name or colorscheme.get('NAME') or 'themix_base16'  # type: ignore[assignment]
     )
-    base16_theme = {}
+    base16_theme: Base16ThemeT = {}
 
     base16_theme["scheme-name"] = base16_theme["scheme-author"] = \
         theme_name_or_fallback
     base16_theme["scheme-slug"] = base16_theme["scheme-name"].split('/')[-1].lower()
 
     for oomox_key, base16_key in OOMOX_TO_BASE16_TRANSLATION.items():
-        theme_value = colorscheme[oomox_key]
-        if not isinstance(theme_value, str):
-            theme_error = f"{oomox_key} of theme is not 'string'."
-            raise RuntimeError(theme_error)
+        theme_value = str(colorscheme[oomox_key])
         base16_theme[base16_key] = theme_value
 
     base16_theme['base03'] = mix_theme_colors(
@@ -115,10 +113,7 @@ def convert_oomox_to_base16(
     ), 20)
 
     for key, value in colorscheme.items():
-        if not isinstance(value, str):
-            theme_error = f"{key} of theme is not 'string'."
-            raise RuntimeError(theme_error)
-        base16_theme[f'themix_{key}'] = value
+        base16_theme[f'themix_{key}'] = str(value)
 
     # from pprint import pprint; pprint(base16_theme)
 
@@ -126,9 +121,9 @@ def convert_oomox_to_base16(
 
 
 def convert_base16_to_template_data(
-        base16_theme: dict[str, str]
-) -> Base16ThemeT:
-    base16_data: Base16ThemeT = {}
+        base16_theme: Base16ThemeT
+) -> Base16TemplateDataT:
+    base16_data: Base16TemplateDataT = {}
     for key, value in base16_theme.items():
         if not key.startswith('base'):
             base16_data[key] = value
@@ -162,7 +157,7 @@ def convert_base16_to_template_data(
     return base16_data
 
 
-def render_base16_template(template_path: str, base16_theme: dict[str, str]) -> str:
+def render_base16_template(template_path: str, base16_theme: Base16ThemeT) -> str:
     with open(template_path, encoding=DEFAULT_ENCODING) as template_file:
         template = template_file.read()
     base16_data = convert_base16_to_template_data(base16_theme)
