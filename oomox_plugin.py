@@ -211,7 +211,7 @@ class Base16ExportDialog(DialogWithExportPath):
     output_filename: str
     rendered_theme: str
 
-    _variants_changed_signal: int
+    _variants_changed_signal: int | None = None
 
     @property
     def _sorted_appnames(self) -> list[str]:
