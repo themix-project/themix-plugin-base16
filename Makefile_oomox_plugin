@@ -8,7 +8,7 @@ DEST_PREFIX = $(DESTDIR)$(PREFIX)
 
 .PHONY: install
 install:
-	$(eval PLUGIN_NAME := "base16")
+	$(eval PLUGIN_NAME := base16)
 	$(eval PACKAGING_TMP_DIR := $(shell mktemp -d))
 
 	mkdir -p $(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/

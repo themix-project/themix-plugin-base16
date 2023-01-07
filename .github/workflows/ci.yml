@@ -55,3 +55,9 @@ jobs:
         -e THEMIX_GUI_PATH=${THEMIX_GUI_PATH}
         oomox:latest
         ./maintenance_scripts/lint.sh
+
+    - name: run makefile ci in docker
+      run: docker run
+        oomox:latest
+        ${THEMIX_GUI_PATH}/maintenance_scripts/makefile_shellcheck.py
+        ./Makefile_oomox_plugin
