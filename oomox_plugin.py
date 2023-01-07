@@ -343,7 +343,7 @@ class Base16ExportDialog(DialogWithExportPath):
         cmd = ["xdg-open", url, ]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=too-many-locals
         super().__init__(
             *args,
             height=800, width=800,
