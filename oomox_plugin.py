@@ -23,8 +23,8 @@ if TYPE_CHECKING:
 
 # Enable Base16 export if pystache and yaml are installed:
 try:
-    import pystache  # noqa
-    import yaml  # type: ignore[import] # noqa
+    import pystache
+    import yaml  # type: ignore[import]
 except ImportError:
     # @TODO: replace to error dialog:
     print(
@@ -35,7 +35,7 @@ except ImportError:
     class PluginBase(OomoxImportPlugin):  # pylint: disable=abstract-method
         pass
 else:
-    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore  # pylint: disable=abstract-method  # noqa: E501
+    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore[no-redef]  # pylint: disable=abstract-method  # noqa: E501
         pass
 
 
