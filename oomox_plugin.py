@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
-from typing import Any, List, Dict, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, List
 
-from gi.repository import Gtk, GLib
+from gi.repository import GLib, Gtk
 
-from oomox_gui.i18n import translate
-from oomox_gui.plugin_api import OomoxImportPlugin, OomoxExportPlugin
-from oomox_gui.export_common import DialogWithExportPath
-from oomox_gui.terminal import get_lightness
 from oomox_gui.color import (
-    mix_theme_colors, hex_darker, color_list_from_hex, int_list_from_hex,
+    color_list_from_hex,
+    hex_darker,
+    int_list_from_hex,
+    mix_theme_colors,
 )
-from oomox_gui.export_common import ExportConfig
-from oomox_gui.config import USER_CONFIG_DIR, DEFAULT_ENCODING
-from oomox_gui.theme_model import get_first_theme_option
-from oomox_gui.theme_file_parser import ColorScheme
+from oomox_gui.config import DEFAULT_ENCODING, USER_CONFIG_DIR
+from oomox_gui.export_common import DialogWithExportPath, ExportConfig
+from oomox_gui.i18n import translate
+from oomox_gui.plugin_api import OomoxExportPlugin, OomoxImportPlugin
+from oomox_gui.terminal import get_lightness
 from oomox_gui.theme_file import ThemeT
+from oomox_gui.theme_file_parser import ColorScheme
+from oomox_gui.theme_model import get_first_theme_option
 
 if TYPE_CHECKING:
     from oomox_gui.theme_model import ThemeModelSection
