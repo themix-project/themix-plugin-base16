@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
-from typing import TYPE_CHECKING, Any, Dict, List
+from typing import TYPE_CHECKING
 
 from gi.repository import GLib, Gtk
 
@@ -16,11 +16,13 @@ from oomox_gui.export_common import DialogWithExportPath, ExportConfig
 from oomox_gui.i18n import translate
 from oomox_gui.plugin_api import OomoxExportPlugin, OomoxImportPlugin
 from oomox_gui.terminal import get_lightness
-from oomox_gui.theme_file import ThemeT
-from oomox_gui.theme_file_parser import ColorScheme
 from oomox_gui.theme_model import get_first_theme_option
 
 if TYPE_CHECKING:
+    from typing import Any
+
+    from oomox_gui.theme_file import ThemeT
+    from oomox_gui.theme_file_parser import ColorScheme
     from oomox_gui.theme_model import ThemeModelSection
 
 # Enable Base16 export if pystache and yaml are installed:
@@ -80,12 +82,12 @@ OOMOX_TO_BASE16_TRANSLATION = {
 }
 
 
-def yaml_load(content: str) -> Any:
+def yaml_load(content: str) -> "Any":
     return yaml.load(content, Loader=yaml.SafeLoader)
 
 
 def convert_oomox_to_base16(
-        colorscheme: ColorScheme,
+        colorscheme: "ColorScheme",
         theme_name: str | None = None
 ) -> Base16ThemeT:
     theme_name_or_fallback: str = (
@@ -186,7 +188,7 @@ class Base16Template:
             self.path, 'templates',
         )
 
-    def get_config(self) -> Any:
+    def get_config(self) -> "Any":
         config_path = os.path.join(
             self.template_dir, 'config.yaml'
         )
@@ -200,11 +202,11 @@ class Base16ExportDialog(DialogWithExportPath):
     config_name: str = 'base16'
     default_export_dir: str = os.path.join(os.environ['HOME'], 'documents')
 
-    available_apps: Dict[str, Base16Template] = {}
+    available_apps: dict[str, Base16Template] = {}
     current_app: Base16Template
-    available_variants: List[str]
+    available_variants: list[str]
     current_variant = None
-    templates_homepages: Dict[str, str]
+    templates_homepages: dict[str, str]
     output_filename: str
     rendered_theme: str
 
@@ -345,7 +347,7 @@ class Base16ExportDialog(DialogWithExportPath):
         cmd = ["xdg-open", url, ]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=too-many-locals
+    def __init__(self, *args: "Any", **kwargs: "Any") -> None:  # pylint: disable=too-many-locals
         super().__init__(
             *args,
             height=800, width=800,
@@ -551,7 +553,7 @@ class Plugin(PluginBase):
         "TERMINAL_FOREGROUND": "base07",
     }
 
-    def read_colorscheme_from_path(self, preset_path: str) -> ThemeT:
+    def read_colorscheme_from_path(self, preset_path: str) -> "ThemeT":
 
         base16_theme = {}
         with open(preset_path, encoding=DEFAULT_ENCODING) as preset_file:
@@ -564,7 +566,7 @@ class Plugin(PluginBase):
                 except Exception:
                     pass
 
-        oomox_theme: ThemeT = {}
+        oomox_theme: "ThemeT" = {}
         oomox_theme.update(self.default_theme)
         translation = {}
         translation.update(self.translation_common)
