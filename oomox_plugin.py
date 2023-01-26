@@ -213,7 +213,7 @@ class Base16ExportDialog(DialogWithExportPath):
 
     @property
     def _sorted_appnames(self) -> list[str]:
-        return list(sorted(self.available_apps.keys()))
+        return sorted(self.available_apps.keys())
 
     def _get_app_variant_template_path(self) -> str:
         if not self.current_variant:
