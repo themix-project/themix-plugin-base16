@@ -90,33 +90,33 @@ def convert_oomox_to_base16(
         theme_name: str | None = None
 ) -> Base16ThemeT:
     theme_name_or_fallback: str = (
-        theme_name or colorscheme.get('NAME') or 'themix_base16'  # type: ignore[assignment]
+        theme_name or colorscheme.get("NAME") or "themix_base16"  # type: ignore[assignment]
     )
     base16_theme: Base16ThemeT = {}
 
     base16_theme["scheme-name"] = base16_theme["scheme-author"] = \
         theme_name_or_fallback
-    base16_theme["scheme-slug"] = base16_theme["scheme-name"].split('/')[-1].lower()
+    base16_theme["scheme-slug"] = base16_theme["scheme-name"].split("/")[-1].lower()
 
     for oomox_key, base16_key in OOMOX_TO_BASE16_TRANSLATION.items():
         theme_value = str(colorscheme[oomox_key])
         base16_theme[base16_key] = theme_value
 
-    base16_theme['base03'] = mix_theme_colors(
-        base16_theme['base00'], base16_theme['base05'], 0.5
+    base16_theme["base03"] = mix_theme_colors(
+        base16_theme["base00"], base16_theme["base05"], 0.5
     )
 
-    if get_lightness(base16_theme['base01']) > get_lightness(base16_theme['base00']):
-        base16_theme['base04'] = hex_darker(base16_theme['base00'], 20)
+    if get_lightness(base16_theme["base01"]) > get_lightness(base16_theme["base00"]):
+        base16_theme["base04"] = hex_darker(base16_theme["base00"], 20)
     else:
-        base16_theme['base04'] = hex_darker(base16_theme['base00'], -20)
+        base16_theme["base04"] = hex_darker(base16_theme["base00"], -20)
 
-    base16_theme['base0F'] = hex_darker(mix_theme_colors(
-        base16_theme['base08'], base16_theme['base09'], 0.5
+    base16_theme["base0F"] = hex_darker(mix_theme_colors(
+        base16_theme["base08"], base16_theme["base09"], 0.5
     ), 20)
 
     for key, value in colorscheme.items():
-        base16_theme[f'themix_{key}'] = str(value)
+        base16_theme[f"themix_{key}"] = str(value)
 
     # from pprint import pprint; pprint(base16_theme)
 
@@ -128,7 +128,7 @@ def convert_base16_to_template_data(
 ) -> Base16TemplateDataT:
     base16_data: Base16TemplateDataT = {}
     for key, value in base16_theme.items():
-        if not key.startswith('base'):
+        if not key.startswith("base"):
             base16_data[key] = value
             try:
                 # @TODO: check theme model for color types only:
@@ -137,23 +137,23 @@ def convert_base16_to_template_data(
             except Exception:
                 continue
 
-        hex_key = key + '-hex'
+        hex_key = key + "-hex"
         base16_data[hex_key] = value
-        base16_data[hex_key + '-r'], \
-            base16_data[hex_key + '-g'], \
-            base16_data[hex_key + '-b'] = \
+        base16_data[hex_key + "-r"], \
+            base16_data[hex_key + "-g"], \
+            base16_data[hex_key + "-b"] = \
             color_list_from_hex(value)
 
-        rgb_key = key + '-rgb'
-        base16_data[rgb_key + '-r'], \
-            base16_data[rgb_key + '-g'], \
-            base16_data[rgb_key + '-b'] = \
+        rgb_key = key + "-rgb"
+        base16_data[rgb_key + "-r"], \
+            base16_data[rgb_key + "-g"], \
+            base16_data[rgb_key + "-b"] = \
             int_list_from_hex(value)
 
-        dec_key = key + '-dec'
-        base16_data[dec_key + '-r'], \
-            base16_data[dec_key + '-g'], \
-            base16_data[dec_key + '-b'] = \
+        dec_key = key + "-dec"
+        base16_data[dec_key + "-r"], \
+            base16_data[dec_key + "-g"], \
+            base16_data[dec_key + "-b"] = \
             [
                 channel/255 for channel in int_list_from_hex(value)
             ]
@@ -169,8 +169,8 @@ def render_base16_template(template_path: str, base16_theme: Base16ThemeT) -> st
 
 
 class ConfigKeys:
-    last_app = 'last_app'
-    last_variant = 'last_variant'
+    last_app = "last_app"
+    last_variant = "last_variant"
 
 
 class Base16Template:
@@ -184,12 +184,12 @@ class Base16Template:
     @property
     def template_dir(self) -> str:
         return os.path.join(
-            self.path, 'templates',
+            self.path, "templates",
         )
 
     def get_config(self) -> "Any":
         config_path = os.path.join(
-            self.template_dir, 'config.yaml'
+            self.template_dir, "config.yaml"
         )
         with open(config_path, encoding=DEFAULT_ENCODING) as config_file:
             config = yaml_load(config_file.read())
@@ -198,8 +198,8 @@ class Base16Template:
 
 class Base16ExportDialog(DialogWithExportPath):
 
-    config_name: str = 'base16'
-    default_export_dir: str = os.path.join(os.environ['HOME'], 'documents')
+    config_name: str = "base16"
+    default_export_dir: str = os.path.join(os.environ["HOME"], "documents")
 
     available_apps: dict[str, Base16Template] = {}
     current_app: Base16Template
@@ -219,7 +219,7 @@ class Base16ExportDialog(DialogWithExportPath):
         if not self.current_variant:
             raise RuntimeError("No `.current_variant` selected.")
         return os.path.join(
-            self.current_app.template_dir, self.current_variant + '.mustache'
+            self.current_app.template_dir, self.current_variant + ".mustache"
         )
 
     def save_last_export_path(self) -> None:
@@ -228,9 +228,9 @@ class Base16ExportDialog(DialogWithExportPath):
         )
         count_subdirs = 0
         for char in self.output_filename:
-            if char in ('/', ):
+            if char in ("/", ):
                 count_subdirs += 1
-        new_destination_dir, *_rest = export_path.rsplit('/', 1 + count_subdirs)
+        new_destination_dir, *_rest = export_path.rsplit("/", 1 + count_subdirs)
         default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
         self.export_config[self.OPTIONS.DEFAULT_PATH] = \
             self.export_config[default_path_config_name] = \
@@ -255,10 +255,10 @@ class Base16ExportDialog(DialogWithExportPath):
             colorscheme=self.colorscheme
         )
         variant_config = self.current_app.get_config()[self.current_variant]
-        filename_prefix = variant_config.get("force_filename") or base16_theme['scheme-slug']
+        filename_prefix = variant_config.get("force_filename") or base16_theme["scheme-slug"]
         output_name = f"{filename_prefix}{variant_config['extension']}"
         self.output_filename = os.path.join(
-            variant_config['output'] or '', output_name
+            variant_config["output"] or "", output_name
         )
         default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
         self.option_widgets[self.OPTIONS.DEFAULT_PATH].set_text(  # type: ignore[attr-defined]
@@ -362,7 +362,7 @@ class Base16ExportDialog(DialogWithExportPath):
             ConfigKeys.last_app: None,
         })
         self.export_config = ExportConfig(
-            config_name='base16',
+            config_name="base16",
             default_config=default_config,
         )
 
@@ -370,9 +370,9 @@ class Base16ExportDialog(DialogWithExportPath):
             os.makedirs(USER_BASE16_TEMPLATES_DIR)
 
         system_templates_dir = os.path.abspath(
-            os.path.join(PLUGIN_DIR, 'templates')
+            os.path.join(PLUGIN_DIR, "templates")
         )
-        templates_index_path = system_templates_dir + '.yaml'
+        templates_index_path = system_templates_dir + ".yaml"
         with open(templates_index_path, encoding=DEFAULT_ENCODING) as templates_index_file:
             self.templates_homepages = yaml_load(templates_index_file.read())
 
@@ -388,22 +388,22 @@ class Base16ExportDialog(DialogWithExportPath):
         self.current_app = self.available_apps[current_app_name]
 
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
-        apps_label = Gtk.Label(label=translate('_Application:'), use_underline=True)
+        apps_label = Gtk.Label(label=translate("_Application:"), use_underline=True)
         self._init_apps_dropdown()
         apps_label.set_mnemonic_widget(self._apps_dropdown)
         hbox.add(apps_label)
         hbox.add(self._apps_dropdown)
 
         # VARIANTS
-        variant_label = Gtk.Label(label=translate('_Variant:'), use_underline=True)
+        variant_label = Gtk.Label(label=translate("_Variant:"), use_underline=True)
         self._init_variants_dropdown()
         variant_label.set_mnemonic_widget(self._variants_dropdown)
         hbox.add(variant_label)
         hbox.add(self._variants_dropdown)
 
         # HOMEPAGE
-        self._homepage_button = Gtk.Button(label=translate('Open _Homepage'), use_underline=True)
-        self._homepage_button.connect('clicked', self._on_homepage_button)
+        self._homepage_button = Gtk.Button(label=translate("Open _Homepage"), use_underline=True)
+        self._homepage_button.connect("clicked", self._on_homepage_button)
         hbox.add(self._homepage_button)
 
         self.options_box.add(hbox)
@@ -414,7 +414,7 @@ class Base16ExportDialog(DialogWithExportPath):
         _userdir_markup = \
             f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
         user_templates_label.set_markup(
-            translate('User templates can be added to {userdir}').format(userdir=_userdir_markup)
+            translate("User templates can be added to {userdir}").format(userdir=_userdir_markup)
         )
         self.box.add(user_templates_label)
         user_templates_label.show_all()
@@ -422,71 +422,71 @@ class Base16ExportDialog(DialogWithExportPath):
 
 class Plugin(PluginBase):
 
-    name = 'base16'
+    name = "base16"
 
-    display_name = translate('Base16')
-    user_presets_display_name = translate('Base16 User-Imported')
-    export_text = translate('Base16-Based Templates…')
-    import_text = translate('From Base16 YML Format')
+    display_name = translate("Base16")
+    user_presets_display_name = translate("Base16 User-Imported")
+    export_text = translate("Base16-Based Templates…")
+    import_text = translate("From Base16 YML Format")
     about_text = translate(
-        'Access huge collection of color themes and '
-        'export templates for many apps, such as '
-        'Alacritty, Emacs, GTK4, KDE, VIM and many more.'
+        "Access huge collection of color themes and "
+        "export templates for many apps, such as "
+        "Alacritty, Emacs, GTK4, KDE, VIM and many more."
     )
     about_links = [
         {
-            'name': translate('Homepage'),
-            'url': 'https://github.com/themix-project/themix-plugin-base16/',
+            "name": translate("Homepage"),
+            "url": "https://github.com/themix-project/themix-plugin-base16/",
         },
     ]
 
     export_dialog = Base16ExportDialog
-    file_extensions = ('.yml', '.yaml', )
+    file_extensions = (".yml", ".yaml", )
     plugin_theme_dir = os.path.abspath(
-        os.path.join(PLUGIN_DIR, 'schemes')
+        os.path.join(PLUGIN_DIR, "schemes")
     )
 
-    theme_model_import: 'ThemeModelSection' = [
+    theme_model_import: "ThemeModelSection" = [
         {
-            'display_name': translate('Base16 Import Options'),
-            'type': 'separator',
-            'value_filter': {
-                'FROM_PLUGIN': name,
+            "display_name": translate("Base16 Import Options"),
+            "type": "separator",
+            "value_filter": {
+                "FROM_PLUGIN": name,
             },
         },
         {
-            'key': 'BASE16_GENERATE_DARK',
-            'type': 'bool',
-            'fallback_value': False,
-            'display_name': translate('Inverse GUI Variant'),
-            'reload_theme': True,
+            "key": "BASE16_GENERATE_DARK",
+            "type": "bool",
+            "fallback_value": False,
+            "display_name": translate("Inverse GUI Variant"),
+            "reload_theme": True,
         },
         {
-            'key': 'BASE16_INVERT_TERMINAL',
-            'type': 'bool',
-            'fallback_value': False,
-            'display_name': translate('Inverse Terminal Colors'),
-            'reload_theme': True,
+            "key": "BASE16_INVERT_TERMINAL",
+            "type": "bool",
+            "fallback_value": False,
+            "display_name": translate("Inverse Terminal Colors"),
+            "reload_theme": True,
         },
         {
-            'key': 'BASE16_MILD_TERMINAL',
-            'type': 'bool',
-            'fallback_value': False,
-            'display_name': translate('Mild Terminal Colors'),
-            'reload_theme': True,
+            "key": "BASE16_MILD_TERMINAL",
+            "type": "bool",
+            "fallback_value": False,
+            "display_name": translate("Mild Terminal Colors"),
+            "reload_theme": True,
         },
         {
-            'display_name': translate('Edit Imported Theme'),
-            'type': 'separator',
-            'value_filter': {
-                'FROM_PLUGIN': name,
+            "display_name": translate("Edit Imported Theme"),
+            "type": "separator",
+            "value_filter": {
+                "FROM_PLUGIN": name,
             },
         },
     ]
     theme_model_gtk = [
         {
-            'display_name': translate('Edit Generated Theme'),
-            'type': 'separator',
+            "display_name": translate("Edit Generated Theme"),
+            "type": "separator",
         },
     ]
 
@@ -559,7 +559,7 @@ class Plugin(PluginBase):
             for line in preset_file.readlines():
                 try:
                     key, value, *_rest = line.split()
-                    key = key.rstrip(':')
+                    key = key.rstrip(":")
                     value = value.strip('\'"').lower()
                     base16_theme[key] = value
                 except Exception:
@@ -570,16 +570,16 @@ class Plugin(PluginBase):
         translation = {}
         translation.update(self.translation_common)
 
-        if get_first_theme_option('BASE16_GENERATE_DARK', {}).get('fallback_value'):
+        if get_first_theme_option("BASE16_GENERATE_DARK", {}).get("fallback_value"):
             translation.update(self.translation_dark)
         else:
             translation.update(self.translation_light)
 
-        if get_first_theme_option('BASE16_INVERT_TERMINAL', {}).get('fallback_value'):
+        if get_first_theme_option("BASE16_INVERT_TERMINAL", {}).get("fallback_value"):
             translation.update(self.translation_terminal_inverse)
 
-        if get_first_theme_option('BASE16_MILD_TERMINAL', {}).get('fallback_value'):
-            if get_first_theme_option('BASE16_INVERT_TERMINAL', {}).get('fallback_value'):
+        if get_first_theme_option("BASE16_MILD_TERMINAL", {}).get("fallback_value"):
+            if get_first_theme_option("BASE16_INVERT_TERMINAL", {}).get("fallback_value"):
                 translation.update(self.translation_terminal_mild)
             else:
                 translation.update(self.translation_terminal_mild_inverse)

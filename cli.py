@@ -2,12 +2,12 @@
 import os
 import sys
 
-SCRIPT_DIR = '/'.join(__file__.split('/')[:-1])
+SCRIPT_DIR = "/".join(__file__.split("/")[:-1])
 THEMIX_GUI_PATH: str
-if os.environ.get('THEMIX_GUI_PATH'):
-    THEMIX_GUI_PATH = os.environ['THEMIX_GUI_PATH']
+if os.environ.get("THEMIX_GUI_PATH"):
+    THEMIX_GUI_PATH = os.environ["THEMIX_GUI_PATH"]
 else:
-    THEMIX_GUI_PATH = f'{SCRIPT_DIR}/../../'
+    THEMIX_GUI_PATH = f"{SCRIPT_DIR}/../../"
 sys.path.append(THEMIX_GUI_PATH)
 sys.path.append(SCRIPT_DIR)
 
