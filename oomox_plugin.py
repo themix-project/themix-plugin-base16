@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import subprocess
 from typing import TYPE_CHECKING
@@ -154,9 +153,9 @@ def convert_base16_to_template_data(
         base16_data[dec_key + "-r"], \
             base16_data[dec_key + "-g"], \
             base16_data[dec_key + "-b"] = \
-            [
+            (
                 channel/255 for channel in int_list_from_hex(value)
-            ]
+            )
     return base16_data
 
 
