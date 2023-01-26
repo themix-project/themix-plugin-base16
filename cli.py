@@ -33,7 +33,7 @@ def main() -> None:
         themix_theme = item
     base16_theme = convert_oomox_to_base16(colorscheme=themix_theme)
     print(
-        render_base16_template(mustache_path, base16_theme)
+        render_base16_template(mustache_path, base16_theme),
     )
 
 

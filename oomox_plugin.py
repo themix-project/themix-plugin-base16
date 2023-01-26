@@ -32,7 +32,7 @@ except ImportError:
     # @TODO: replace to error dialog:
     print(
         "!! WARNING !! `pystache` and `python-yaml` need to be installed "
-        "for exporting Base16 themes"
+        "for exporting Base16 themes",
     )
 
     class PluginBase(OomoxImportPlugin):  # pylint: disable=abstract-method
@@ -48,10 +48,10 @@ Base16ThemeT = dict[str, str]
 
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
 USER_BASE16_DIR = os.path.join(
-    USER_CONFIG_DIR, "base16/"
+    USER_CONFIG_DIR, "base16/",
 )
 USER_BASE16_TEMPLATES_DIR = os.path.join(
-    USER_BASE16_DIR, "templates/"
+    USER_BASE16_DIR, "templates/",
 )
 
 
@@ -87,7 +87,7 @@ def yaml_load(content: str) -> "Any":
 
 def convert_oomox_to_base16(
         colorscheme: "ThemeT",
-        theme_name: str | None = None
+        theme_name: str | None = None,
 ) -> Base16ThemeT:
     theme_name_or_fallback: str = (
         theme_name or colorscheme.get("NAME") or "themix_base16"  # type: ignore[assignment]
@@ -103,7 +103,7 @@ def convert_oomox_to_base16(
         base16_theme[base16_key] = theme_value
 
     base16_theme["base03"] = mix_theme_colors(
-        base16_theme["base00"], base16_theme["base05"], 0.5
+        base16_theme["base00"], base16_theme["base05"], 0.5,
     )
 
     if get_lightness(base16_theme["base01"]) > get_lightness(base16_theme["base00"]):
@@ -112,7 +112,7 @@ def convert_oomox_to_base16(
         base16_theme["base04"] = hex_darker(base16_theme["base00"], -20)
 
     base16_theme["base0F"] = hex_darker(mix_theme_colors(
-        base16_theme["base08"], base16_theme["base09"], 0.5
+        base16_theme["base08"], base16_theme["base09"], 0.5,
     ), 20)
 
     for key, value in colorscheme.items():
@@ -124,7 +124,7 @@ def convert_oomox_to_base16(
 
 
 def convert_base16_to_template_data(
-        base16_theme: Base16ThemeT
+        base16_theme: Base16ThemeT,
 ) -> Base16TemplateDataT:
     base16_data: Base16TemplateDataT = {}
     for key, value in base16_theme.items():
@@ -189,7 +189,7 @@ class Base16Template:
 
     def get_config(self) -> "Any":
         config_path = os.path.join(
-            self.template_dir, "config.yaml"
+            self.template_dir, "config.yaml",
         )
         with open(config_path, encoding=DEFAULT_ENCODING) as config_file:
             config = yaml_load(config_file.read())
@@ -219,12 +219,12 @@ class Base16ExportDialog(DialogWithExportPath):
         if not self.current_variant:
             raise RuntimeError("No `.current_variant` selected.")
         return os.path.join(
-            self.current_app.template_dir, self.current_variant + ".mustache"
+            self.current_app.template_dir, self.current_variant + ".mustache",
         )
 
     def save_last_export_path(self) -> None:
         export_path = os.path.expanduser(
-            self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text()  # type: ignore[attr-defined]
+            self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text(),  # type: ignore[attr-defined]
         )
         count_subdirs = 0
         for char in self.output_filename:
@@ -239,7 +239,7 @@ class Base16ExportDialog(DialogWithExportPath):
 
     def do_export(self) -> None:
         export_path = os.path.expanduser(
-            self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text()  # type: ignore[attr-defined]
+            self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text(),  # type: ignore[attr-defined]
         )
         parent_dir = os.path.dirname(export_path)
         if not os.path.exists(parent_dir):
@@ -252,23 +252,23 @@ class Base16ExportDialog(DialogWithExportPath):
         # NAME
         base16_theme = convert_oomox_to_base16(
             theme_name=self.theme_name,
-            colorscheme=self.colorscheme
+            colorscheme=self.colorscheme,
         )
         variant_config = self.current_app.get_config()[self.current_variant]
         filename_prefix = variant_config.get("force_filename") or base16_theme["scheme-slug"]
         output_name = f"{filename_prefix}{variant_config['extension']}"
         self.output_filename = os.path.join(
-            variant_config["output"] or "", output_name
+            variant_config["output"] or "", output_name,
         )
         default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
         self.option_widgets[self.OPTIONS.DEFAULT_PATH].set_text(  # type: ignore[attr-defined]
             os.path.join(
                 self.export_config.get(
                     default_path_config_name,
-                    self.export_config[self.OPTIONS.DEFAULT_PATH]
+                    self.export_config[self.OPTIONS.DEFAULT_PATH],
                 ),
                 self.output_filename,
-            )
+            ),
         )
 
         # RENDER
@@ -298,7 +298,7 @@ class Base16ExportDialog(DialogWithExportPath):
             self._variants_dropdown.disconnect(self._variants_changed_signal)
         self._variants_store.clear()
         for variant in self.available_variants:
-            self._variants_store.append([variant, ])
+            self._variants_store.append([variant])
         self._variants_changed_signal = \
             self._variants_dropdown.connect("changed", self._on_variant_changed)
 
@@ -317,7 +317,7 @@ class Base16ExportDialog(DialogWithExportPath):
     def _init_apps_dropdown(self) -> None:
         options_store = Gtk.ListStore(str)
         for app_name in self._sorted_appnames:
-            options_store.append([app_name, ])
+            options_store.append([app_name])
         self._apps_dropdown = Gtk.ComboBox.new_with_model(options_store)
         renderer_text = Gtk.CellRendererText()
         self._apps_dropdown.pack_start(renderer_text, True)
@@ -326,7 +326,7 @@ class Base16ExportDialog(DialogWithExportPath):
         self._apps_dropdown.connect("changed", self._on_app_changed)
         GLib.idle_add(
             self._apps_dropdown.set_active,
-            (self._sorted_appnames.index(self.current_app.name))
+            (self._sorted_appnames.index(self.current_app.name)),
         )
 
     def _on_variant_changed(self, variants_dropdown: Gtk.ComboBox) -> None:
@@ -343,7 +343,7 @@ class Base16ExportDialog(DialogWithExportPath):
 
     def _on_homepage_button(self, _button: Gtk.Button) -> None:
         url = self.templates_homepages[self.current_app.name]
-        cmd = ["xdg-open", url, ]
+        cmd = ["xdg-open", url]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with
 
     def __init__(self, *args: "Any", **kwargs: "Any") -> None:  # pylint: disable=too-many-locals
@@ -351,10 +351,10 @@ class Base16ExportDialog(DialogWithExportPath):
             *args,
             height=800, width=800,
             headline=translate("Base16 Export Options…"),
-            **kwargs
+            **kwargs,
         )
         self.label.set_text(
-            translate("Choose export options below and copy-paste the result.")
+            translate("Choose export options below and copy-paste the result."),
         )
         default_config = self.export_config.config
         default_config.update({
@@ -370,7 +370,7 @@ class Base16ExportDialog(DialogWithExportPath):
             os.makedirs(USER_BASE16_TEMPLATES_DIR)
 
         system_templates_dir = os.path.abspath(
-            os.path.join(PLUGIN_DIR, "templates")
+            os.path.join(PLUGIN_DIR, "templates"),
         )
         templates_index_path = system_templates_dir + ".yaml"
         with open(templates_index_path, encoding=DEFAULT_ENCODING) as templates_index_file:
@@ -414,7 +414,7 @@ class Base16ExportDialog(DialogWithExportPath):
         _userdir_markup = \
             f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
         user_templates_label.set_markup(
-            translate("User templates can be added to {userdir}").format(userdir=_userdir_markup)
+            translate("User templates can be added to {userdir}").format(userdir=_userdir_markup),
         )
         self.box.add(user_templates_label)
         user_templates_label.show_all()
@@ -431,7 +431,7 @@ class Plugin(PluginBase):
     about_text = translate(
         "Access huge collection of color themes and "
         "export templates for many apps, such as "
-        "Alacritty, Emacs, GTK4, KDE, VIM and many more."
+        "Alacritty, Emacs, GTK4, KDE, VIM and many more.",
     )
     about_links = [
         {
@@ -441,9 +441,9 @@ class Plugin(PluginBase):
     ]
 
     export_dialog = Base16ExportDialog
-    file_extensions = (".yml", ".yaml", )
+    file_extensions = (".yml", ".yaml")
     plugin_theme_dir = os.path.abspath(
-        os.path.join(PLUGIN_DIR, "schemes")
+        os.path.join(PLUGIN_DIR, "schemes"),
     )
 
     theme_model_import: "ThemeModelSection" = [
