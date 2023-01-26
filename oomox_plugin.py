@@ -22,7 +22,6 @@ if TYPE_CHECKING:
     from typing import Any
 
     from oomox_gui.theme_file import ThemeT
-    from oomox_gui.theme_file_parser import ColorScheme
     from oomox_gui.theme_model import ThemeModelSection
 
 # Enable Base16 export if pystache and yaml are installed:
@@ -87,7 +86,7 @@ def yaml_load(content: str) -> "Any":
 
 
 def convert_oomox_to_base16(
-        colorscheme: "ColorScheme",
+        colorscheme: "ThemeT",
         theme_name: str | None = None
 ) -> Base16ThemeT:
     theme_name_or_fallback: str = (
