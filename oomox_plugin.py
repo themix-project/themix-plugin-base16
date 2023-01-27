@@ -163,8 +163,7 @@ def render_base16_template(template_path: str, base16_theme: Base16ThemeT) -> st
     with open(template_path, encoding=DEFAULT_ENCODING) as template_file:
         template = template_file.read()
     base16_data = convert_base16_to_template_data(base16_theme)
-    result = pystache.render(template, base16_data)
-    return result
+    return pystache.render(template, base16_data)
 
 
 class ConfigKeys:
@@ -191,8 +190,7 @@ class Base16Template:
             self.template_dir, "config.yaml",
         )
         with open(config_path, encoding=DEFAULT_ENCODING) as config_file:
-            config = yaml_load(config_file.read())
-        return config
+            return yaml_load(config_file.read())
 
 
 class Base16ExportDialog(DialogWithExportPath):
