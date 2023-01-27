@@ -18,7 +18,7 @@ from oomox_gui.terminal import get_lightness
 from oomox_gui.theme_model import get_first_theme_option
 
 if TYPE_CHECKING:
-    from typing import Any
+    from typing import Any, Final
 
     from oomox_gui.theme_file import ThemeT
     from oomox_gui.theme_model import ThemeModelSection
@@ -210,13 +210,15 @@ class Base16ExportDialog(DialogWithExportPath):
 
     _variants_changed_signal: int | None = None
 
+    NO_TEMPLATE_VARIANT_ERROR: "Final" = "No `.current_variant` of template is selected."
+
     @property
     def _sorted_appnames(self) -> list[str]:
         return sorted(self.available_apps.keys())
 
     def _get_app_variant_template_path(self) -> str:
         if not self.current_variant:
-            raise RuntimeError("No `.current_variant` selected.")
+            raise RuntimeError(self.NO_TEMPLATE_VARIANT_ERROR)
         return os.path.join(
             self.current_app.template_dir, self.current_variant + ".mustache",
         )
@@ -307,7 +309,7 @@ class Base16ExportDialog(DialogWithExportPath):
         self._set_variant(variant)
 
         if not self.current_variant:
-            raise RuntimeError("No `.current_variant` selected.")
+            raise RuntimeError(self.NO_TEMPLATE_VARIANT_ERROR)
         self._variants_dropdown.set_active(self.available_variants.index(self.current_variant))
 
         url = self.templates_homepages.get(self.current_app.name)
