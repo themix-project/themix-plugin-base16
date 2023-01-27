@@ -36,6 +36,7 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 	rsync -rv \
 		--delete \
 		--exclude=".git" \
+		--exclude=".github" \
 		--exclude=".travis.yml" \
 		--exclude="output" \
 		--exclude="circus/circus" \
