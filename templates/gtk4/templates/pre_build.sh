@@ -3,6 +3,12 @@ set -ueo pipefail
 set -x
 
 SCRIPT_DIR="$(readlink -e "$(dirname "${0}")")"
+
+if [[ ! -d "$HOME/tmp/libadwaita" ]] ; then
+	cd "$HOME/tmp/"
+	git clone https://gitlab.gnome.org/GNOME/libadwaita
+fi
+
 LIBADWAITA_DIR="$(readlink -e ~/tmp/libadwaita)"
 BASE_CSS_PATH="${SCRIPT_DIR}/libadwaita.css"
 
