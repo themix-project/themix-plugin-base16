@@ -47,9 +47,9 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 		"$SCHEMES_WORKDIR"/ "$SCHEMES_RESULT_DIR"
 	sync
 	sleep 0.001
-	echo 'Clean-up:'
+	echo 'Clean-up empty-dirs:'
 	find "$SCHEMES_RESULT_DIR" -type d -empty -print0 | xargs --null rmdir || true
-	echo 'Check-up:'
+	echo 'Check-up (debug):'
 	find "$SCHEMES_RESULT_DIR" -type d -empty -print0 | xargs --null echo
 	echo ':: schemes done ::'
 
@@ -73,9 +73,11 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 
 fi
 
-echo ":: extra schemes:"
-rsync -rv \
-	"$SCHEMES_EXTRA_DIR"/ "$SCHEMES_RESULT_DIR"
+if [[ -d "$SCHEMES_EXTRA_DIR" ]] ; then
+	echo ":: extra schemes:"
+	rsync -rv \
+		"$SCHEMES_EXTRA_DIR"/ "$SCHEMES_RESULT_DIR"
+fi
 
 echo ":: extra templates:"
 for pre_build_script in "$TEMPLATES_EXTRA_DIR"/*/templates/pre_build.sh ; do
@@ -87,9 +89,9 @@ rsync -rv \
 sync
 
 sleep 0.001
-echo 'Clean-up:'
+echo 'Clean-up empty dirs:'
 find "$TEMPLATES_RESULT_DIR" -type d -empty -print0 | xargs --null rmdir || true
-echo 'Check-up:'
+echo 'Check-up (debug):'
 find "$TEMPLATES_RESULT_DIR" -type d -empty -print0 | xargs --null echo
 echo ':: templates done ::'
 
