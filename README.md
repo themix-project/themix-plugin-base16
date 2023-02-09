@@ -3,7 +3,13 @@ Themix Base16 plugin
 
 [![Code Style](https://github.com/themix-project/themix-plugin-base16/actions/workflows/ci.yml/badge.svg)](https://github.com/themix-project/themix-plugin-base16/actions/workflows/ci.yml) [![Commit Activity](https://img.shields.io/github/commit-activity/y/themix-project/themix-plugin-base16?color=pink&logo=amp&logoColor=pink)](https://github.com/themix-project/themix-plugin-base16/graphs/commit-activity)
 
-## Dependencies
+## Dependencies (for CLI and Themix-plugin)
+
+ - themix-gui [ @TODO: decouple CLI for GUI libs ]
+ - pystache
+ - python-yaml
+
+## Dependencies (for sync mirror, not plugin itself)
 
  - grep
  - curl
@@ -11,6 +17,7 @@ Themix Base16 plugin
  - git
  - rsync
  - find
+ - sassc (gtk4 libadwaita)
 
 ## FAQ
 
