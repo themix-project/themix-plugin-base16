@@ -134,6 +134,11 @@ def convert_base16_to_template_data(
                 color_list_from_hex(value)
                 int_list_from_hex(value)
             except Exception:
+                print(
+                    translate(
+                        "ERROR: can't convert `{}={}` from Base16 to template :(",
+                    ).format(key, value),
+                )
                 continue
 
         hex_key = key + "-hex"
@@ -343,7 +348,7 @@ class Base16ExportDialog(DialogWithExportPath):
     def _on_homepage_button(self, _button: Gtk.Button) -> None:
         url = self.templates_homepages[self.current_app.name]
         cmd = ["xdg-open", url]
-        subprocess.Popen(cmd)  # pylint: disable=consider-using-with
+        subprocess.Popen(cmd)  # pylint: disable=consider-using-with  # noqa: S603
 
     def __init__(self, *args: "Any", **kwargs: "Any") -> None:  # pylint: disable=too-many-locals
         super().__init__(
@@ -562,7 +567,11 @@ class Plugin(PluginBase):
                     value = value.strip('\'"').lower()
                     base16_theme[key] = value
                 except Exception:
-                    pass
+                    print(
+                        translate(
+                            "ERROR: can't convert `{}={}` from Base16 to Oomox :(",
+                        ).format(key, value),
+                    )
 
         oomox_theme: "ThemeT" = {}
         oomox_theme.update(self.default_theme)
