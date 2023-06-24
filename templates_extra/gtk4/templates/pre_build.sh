@@ -5,10 +5,13 @@ set -x
 SCRIPT_DIR="$(readlink -e "$(dirname "${0}")")"
 
 GIT_CLONE_ROOT="$HOME/tmp"
+mkdir -p "$GIT_CLONE_ROOT"
+cd "$GIT_CLONE_ROOT"
 if [[ ! -d "$GIT_CLONE_ROOT/libadwaita" ]] ; then
-	mkdir -p "$GIT_CLONE_ROOT"
-	cd "$GIT_CLONE_ROOT"
 	git clone https://gitlab.gnome.org/GNOME/libadwaita
+else
+	cd libadwaita
+	git pull origin main
 fi
 
 LIBADWAITA_DIR="$(readlink -e ~/tmp/libadwaita)"
