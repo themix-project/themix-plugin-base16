@@ -1,6 +1,6 @@
 import os
 import subprocess
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 from gi.repository import GLib, Gtk
 
@@ -450,7 +450,7 @@ class Plugin(PluginBase):
         os.path.join(PLUGIN_DIR, "schemes"),
     )
 
-    theme_model_import: "ThemeModelSection" = [
+    theme_model_import: ClassVar["ThemeModelSection"] = [
         {
             "display_name": translate("Base16 Import Options"),
             "type": "separator",
