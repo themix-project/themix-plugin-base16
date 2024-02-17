@@ -37,7 +37,7 @@ except ImportError:
     class PluginBase(OomoxImportPlugin):  # pylint: disable=abstract-method
         pass
 else:
-    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore[no-redef]  # pylint: disable=abstract-method  # noqa: E501
+    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore[no-redef]  # pylint: disable=abstract-method
         pass
 
 
@@ -157,10 +157,9 @@ def convert_base16_to_template_data(
         dec_key = key + "-dec"
         base16_data[dec_key + "-r"], \
             base16_data[dec_key + "-g"], \
-            base16_data[dec_key + "-b"] = \
-            (
-                channel/255 for channel in int_list_from_hex(value)
-            )
+            base16_data[dec_key + "-b"] = (
+                channel / 255 for channel in int_list_from_hex(value)
+        )
     return base16_data
 
 
@@ -232,7 +231,7 @@ class Base16ExportDialog(DialogWithExportPath):
         )
         count_subdirs = 0
         for char in self.output_filename:
-            if char in ("/", ):
+            if char in {"/"}:
                 count_subdirs += 1
         new_destination_dir, *_rest = export_path.rsplit("/", 1 + count_subdirs)
         default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
