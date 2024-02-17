@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 # Enable Base16 export if pystache and yaml are installed:
 try:
     import pystache
-    import yaml  # type: ignore[import]
+    import yaml  # type: ignore[import-untyped]
 except ImportError:
     # @TODO: replace to error dialog:
     print(
