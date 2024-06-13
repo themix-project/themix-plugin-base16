@@ -349,12 +349,12 @@ class Base16ExportDialog(DialogWithExportPath):
         cmd = ["xdg-open", url]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with  # noqa: S603
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-locals
             self,
             *args: "Any",
             override_config: dict[str, "Any"] | None = None,
             **kwargs: "Any",
-    ) -> None:  # pylint: disable=too-many-locals
+    ) -> None:
         super().__init__(
             *args,
             height=800, width=800,
