@@ -349,17 +349,23 @@ class Base16ExportDialog(DialogWithExportPath):
         cmd = ["xdg-open", url]
         subprocess.Popen(cmd)  # pylint: disable=consider-using-with  # noqa: S603
 
-    def __init__(self, *args: "Any", **kwargs: "Any") -> None:  # pylint: disable=too-many-locals
+    def __init__(
+            self,
+            *args: "Any",
+            override_config: dict[str, "Any"] | None = None,
+            **kwargs: "Any",
+    ) -> None:  # pylint: disable=too-many-locals
         super().__init__(
             *args,
             height=800, width=800,
             headline=translate("Base16 Export Options…"),
+            override_config=override_config,
             **kwargs,
         )
         self.label.set_text(
             translate("Choose export options below and copy-paste the result."),
         )
-        default_config = self.export_config.config
+        default_config = self.export_config.config.copy()
         default_config.update({
             ConfigKeys.last_variant: None,
             ConfigKeys.last_app: None,
@@ -367,6 +373,7 @@ class Base16ExportDialog(DialogWithExportPath):
         self.export_config = ExportConfig(
             config_name="base16",
             default_config=default_config,
+            override_config=override_config,
         )
 
         if not os.path.exists(USER_BASE16_TEMPLATES_DIR):
@@ -384,6 +391,7 @@ class Base16ExportDialog(DialogWithExportPath):
             for template_name in os.listdir(templates_dir):
                 template = Base16Template(path=os.path.join(templates_dir, template_name))
                 self.available_apps[template.name] = template
+        print(self.export_config[ConfigKeys.last_app])
         current_app_name = self.export_config[ConfigKeys.last_app]
         if not current_app_name or current_app_name not in self.available_apps:
             current_app_name = self.export_config[ConfigKeys.last_app] = \
@@ -572,7 +580,7 @@ class Plugin(PluginBase):
                         ).format(key, value),
                     )
 
-        oomox_theme: "ThemeT" = {}
+        oomox_theme: ThemeT = {}
         oomox_theme.update(self.default_theme)
         translation = {}
         translation.update(self.translation_common)
