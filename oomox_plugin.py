@@ -134,11 +134,12 @@ def convert_base16_to_template_data(
                 color_list_from_hex(value)
                 int_list_from_hex(value)
             except Exception:
-                print(
-                    translate(
-                        "ERROR: can't convert `{}={}` from Base16 to template :(",
-                    ).format(key, value),
-                )
+                if False:
+                    print(
+                        translate(
+                            "ERROR: can't convert `{}={}` from Base16 to template :(",
+                        ).format(key, value),
+                    )
                 continue
 
         hex_key = key + "-hex"
