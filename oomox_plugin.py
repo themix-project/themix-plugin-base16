@@ -236,6 +236,10 @@ class Base16ExportDialog(DialogWithExportPath):
                 count_subdirs += 1
         new_destination_dir, *_rest = export_path.rsplit("/", 1 + count_subdirs)
         default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
+        new_destination_dir = new_destination_dir.replace(
+            self.theme_name,
+            "<THEME_NAME>",
+        )
         self.export_config[self.OPTIONS.DEFAULT_PATH] = \
             self.export_config[default_path_config_name] = \
             new_destination_dir
@@ -270,6 +274,9 @@ class Base16ExportDialog(DialogWithExportPath):
                 self.export_config.get(
                     default_path_config_name,
                     self.export_config[self.OPTIONS.DEFAULT_PATH],
+                ).replace(
+                    "<THEME_NAME>",
+                    self.theme_name,
                 ),
                 self.output_filename,
             ),
