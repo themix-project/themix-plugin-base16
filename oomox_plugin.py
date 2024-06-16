@@ -256,6 +256,7 @@ class Base16ExportDialog(DialogWithExportPath):
         with open(export_path, "w", encoding=DEFAULT_ENCODING) as fobj:
             fobj.write(self.rendered_theme)
         self.save_last_export_path()
+        self.dialog_done()
 
     def base16_stuff(self) -> None:
         # NAME
