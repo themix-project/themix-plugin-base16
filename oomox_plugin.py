@@ -401,7 +401,8 @@ class Base16ExportDialog(DialogWithExportPath):
             for template_name in os.listdir(templates_dir):
                 template = Base16Template(path=os.path.join(templates_dir, template_name))
                 self.available_apps[template.name] = template
-        print(self.export_config[ConfigKeys.last_app])
+        if DEBUG:
+            print(self.export_config[ConfigKeys.last_app])
         current_app_name = self.export_config[ConfigKeys.last_app]
         if not current_app_name or current_app_name not in self.available_apps:
             current_app_name = self.export_config[ConfigKeys.last_app] = \
@@ -428,7 +429,6 @@ class Base16ExportDialog(DialogWithExportPath):
         hbox.add(self._homepage_button)
 
         self.options_box.add(hbox)
-        self.top_area.add(self.options_box)
         self.options_box.show_all()
 
         user_templates_label = Gtk.Label()
