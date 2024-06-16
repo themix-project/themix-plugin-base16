@@ -290,8 +290,9 @@ class Base16ExportDialog(DialogWithExportPath):
 
         # OUTPUT
         self.rendered_theme = result
-        self.set_text(result)
-        self.show_text()
+        if self.preview_theme:
+            self.set_text(result)
+            self.show_text()
 
         self.save_last_export_path()
 
@@ -363,6 +364,7 @@ class Base16ExportDialog(DialogWithExportPath):
             self,
             *args: "Any",
             override_config: dict[str, "Any"] | None = None,
+            preview_theme: bool = True,
             **kwargs: "Any",
     ) -> None:
         super().__init__(
@@ -372,9 +374,11 @@ class Base16ExportDialog(DialogWithExportPath):
             override_config=override_config,
             **kwargs,
         )
-        self.label.set_text(
-            translate("Choose export options below and copy-paste the result."),
-        )
+        self.preview_theme = preview_theme
+        if self.preview_theme:
+            self.label.set_text(
+                translate("Choose export options below and copy-paste the result or export to file."),
+            )
         default_config = self.export_config.config.copy()
         default_config.update({
             ConfigKeys.last_variant: None,
