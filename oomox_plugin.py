@@ -45,12 +45,12 @@ Base16TemplateDataT = dict[str, str | int | float]
 Base16ThemeT = dict[str, str]
 
 
-DEBUG = False
-PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
-USER_BASE16_DIR = os.path.join(
+DEBUG: "Final" = False
+PLUGIN_DIR: "Final" = os.path.dirname(os.path.realpath(__file__))
+USER_BASE16_DIR: "Final" = os.path.join(
     USER_CONFIG_DIR, "base16/",
 )
-USER_BASE16_TEMPLATES_DIR = os.path.join(
+USER_BASE16_TEMPLATES_DIR: "Final" = os.path.join(
     USER_BASE16_DIR, "templates/",
 )
 
