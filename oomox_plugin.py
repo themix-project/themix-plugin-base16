@@ -45,6 +45,7 @@ Base16TemplateDataT = dict[str, str | int | float]
 Base16ThemeT = dict[str, str]
 
 
+DEBUG = False
 PLUGIN_DIR = os.path.dirname(os.path.realpath(__file__))
 USER_BASE16_DIR = os.path.join(
     USER_CONFIG_DIR, "base16/",
@@ -134,7 +135,7 @@ def convert_base16_to_template_data(
                 color_list_from_hex(value)
                 int_list_from_hex(value)
             except Exception:
-                if False:
+                if DEBUG:
                     print(
                         translate(
                             "ERROR: can't convert `{}={}` from Base16 to template :(",
