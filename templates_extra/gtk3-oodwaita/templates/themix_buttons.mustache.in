@@ -1,0 +1,57 @@
+/************************** buttons: ****************************/
+
+.org-gnome-Calendar .titlebar .text-button, .nautilus-window .linked entry ~ .image-button:not(:hover):not(:checked):not(:active):not(.model), .nautilus-window .search + .toggle.popup, headerbar .linked entry ~ .image-button, .titlebar .linked entry ~ .image-button, headerbar .linked.raised button, headerbar .linked button:not(:only-child), headerbar > .stack-switcher.linked > button, .titlebar .linked.raised button, .titlebar .linked button:not(:only-child), .titlebar > .stack-switcher.linked > button, headerbar button.text-button:not(.suggested-action):not(.destructive-action):not(:disabled), .titlebar button.text-button:not(.suggested-action):not(.destructive-action):not(:disabled) {
+    background-color: #{{themix_HDR_BTN_BG-hex}};
+    color: #{{themix_HDR_BTN_FG-hex}};
+}
+
+scale trough slider,
+switch slider,
+.image-button,
+button.flat,
+button {
+    background-color: #{{themix_BTN_BG-hex}};
+    color: #{{themix_BTN_FG-hex}};
+}
+
+
+.org-gnome-Calendar .titlebar .text-button:active, .nautilus-window .linked entry ~ .image-button:active:not(:hover):not(:checked):not(:active):not(.model), .nautilus-window .search + .toggle.popup:active, headerbar .linked entry ~ .image-button:active, .titlebar .linked entry ~ .image-button:active, headerbar .linked.raised button:active, headerbar .linked button:active:not(:only-child), headerbar > .stack-switcher.linked > button:active, .titlebar .linked.raised button:active, .titlebar .linked button:active:not(:only-child), .titlebar > .stack-switcher.linked > button:active, headerbar button.text-button:active:not(.suggested-action):not(.destructive-action):not(:disabled), .titlebar button.text-button:active:not(.suggested-action):not(.destructive-action):not(:disabled), .org-gnome-Calendar .titlebar .text-button:checked, .nautilus-window .linked entry ~ .image-button:checked:not(:hover):not(:checked):not(:active):not(.model), .nautilus-window .search + .toggle.popup:checked, headerbar .linked entry ~ .image-button:checked, .titlebar .linked entry ~ .image-button:checked, headerbar .linked.raised button:checked, headerbar .linked button:checked:not(:only-child), headerbar > .stack-switcher.linked > button:checked, .titlebar .linked.raised button:checked, .titlebar .linked button:checked:not(:only-child), .titlebar > .stack-switcher.linked > button:checked, headerbar button.text-button:checked:not(.suggested-action):not(.destructive-action):not(:disabled), .titlebar button.text-button:checked:not(.suggested-action):not(.destructive-action):not(:disabled)
+{
+    background-color: #{{themix_SEL_BG-hex}};
+    color: #{{themix_SEL_FG-hex}};
+}
+
+notebook > header > tabs > arrow:active, notebook > header > tabs > arrow:checked, button:active, button:checked
+{
+    background-color: #{{themix_SEL_BG-hex}};
+    color: #{{themix_SEL_FG-hex}};
+}
+
+
+switch:hover slider,
+.image-button:hover,
+scale:hover trough slider,
+button.flat:hover,
+button:hover {
+    background-color: rgba({{themix_BTN_BG-rgb-r}}, {{themix_BTN_BG-rgb-g}}, {{themix_BTN_BG-rgb-b}}, 0.8);
+}
+
+switch:checked > slider { background-color: #{{themix_SEL_FG-hex}}; }
+
+button.flat:checked:hover,
+button:checked:hover {
+    background-color: rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.8);
+}
+
+/*button:checked,*/
+/*check:checked,*/
+/*radio:checked,*/
+/*switch:checked,*/
+/*scale trough slider,*/
+/*button {*/
+/*    background-image: none;*/
+/*}*/
+
+infobar .close:hover, searchbar > revealer > box .close:hover, actionbar > revealer > box menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, searchbar > revealer > box menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, .toolbar menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, headerbar menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, actionbar > revealer > box button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), actionbar > revealer > box button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), actionbar > revealer > box button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), spinbutton > button.image-button.up:hover:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), spinbutton > button.image-button.down:hover:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), button.sidebar-button:hover, notebook > header > tabs > arrow:hover, window.dialog.message.csd .dialog-action-area > button:hover, popover.menu box.circular-buttons button.circular.image-button.model:hover, popover.menu box.inline-buttons button.image-button.model:hover, button.emoji-section.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), calendar > header > button:hover, actionbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, searchbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, .toolbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, headerbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, actionbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, searchbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, .toolbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, headerbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, splitbutton.flat > button:hover, splitbutton.flat > menubutton > button:hover, menubutton.flat > button:hover, button.flat:hover { opacity: 0.85; }
+
+/* vim: set ft=css : */
