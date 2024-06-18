@@ -12,6 +12,8 @@ if [[ ! -d "$GIT_CLONE_ROOT/libadwaita" ]] ; then
 else
 	cd libadwaita
 	git pull origin main
+	git fetch --tags
+	git checkout 1.5.1
 fi
 
 LIBADWAITA_DIR="$(readlink -e ~/tmp/libadwaita)"
