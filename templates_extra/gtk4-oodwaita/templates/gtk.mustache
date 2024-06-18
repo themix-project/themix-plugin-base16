@@ -2541,6 +2541,20 @@ entry {
 /*}*/
 
 
+menu, popover,
+popover.menu modelbutton, button.link, button.link:hover, button.link:active, button.link:checked, columnview > header > button, treeview.view > header > button, window.print treeview.dialog-action-box > header > button
+{
+    color: @popover_fg_color;
+    background-color: @popover_bg_color;
+}
+menubutton.osd > button:hover, button.osd:hover,
+menubutton.osd > button:checked:hover, button.osd:checked:hover,
+popover.menu modelbutton:hover, button.link:hover, button.link:hover, button.link:active, button.link:checked, columnview > header > button:hover, treeview.view > header > button:hover, window.print treeview.dialog-action-box > header > button:hover
+{
+    color: @accent_fg_color;
+    background-color: @accent_bg_color;
+}
+
 /*
 
 // {{scheme-name}} scheme by {{scheme-author}}
