@@ -11,6 +11,7 @@ if [[ ! -d "$GIT_CLONE_ROOT/libadwaita" ]] ; then
 	git clone https://gitlab.gnome.org/GNOME/libadwaita
 else
 	cd libadwaita
+	git checkout main
 	git pull origin main
 	git fetch --tags
 	git checkout 1.5.1
