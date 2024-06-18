@@ -1,0 +1,4 @@
+index:
+  extension: .theme
+  output:
+  force_filename: index
