@@ -586,7 +586,7 @@ class Plugin(PluginBase):
                     key = key.rstrip(":")
                     value = value.strip('\'"').lower()
                     base16_theme[key] = value
-                except Exception:
+                except Exception:  # noqa: PERF203
                     print(
                         translate(
                             "ERROR: can't convert `{}={}` from Base16 to Oomox :(",
