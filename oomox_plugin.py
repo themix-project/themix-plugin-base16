@@ -35,10 +35,10 @@ except ImportError:
         "for exporting Base16 themes",
     )
 
-    class PluginBase(OomoxImportPlugin):  # pylint: disable=abstract-method
+    class PluginBase(OomoxImportPlugin):
         pass
 else:
-    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore[no-redef]  # pylint: disable=abstract-method
+    class PluginBase(OomoxImportPlugin, OomoxExportPlugin):  # type: ignore[no-redef]
         pass
 
 
