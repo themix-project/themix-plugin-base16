@@ -1,5 +1,6 @@
 import os
 import subprocess
+from pathlib import Path
 from typing import TYPE_CHECKING, ClassVar
 
 from gi.repository import GLib, Gtk
@@ -166,8 +167,7 @@ def convert_base16_to_template_data(
 
 
 def render_base16_template(template_path: str, base16_theme: Base16ThemeT) -> str:
-    with open(template_path, encoding=DEFAULT_ENCODING) as template_file:
-        template = template_file.read()
+    template = Path(template_path).read_text(encoding=DEFAULT_ENCODING)
     base16_data = convert_base16_to_template_data(base16_theme)
     return pystache.render(template, base16_data)
 
@@ -195,8 +195,7 @@ class Base16Template:
         config_path = os.path.join(
             self.template_dir, "config.yaml",
         )
-        with open(config_path, encoding=DEFAULT_ENCODING) as config_file:
-            return yaml_load(config_file.read())
+        return yaml_load(Path(config_path).read_text(encoding=DEFAULT_ENCODING))
 
 
 class Base16ExportDialog(DialogWithExportPath):
@@ -233,7 +232,7 @@ class Base16ExportDialog(DialogWithExportPath):
         )
         count_subdirs = 0
         for char in self.output_filename:
-            if char in {"/"}:
+            if char == "/":
                 count_subdirs += 1
         new_destination_dir, *_rest = export_path.rsplit("/", 1 + count_subdirs)
         default_path_config_name = f"{self.OPTIONS.DEFAULT_PATH}_{self.current_app.name}"
@@ -253,7 +252,7 @@ class Base16ExportDialog(DialogWithExportPath):
         parent_dir = os.path.dirname(export_path)
         if not os.path.exists(parent_dir):
             os.makedirs(parent_dir)
-        with open(export_path, "w", encoding=DEFAULT_ENCODING) as fobj:
+        with Path(export_path).open("w", encoding=DEFAULT_ENCODING) as fobj:
             fobj.write(self.rendered_theme)
         self.save_last_export_path()
         self.dialog_done()
@@ -397,8 +396,8 @@ class Base16ExportDialog(DialogWithExportPath):
             os.path.join(PLUGIN_DIR, "templates"),
         )
         templates_index_path = system_templates_dir + ".yaml"
-        with open(templates_index_path, encoding=DEFAULT_ENCODING) as templates_index_file:
-            self.templates_homepages = yaml_load(templates_index_file.read())
+        data = Path(templates_index_path).read_text(encoding=DEFAULT_ENCODING)
+        self.templates_homepages = yaml_load(data)
 
         # APPS
         for templates_dir in (system_templates_dir, USER_BASE16_TEMPLATES_DIR):
@@ -581,7 +580,7 @@ class Plugin(PluginBase):
 
         base16_theme = {}
         with open(preset_path, encoding=DEFAULT_ENCODING) as preset_file:
-            for line in preset_file.readlines():
+            for line in preset_file:
                 try:
                     key, value, *_rest = line.split()
                     key = key.rstrip(":")
