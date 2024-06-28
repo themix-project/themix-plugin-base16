@@ -368,7 +368,9 @@ tabbutton label { font-weight: 800; font-size: 8pt; }
 
 tabbutton label.small { font-size: 6pt; }
 
-tabbutton indicatorbin > indicator, tabbutton indicatorbin > mask { transform: translate(-1px, 1px); }
+tabbutton indicatorbin > indicator:dir(ltr), tabbutton indicatorbin > mask:dir(ltr) { transform: translate(-1px, 1px); }
+
+tabbutton indicatorbin > indicator:dir(rtl), tabbutton indicatorbin > mask:dir(rtl) { transform: translate(1px, 1px); }
 
 calendar { color: @view_fg_color; background-clip: padding-box; border: 1px solid alpha(currentColor,0.15); font-feature-settings: "tnum"; }
 

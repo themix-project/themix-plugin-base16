@@ -14,7 +14,7 @@ else
 	git checkout main
 	git pull origin main
 	git fetch --tags
-	git checkout 1.5.1
+	git checkout 1.5.2
 fi
 
 LIBADWAITA_DIR="$(readlink -e ~/tmp/libadwaita)"
