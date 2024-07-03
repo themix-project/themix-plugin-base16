@@ -1,0 +1,3 @@
+default:
+  extension: .conf
+  output: .config/qt5ct/colors/
