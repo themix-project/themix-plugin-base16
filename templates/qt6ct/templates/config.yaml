@@ -1,0 +1,3 @@
+default:
+  extension: .conf
+  output: .config/qt6ct/colors/
