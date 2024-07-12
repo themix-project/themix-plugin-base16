@@ -120,9 +120,15 @@ def convert_oomox_to_base16(
         base16_theme[f"themix_{key}"] = str(value)
 
     for result_key, in1_key, in2_key, ratio in (
-        ("INACTIVE_FG", "FG", "BG", 0.75),
-        ("INACTIVE_HDR_FG", "HDR_FG", "HDR_BG", 0.75),
-        ("INACTIVE_TXT_FG", "TXT_FG", "TXT_BG", 0.75),
+        ("ALT_TXT_BG", "TXT_BG", "MENU_BG", 0.90),
+        ("DISABLED_BG", "BG", "MENU_BG", 0.75),
+        ("DISABLED_FG", "FG", "BG", 0.75),
+        ("DISABLED_HDR_BG", "HDR_BG", "BG", 0.75),
+        ("DISABLED_HDR_FG", "HDR_FG", "HDR_BG", 0.75),
+        ("DISABLED_TXT_BG", "TXT_BG", "BG", 0.75),
+        ("DISABLED_TXT_FG", "TXT_FG", "TXT_BG", 0.75),
+        ("DISABLED_BTN_BG", "BTN_BG", "BG", 0.75),
+        ("DISABLED_BTN_FG", "BTN_FG", "BG", 0.75),
     ):
         base16_theme[f"themix_{result_key}"] = mix_theme_colors(
             base16_theme[f"themix_{in1_key}"],
