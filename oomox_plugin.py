@@ -243,7 +243,9 @@ class Base16ExportDialog(DialogWithExportPath):
             self.current_app.template_dir, self.current_variant + ".mustache",
         )
 
-    def save_last_export_path(self) -> None:
+    def remove_preset_name_from_path_config(self) -> None:
+        super().remove_preset_name_from_path_config()
+
         export_path = os.path.expanduser(
             self.option_widgets[self.OPTIONS.DEFAULT_PATH].get_text(),  # type: ignore[attr-defined]
         )
@@ -260,6 +262,9 @@ class Base16ExportDialog(DialogWithExportPath):
         self.export_config[self.OPTIONS.DEFAULT_PATH] = \
             self.export_config[default_path_config_name] = \
             new_destination_dir
+
+    def save_last_export_path(self) -> None:
+        self.remove_preset_name_from_path_config()
         self.export_config.save()
 
     def do_export(self) -> None:
