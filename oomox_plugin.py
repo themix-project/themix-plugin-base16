@@ -133,7 +133,7 @@ def convert_oomox_to_base16(
         base16_theme[f"themix_{result_key}"] = mix_theme_colors(
             base16_theme[f"themix_{in1_key}"],
             base16_theme[f"themix_{in2_key}"],
-            ratio
+            ratio,
         )
 
     # from pprint import pprint; pprint(base16_theme)
