@@ -1,0 +1,3 @@
+doom -> emacs-doom
+gtk-flatcolor -> gtk2-flatcolor
+styles -> css-styles

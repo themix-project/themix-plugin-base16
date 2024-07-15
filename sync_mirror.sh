@@ -15,6 +15,7 @@ SCHEMES_RESULT_DIR="${SCRIPT_DIR}"/schemes
 
 TEMPLATES_INDEX="${SCRIPT_DIR}"/templates.yaml
 TEMPLATES_EXTRA_INDEX="${SCRIPT_DIR}"/templates_extra.yaml
+TEMPLATES_RENAME="${SCRIPT_DIR}"/templates_rename.txt
 TEMPLATES_EXTRA_DIR="${SCRIPT_DIR}"/templates_extra
 TEMPLATES_WORKDIR="${SCRIPT_DIR}"/templates.tmp
 TEMPLATES_RESULT_DIR="${SCRIPT_DIR}"/templates
@@ -62,6 +63,12 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 		# shellcheck disable=SC2046
 		parallel-moreutils "${GET_ASSET}" "${TEMPLATES_WORKDIR}" -- $(grep -hv '^#' "${TEMPLATES_INDEX}" "${TEMPLATES_EXTRA_INDEX}")
 	fi
+
+	while read -r line ; do
+		rename_from=$(cut -d: -f1 <<< "$line")
+		rename_to=$(cut -d: -f2 <<< "$line")
+		mv "${TEMPLATES_WORKDIR}/${rename_from}" "${TEMPLATES_WORKDIR}/${rename_to}"
+	done < <(sed -e 's/ -> /:/g' < "$TEMPLATES_RENAME")
 
 	rsync -rv \
 		--delete \
