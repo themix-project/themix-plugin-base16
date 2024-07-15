@@ -1,0 +1,68 @@
+/* gtk3 checks and radios */
+
+* check,
+* radio {
+  background: @card_bg_color;
+  color: #{{themix_ACCENT_BG-hex}};
+  border-color: mix(@card_fg_color,@card_bg_color,0.8);
+  /*-gtk-icon-source: builtin;*/
+}
+
+check:checked {
+  /*-gtk-icon-source: -gtk-icontheme("checkbox-checked-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+radio:checked {
+  /*-gtk-icon-source: -gtk-icontheme("radio-checked-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("media-record-symbolic");
+}
+check:indeterminate {
+  /*-gtk-icon-source: -gtk-icontheme("checkbox-mixed-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+radio:indeterminate {
+  /*-gtk-icon-source: -gtk-icontheme("radio-mixed-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+
+menu menuitem check, menu menuitem check:hover, menu menuitem check:disabled, menu menuitem check:not(:checked), menu menuitem check:not(:checked):hover, menu menuitem check:not(:checked):disabled, menu menuitem check:checked, menu menuitem check:checked:hover, menu menuitem check:checked:disabled, menu menuitem check:indeterminate, menu menuitem check:indeterminate:hover, menu menuitem check:indeterminate:disabled, menu menuitem radio, menu menuitem radio:hover, menu menuitem radio:disabled, menu menuitem radio:not(:checked), menu menuitem radio:not(:checked):hover, menu menuitem radio:not(:checked):disabled, menu menuitem radio:checked, menu menuitem radio:checked:hover, menu menuitem radio:checked:disabled, menu menuitem radio:indeterminate, menu menuitem radio:indeterminate:hover, menu menuitem radio:indeterminate:disabled {
+  background: none;
+  color: #{{themix_ACCENT_BG-hex}};
+  border-color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
+  border-width: 1px;
+  border-style: solid;
+}
+
+menu menuitem check:indeterminate,
+menu menuitem radio:indeterminate,
+menu menuitem check:checked,
+menu menuitem radio:checked {
+  color: #{{themix_ACCENT_BG-hex}};
+  border-color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
+}
+menu menuitem check:indeterminate:disabled,
+menu menuitem radio:indeterminate:disabled,
+menu menuitem check:checked:disabled,
+menu menuitem radio:checked:disabled {
+  color: mix(@headerbar_bg_color, #{{themix_ACCENT_BG-hex}}, 0.5);
+}
+
+
+menu menuitem check:checked {
+  /*-gtk-icon-source: -gtk-icontheme("checkbox-checked-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+menu menuitem radio:checked {
+  /*-gtk-icon-source: -gtk-icontheme("radio-checked-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("media-record-symbolic");
+}
+menu menuitem check:indeterminate {
+  /*-gtk-icon-source: -gtk-icontheme("checkbox-mixed-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+menu menuitem radio:indeterminate {
+  /*-gtk-icon-source: -gtk-icontheme("radio-mixed-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+
+/* vim: set ft=css : */
