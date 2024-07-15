@@ -1,3 +1,6 @@
 doom -> emacs-doom
 gtk-flatcolor -> gtk2-flatcolor
 styles -> css-styles
+neovim -> neovim-bradcush
+nvim -> neovim-wincent
+prompt-toolkit -> python-prompt-toolkit
