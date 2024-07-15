@@ -425,13 +425,10 @@ check:disabled, radio:disabled { filter: opacity(0.5); }
 
 check { border-radius: 6px; }
 
-check:checked { -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/check-symbolic.symbolic.png")), -gtk-recolor(url("assets/check@2-symbolic.symbolic.png"))); }
 
 radio { border-radius: 100%; }
 
-radio:checked { -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/bullet-symbolic.symbolic.png")), -gtk-recolor(url("assets/bullet@2-symbolic.symbolic.png"))); }
 
-check:indeterminate, radio:indeterminate { -gtk-icon-source: -gtk-scaled(-gtk-recolor(url("assets/dash-symbolic.symbolic.png")), -gtk-recolor(url("assets/dash@2-symbolic.symbolic.png"))); }
 
 checkbutton.selection-mode { border-radius: 100px; }
 
@@ -978,7 +975,6 @@ headerbar .subtitle, windowtitle .subtitle { font-size: smaller; padding-left: 1
 
 windowtitle { margin-top: -6px; margin-bottom: -6px; min-height: 12px; }
 
-window.devel headerbar > windowhandle { background-image: cross-fade(5% -gtk-recolor(url("assets/devel-symbolic.svg")), image(transparent)); background-repeat: repeat-x; }
 
 window.devel dialog headerbar > windowhandle { background-image: unset; background-repeat: unset; }
 
@@ -2354,7 +2350,6 @@ toolbarview.undershoot-top scrolledwindow > undershoot.top { box-shadow: inset 0
 
 toolbarview.undershoot-bottom scrolledwindow > undershoot.bottom { box-shadow: inset 0 -1px alpha(@shade_color,0.75); background: linear-gradient(to top, alpha(@shade_color,0.75), transparent 4px); }
 
-window.devel toolbarview > .top-bar { background-image: cross-fade(5% -gtk-recolor(url("assets/devel-symbolic.svg")), image(transparent)); background-repeat: repeat-x; }
 
 window.devel dialog toolbarview > .top-bar { background-image: unset; background-repeat: unset; }
 
@@ -2849,15 +2844,60 @@ button:checked:hover {
     background-color: rgba({{themix_SEL_BG-rgb-r}}, {{themix_SEL_BG-rgb-g}}, {{themix_SEL_BG-rgb-b}}, 0.8);
 }
 
-/*button:checked,*/
-/*check:checked,*/
-/*radio:checked,*/
-/*switch:checked,*/
-/*scale trough slider,*/
-/*button {*/
-/*    background-image: none;*/
-/*}*/
-
 infobar .close:hover, searchbar > revealer > box .close:hover, actionbar > revealer > box menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, searchbar > revealer > box menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, .toolbar menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, headerbar menubutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque).image-button > button:hover, actionbar > revealer > box button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar button.arrow-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), actionbar > revealer > box button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar button.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), actionbar > revealer > box button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), searchbar > revealer > box button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), .toolbar button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), headerbar button.image-text-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), spinbutton > button.image-button.up:hover:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), spinbutton > button.image-button.down:hover:not(.flat):not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), button.sidebar-button:hover, notebook > header > tabs > arrow:hover, window.dialog.message.csd .dialog-action-area > button:hover, popover.menu box.circular-buttons button.circular.image-button.model:hover, popover.menu box.inline-buttons button.image-button.model:hover, button.emoji-section.image-button:hover:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque), calendar > header > button:hover, actionbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, searchbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, .toolbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, headerbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > button:hover, actionbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, searchbar > revealer > box splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, .toolbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, headerbar splitbutton:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque) > menubutton > button:hover, splitbutton.flat > button:hover, splitbutton.flat > menubutton > button:hover, menubutton.flat > button:hover, button.flat:hover { opacity: 0.85; }
+
+/* vim: set ft=css : */
+/* gtk4 checks and radios */
+
+* check,
+* radio {
+  background: @card_bg_color;
+  color: #{{themix_ACCENT_BG-hex}};
+  border-color: mix(@card_fg_color,@card_bg_color,0.8);
+  /*-gtk-icon-source: builtin;*/
+  /*-gtk-icon-source: none;*/
+}
+
+check:checked {
+  /*-gtk-icon-source: -gtk-icontheme("checkbox-checked-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+radio:checked {
+  /*-gtk-icon-source: -gtk-icontheme("radio-checked-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("media-record-symbolic");
+}
+check:indeterminate {
+  /*-gtk-icon-source: -gtk-icontheme("checkbox-mixed-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+radio:indeterminate {
+  /*-gtk-icon-source: -gtk-icontheme("radio-mixed-symbolic");*/
+  -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
+}
+
+menu menuitem check, menu menuitem check:hover, menu menuitem check:disabled, menu menuitem check:not(:checked), menu menuitem check:not(:checked):hover, menu menuitem check:not(:checked):disabled, menu menuitem check:checked, menu menuitem check:checked:hover, menu menuitem check:checked:disabled, menu menuitem check:indeterminate, menu menuitem check:indeterminate:hover, menu menuitem check:indeterminate:disabled, menu menuitem radio, menu menuitem radio:hover, menu menuitem radio:disabled, menu menuitem radio:not(:checked), menu menuitem radio:not(:checked):hover, menu menuitem radio:not(:checked):disabled, menu menuitem radio:checked, menu menuitem radio:checked:hover, menu menuitem radio:checked:disabled, menu menuitem radio:indeterminate, menu menuitem radio:indeterminate:hover, menu menuitem radio:indeterminate:disabled,
+popover.menu check, popover.menu check:hover:checked, popover.menu check:hover:indeterminate, popover.menu check:hover:not(:checked):not(:indeterminate), popover.menu check:active:checked, popover.menu check:active:indeterminate, popover.menu check:active:not(:checked):not(:indeterminate), popover.menu radio, popover.menu radio:hover:checked, popover.menu radio:hover:indeterminate, popover.menu radio:hover:not(:checked):not(:indeterminate), popover.menu radio:active:checked, popover.menu radio:active:indeterminate, popover.menu radio:active:not(:checked):not(:indeterminate) {
+  background: none;
+  color: #{{themix_ACCENT_BG-hex}};
+  border-color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
+  border-width: 1px;
+  border-style: solid;
+}
+
+menu menuitem check:indeterminate,
+menu menuitem radio:indeterminate,
+popover.menu check:indeterminate,
+popover.menu radio:indeterminate,
+menu check:indeterminate,
+menu radio:indeterminate,
+menu menuitem check:checked,
+menu menuitem radio:checked,
+popover.menu check:checked,
+popover.menu radio:checked,
+menu check:checked,
+menu radio:checked {
+  color: #{{themix_ACCENT_BG-hex}};
+  border-color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
+}
 
 /* vim: set ft=css : */

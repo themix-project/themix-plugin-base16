@@ -18,7 +18,8 @@ ADW_GTK3_DIR="$(readlink -e ~/tmp/adw-gtk3)"
 BASE_CSS_PATH="${SCRIPT_DIR}/gtk.css"
 
 BASE_TEMPLATE_PATH="${SCRIPT_DIR}/themix.mustache.in"
-BUTTONS_TEMPLATE_PATH="${SCRIPT_DIR}/themix_buttons.mustache.in"
+TEMPLATE_PATH_BUTTONS="${SCRIPT_DIR}/themix_buttons.mustache.in"
+TEMPLATE_PATH_CHECKRADIO="${SCRIPT_DIR}/themix_checkradio.mustache.in"
 
 RESULT_TEMPLATE_PATH="${SCRIPT_DIR}/gtk.mustache"
 
@@ -27,7 +28,7 @@ cd "${ADW_GTK3_DIR}/gtk/src/adw-gtk3/gtk-3.0"
 sassc -a -M -t compact ./gtk.scss "$BASE_CSS_PATH"
 
 cd "$SCRIPT_DIR"
-cat "$BASE_CSS_PATH" "$BASE_TEMPLATE_PATH" "$BUTTONS_TEMPLATE_PATH" \
+cat "$BASE_CSS_PATH" "$BASE_TEMPLATE_PATH" "$TEMPLATE_PATH_BUTTONS" "$TEMPLATE_PATH_CHECKRADIO" \
 | sed \
 	-e '/.*infobar.*:hover.*:hover.*:hover.*{.*alpha(currentColor.*}.*/d' \
 	-e '/popover.*{ background\(-color\|\): alpha(currentColor,[0-9.]\+); }/d' \
