@@ -67,6 +67,7 @@ if [[ ${1:-} != '--extra-only' ]] ; then
 	while read -r line ; do
 		rename_from=$(cut -d: -f1 <<< "$line")
 		rename_to=$(cut -d: -f2 <<< "$line")
+		rm -r "${TEMPLATES_WORKDIR}/${rename_to}"
 		mv "${TEMPLATES_WORKDIR}/${rename_from}" "${TEMPLATES_WORKDIR}/${rename_to}"
 	done < <(sed -e 's/ -> /:/g' < "$TEMPLATES_RENAME")
 
