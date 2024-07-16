@@ -97,7 +97,7 @@ def convert_oomox_to_base16(
 
     base16_theme["scheme-name"] = base16_theme["scheme-author"] = \
         theme_name_or_fallback
-    base16_theme["scheme-slug"] = base16_theme["scheme-name"].split("/")[-1].lower()
+    base16_theme["scheme-slug"] = base16_theme["scheme-name"].split("/")[-1]
 
     for oomox_key, base16_key in OOMOX_TO_BASE16_TRANSLATION.items():
         theme_value = str(colorscheme[oomox_key])
