@@ -1,4 +1,4 @@
 index:
-  extension: .theme
-  output:
-  force_filename: index
+  extension: /index.theme
+  output: .themes/
+  force_filename:
