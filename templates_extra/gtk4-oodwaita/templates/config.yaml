@@ -1,8 +1,4 @@
 gtk:
-  extension: .css
-  output:
-  force_filename: gtk
-#gtk-dark:
-#  extension: -dark.css
-#  output:
-#  force_filename: gtk
+  extension: /gtk-4.0/gtk.css
+  output: .themes/
+  force_filename:
