@@ -1,0 +1,24 @@
+oodwaita:
+  extension: /gtk-2.0/gtkrc
+  output: .themes/
+  force_filename:
+oodwaita_hidpi:
+  extension: /gtk-2.0/gtkrc
+  output: .themes/
+  force_filename:
+oomox:
+  extension: /gtk-2.0/gtkrc
+  output: .themes/
+  force_filename:
+oomox_hidpi:
+  extension: /gtk-2.0/gtkrc
+  output: .themes/
+  force_filename:
+square:
+  extension: /gtk-2.0/gtkrc
+  output: .themes/
+  force_filename:
+square_hidpi:
+  extension: /gtk-2.0/gtkrc
+  output: .themes/
+  force_filename:
