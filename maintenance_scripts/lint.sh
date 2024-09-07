@@ -19,12 +19,11 @@ if [[ -z "${DISPLAY:-}" ]] ; then
 fi
 
 export PYTHONWARNINGS='default,error:::oomox_gui[.*],error:::plugins[.*]'
-if [[ -n "${THEMIX_GUI_PATH:-}" ]] ; then
-	export PYTHONPATH="$THEMIX_GUI_PATH"
-	export MYPYPATH="./maintenance_scripts/mypy_stubs:${THEMIX_GUI_PATH}:${THEMIX_GUI_PATH}/maintenance_scripts/mypy_stubs"
-else
-	export PYTHONPATH=../../
+if [[ -z "${THEMIX_GUI_PATH:-}" ]] ; then
+	export THEMIX_GUI_PATH=../../
 fi
+export PYTHONPATH="$THEMIX_GUI_PATH"
+export MYPYPATH="./maintenance_scripts/mypy_stubs:${THEMIX_GUI_PATH}:${THEMIX_GUI_PATH}/maintenance_scripts/mypy_stubs"
 echo "PYTHONPATH=${PYTHONPATH}"
 echo "MYPYPATH=${MYPYPATH:-}"
 
