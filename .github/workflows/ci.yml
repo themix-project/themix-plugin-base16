@@ -45,7 +45,7 @@ jobs:
       run: sed -i -e 's|FROM archlinux:base-devel|FROM actionless/pikaur|' Dockerfile_${PYVER}
 
     - name: build docker image
-      run: docker build . -f Dockerfile_${PYVER} -t oomox
+      run: docker build . -f Dockerfile_${PYVER} -t oomox_base16_plugin_test
 
     - name: run ci in docker
       run: docker run
@@ -53,5 +53,5 @@ jobs:
         -e SKIP_MYPY=${SKIP_MYPY}
         -e SKIP_VULTURE=${SKIP_VULTURE}
         -e THEMIX_GUI_PATH=${THEMIX_GUI_PATH}
-        oomox:latest
+        oomox_base16_plugin_test:latest
         ./maintenance_scripts/lint.sh
