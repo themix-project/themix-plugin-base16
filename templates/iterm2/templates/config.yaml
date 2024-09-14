@@ -8,17 +8,12 @@ base24:
   output: itermcolors
   supported-systems: [base24]
 
-base16-256:
-  extension: .itermcolors
-  output: itermcolors-256
+scripts-base16:
+  extension: .sh
+  output: scripts
   supported-systems: [base16]
 
-base24-256:
-  extension: .itermcolors
-  output: itermcolors-256
+scripts-base24:
+  extension: .sh
+  output: scripts
   supported-systems: [base24]
-
-legacy-256:
-  extension: -256.itermcolors
-  output: itermcolors
-  supported-systems: [base16]
