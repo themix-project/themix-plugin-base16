@@ -21,7 +21,7 @@ for version in "${VERSIONS[@]}" ; do
 	else
 		cd "$LIBADWAITA_DIR"
 		git checkout main
-		git pull origin main
+		#git pull origin main
 		git fetch --tags
 		git checkout "$version"
 	fi
