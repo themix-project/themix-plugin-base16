@@ -11,7 +11,7 @@ else:
 sys.path.append(THEMIX_GUI_PATH)
 sys.path.append(SCRIPT_DIR)
 
-from oomox_gui.terminal import generate_terminal_colors_for_oomox
+from oomox_gui.terminal import generate_terminal_colors_for_oomox  # noqa[E402]
 from oomox_gui.theme_file_parser import read_colorscheme_from_path  # noqa[E402]
 from oomox_gui.theme_file import ThemeT  # noqa[E402]
 
