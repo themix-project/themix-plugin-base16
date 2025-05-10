@@ -3,7 +3,7 @@ set -ueo pipefail
 set -x
 
 
-VERSIONS=(1.6.0 1.5.2)
+VERSIONS=(1.7.2 1.6.0 1.5.2)
 
 SCRIPT_DIR="$(readlink -e "$(dirname "${0}")")"
 CONFIG_PATH="${SCRIPT_DIR}/config.yaml"
@@ -21,7 +21,7 @@ for version in "${VERSIONS[@]}" ; do
 	else
 		cd "$LIBADWAITA_DIR"
 		git checkout main
-		git pull origin main
+		#git pull origin main
 		git fetch --tags
 		git checkout "$version"
 	fi

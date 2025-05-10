@@ -1,0 +1,18 @@
+scheme: "Eva Darken"
+author: "kjakapat (https://github.com/kjakapat)"
+base00: "193145"  # default background
+base01: "2b4458"
+base02: "43596c"
+base03: "5e707f"  # commments
+base04: "7f8992"
+base05: "a6a6a6"  # foreground
+base06: "d2d2d2"
+base07: "ffffff"
+base08: "df676a"  # red
+base09: "ff9966"  # orange
+base0A: "ffff66"  # yellow
+base0B: "66ff66"  # green
+base0C: "379d80"  # cyan
+base0D: "16d2ce"  # blue
+base0E: "a277e3"  # purple
+base0F: "dd5bb9"  # magenta

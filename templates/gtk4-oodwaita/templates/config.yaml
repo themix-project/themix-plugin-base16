@@ -1,3 +1,7 @@
+gtk4-libadwaita1.7.2:
+  extension: /gtk-4.0/gtk.css
+  output: .themes/
+  force_filename:
 gtk4-libadwaita1.6.0:
   extension: /gtk-4.0/gtk.css
   output: .themes/
