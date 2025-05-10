@@ -458,10 +458,10 @@ class Base16ExportDialog(DialogWithExportPath):
         self.options_box.show_all()
 
         user_templates_label = Gtk.Label()
-        _userdir_markup = \
+        userdir_markup = \
             f'<a href="file://{USER_BASE16_TEMPLATES_DIR}">{USER_BASE16_TEMPLATES_DIR}</a>'
         user_templates_label.set_markup(
-            translate("User templates can be added to {userdir}").format(userdir=_userdir_markup),
+            translate("User templates can be added to {userdir}").format(userdir=userdir_markup),
         )
         self.box.add(user_templates_label)
         user_templates_label.show_all()
