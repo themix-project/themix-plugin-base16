@@ -11,6 +11,7 @@ else:
 sys.path.append(THEMIX_GUI_PATH)
 sys.path.append(SCRIPT_DIR)
 
+from oomox_gui.terminal import generate_terminal_colors_for_oomox
 from oomox_gui.theme_file_parser import read_colorscheme_from_path  # noqa[E402]
 from oomox_gui.theme_file import ThemeT  # noqa[E402]
 
@@ -29,6 +30,10 @@ def main() -> None:
     themix_theme_path = sys.argv[2]
     result: list[ThemeT] = []
     read_colorscheme_from_path(themix_theme_path, callback=result.append)
+    for item in result:
+        themix_theme = item
+    result = []
+    generate_terminal_colors_for_oomox(colorscheme=themix_theme, result_callback=result.append)
     for item in result:
         themix_theme = item
     base16_theme = convert_oomox_to_base16(colorscheme=themix_theme)
