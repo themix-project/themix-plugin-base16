@@ -2,6 +2,7 @@
 __pycache__
 .mypy_cache/
 
+pkg/
 *.pkg.*
 
 themix_gui/
