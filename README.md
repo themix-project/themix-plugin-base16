@@ -17,7 +17,8 @@ Themix Base16 plugin
  - git
  - rsync
  - find
- - sassc (gtk4 libadwaita)
+ - dart-sass (gtk3 oodwaita)
+ - sassc (gtk4 oodwaita)
 
 ## FAQ
 
