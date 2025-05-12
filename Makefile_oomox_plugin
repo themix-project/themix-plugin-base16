@@ -13,8 +13,8 @@ install:
 
 	mkdir -p $(DEST_PLUGIN_DIR)/$(PLUGIN_NAME)/
 	cp -prf \
-        ./oomox_plugin.py \
-        ./cli.py \
+		./oomox_plugin.py \
+		./cli.py \
 		./schemes.yaml \
 		./schemes/ \
 		./templates.yaml \
@@ -25,9 +25,10 @@ install:
 		packaging/ \
 			$(PACKAGING_TMP_DIR)/
 	sed -i -e 's|/opt/oomox/|$(APPDIR)/|g' $(PACKAGING_TMP_DIR)/packaging/bin/*
-	chmod a+x "$(PACKAGING_TMP_DIR)/packaging/bin/"*
 
 	install -d $(DEST_PREFIX)/bin/
 	install -Dp -m 755 "$(PACKAGING_TMP_DIR)/packaging/bin/themix-base16-cli" "$(DEST_PREFIX)/bin/"
+
+	$(RM) -r "$(PACKAGING_TMP_DIR)"
 
 all: install
