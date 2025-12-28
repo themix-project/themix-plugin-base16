@@ -274,8 +274,7 @@ class Base16ExportDialog(DialogWithExportPath):
         parent_dir = os.path.dirname(export_path)
         if not os.path.exists(parent_dir):
             os.makedirs(parent_dir)
-        with Path(export_path).open("w", encoding=DEFAULT_ENCODING) as fobj:
-            fobj.write(self.rendered_theme)
+        Path(export_path).write_text(self.rendered_theme, encoding=DEFAULT_ENCODING)
         print(f"    :: saved {self.current_app.name} ({self.current_variant}) to {export_path}")
         self.save_last_export_path()
         self.dialog_done()
