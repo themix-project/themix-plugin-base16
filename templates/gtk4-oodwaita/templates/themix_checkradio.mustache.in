@@ -26,8 +26,44 @@ radio:indeterminate {
   -gtk-icon-source: -gtk-icontheme("list-remove-symbolic");
 }
 
-menu menuitem check, menu menuitem check:hover, menu menuitem check:disabled, menu menuitem check:not(:checked), menu menuitem check:not(:checked):hover, menu menuitem check:not(:checked):disabled, menu menuitem check:checked, menu menuitem check:checked:hover, menu menuitem check:checked:disabled, menu menuitem check:indeterminate, menu menuitem check:indeterminate:hover, menu menuitem check:indeterminate:disabled, menu menuitem radio, menu menuitem radio:hover, menu menuitem radio:disabled, menu menuitem radio:not(:checked), menu menuitem radio:not(:checked):hover, menu menuitem radio:not(:checked):disabled, menu menuitem radio:checked, menu menuitem radio:checked:hover, menu menuitem radio:checked:disabled, menu menuitem radio:indeterminate, menu menuitem radio:indeterminate:hover, menu menuitem radio:indeterminate:disabled,
-popover.menu check, popover.menu check:hover:checked, popover.menu check:hover:indeterminate, popover.menu check:hover:not(:checked):not(:indeterminate), popover.menu check:active:checked, popover.menu check:active:indeterminate, popover.menu check:active:not(:checked):not(:indeterminate), popover.menu radio, popover.menu radio:hover:checked, popover.menu radio:hover:indeterminate, popover.menu radio:hover:not(:checked):not(:indeterminate), popover.menu radio:active:checked, popover.menu radio:active:indeterminate, popover.menu radio:active:not(:checked):not(:indeterminate) {
+menu menuitem check,
+menu menuitem check:checked,
+menu menuitem check:checked:disabled,
+menu menuitem check:checked:hover,
+menu menuitem check:disabled,
+menu menuitem check:hover,
+menu menuitem check:indeterminate,
+menu menuitem check:indeterminate:disabled,
+menu menuitem check:indeterminate:hover,
+menu menuitem check:not(:checked),
+menu menuitem check:not(:checked):disabled,
+menu menuitem check:not(:checked):hover,
+menu menuitem radio,
+menu menuitem radio:checked,
+menu menuitem radio:checked:disabled,
+menu menuitem radio:checked:hover,
+menu menuitem radio:disabled,
+menu menuitem radio:hover,
+menu menuitem radio:indeterminate,
+menu menuitem radio:indeterminate:disabled,
+menu menuitem radio:indeterminate:hover,
+menu menuitem radio:not(:checked),
+menu menuitem radio:not(:checked):disabled,
+menu menuitem radio:not(:checked):hover,
+popover.menu check,
+popover.menu check:active:checked,
+popover.menu check:active:indeterminate,
+popover.menu check:active:not(:checked):not(:indeterminate),
+popover.menu check:hover:checked,
+popover.menu check:hover:indeterminate,
+popover.menu check:hover:not(:checked):not(:indeterminate),
+popover.menu radio,
+popover.menu radio:active:checked,
+popover.menu radio:active:indeterminate,
+popover.menu radio:active:not(:checked):not(:indeterminate),
+popover.menu radio:hover:checked,
+popover.menu radio:hover:indeterminate,
+popover.menu radio:hover:not(:checked):not(:indeterminate) {
   background: none;
   color: #{{themix_ACCENT_BG-hex}};
   border-color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
@@ -35,23 +71,36 @@ popover.menu check, popover.menu check:hover:checked, popover.menu check:hover:i
   border-style: solid;
 }
 
-menu menuitem check:indeterminate,
-menu menuitem radio:indeterminate,
-popover.menu check:indeterminate,
-popover.menu radio:indeterminate,
-menu check:indeterminate,
-menu radio:indeterminate,
-menu menuitem check:checked,
-menu menuitem radio:checked,
-popover.menu check:checked,
-popover.menu radio:checked,
 menu check:checked,
-menu radio:checked {
+menu check:indeterminate,
+menu menuitem check:checked,
+menu menuitem check:indeterminate,
+menu menuitem radio:checked,
+menu menuitem radio:indeterminate,
+menu radio:checked,
+menu radio:indeterminate,
+popover.menu check:checked,
+popover.menu check:indeterminate,
+popover.menu radio:checked,
+popover.menu radio:indeterminate {
   color: #{{themix_ACCENT_BG-hex}};
   border-color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
 }
 
-menu menuitem check:checked:hover, menu menuitem radio:checked:hover, menu menuitem radio:indeterminate:hover, popover.menu check:hover:checked, popover.menu check:hover:indeterminate, popover.menu check:active:checked, popover.menu check:active:indeterminate, popover.menu radio:hover:checked, popover.menu radio:hover:indeterminate, popover.menu radio:active:checked, popover.menu radio:active:indeterminate {
+menu:hover check:checked,
+menu:hover check:indeterminate,
+menu menuitem check:checked:hover,
+menu menuitem check:indeterminate:hover,
+menu menuitem radio:checked:hover,
+menu menuitem radio:indeterminate:hover,
+popover.menu check:active:checked,
+popover.menu check:active:indeterminate,
+popover.menu check:hover:checked,
+popover.menu check:hover:indeterminate,
+popover.menu radio:active:checked,
+popover.menu radio:active:indeterminate,
+popover.menu radio:hover:checked,
+popover.menu radio:hover:indeterminate {
   color: mix(@headerbar_fg_color,@headerbar_bg_color,0.8);
 }
 
