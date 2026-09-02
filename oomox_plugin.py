@@ -379,7 +379,7 @@ class Base16ExportDialog(DialogWithExportPath):
     def _on_homepage_button(self, _button: Gtk.Button) -> None:
         url = self.templates_homepages[self.current_app.name]
         cmd = ["xdg-open", url]
-        subprocess.Popen(cmd)  # pylint: disable=consider-using-with  # noqa: S603
+        subprocess.Popen(cmd)  # pylint: disable=consider-using-with  # ruff: ignore[subprocess-without-shell-equals-true]
 
     def __init__(  # pylint: disable=too-many-locals
             self,
@@ -608,7 +608,7 @@ class Plugin(PluginBase):
                     key = key.rstrip(":")
                     value = value.strip('\'"').lower()
                     base16_theme[key] = value
-                except Exception:  # noqa: PERF203
+                except Exception:  # ruff: ignore[try-except-in-loop]
                     print(
                         translate(
                             "ERROR: can't convert `{}={}` from Base16 to Oomox :(",
